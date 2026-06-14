@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Second Brain — and how to build your own</title>
+<meta name="description" content="How I turned a folder of text files into an AI that actually knows me — plus templates to start your own.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f8f2ea;
+    --bg-2:#f3eae0;
+    --surface:#ffffff;
+    --ink:#303636;
+    --ink-soft:#6f6a63;
+    --ink-faint:#9a948c;
+    --clay:#d4967d;
+    --clay-deep:#b06a4f;
+    --espresso:#221d1a;
+    --line:rgba(48,54,54,.10);
+    --line-soft:rgba(48,54,54,.06);
+    --shadow:0 14px 40px rgba(80,50,30,.07);
+    --shadow-sm:0 6px 18px rgba(80,50,30,.06);
+    --r:22px;
+    --maxw:880px;
+    --maxw-wide:1060px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Poppins',system-ui,-apple-system,Segoe UI,sans-serif;
+    font-weight:400;font-size:17.5px;line-height:1.72;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:'Young Serif',Georgia,serif;font-weight:400;color:#2b2622;line-height:1.12;letter-spacing:-.01em}
+  p{margin:0 0 1.05em}
+  a{color:var(--clay-deep);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+  .wide{max-width:var(--maxw-wide);margin:0 auto;padding:0 26px}
+  section{padding:88px 0}
+  section[id]{scroll-margin-top:86px}
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(248,242,234,.82);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav-inner{max-width:var(--maxw-wide);margin:0 auto;padding:11px 26px;display:flex;align-items:center;gap:18px}
+  .brand{font-family:'Young Serif',serif;font-size:18px;color:#2b2622;white-space:nowrap}
+  .brand .dot{color:var(--clay)}
+  .nav-links{display:flex;gap:5px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{
+    font-size:13.5px;font-weight:500;color:var(--ink-soft);
+    padding:7px 13px;border-radius:999px;white-space:nowrap;transition:.18s;
+  }
+  .nav-links a:hover{color:var(--ink);text-decoration:none;background:rgba(212,150,125,.13)}
+  .nav-links a.active{color:#fff;background:var(--clay);}
+  .nav-cta{
+    font-size:13.5px;font-weight:600;color:#fff !important;background:var(--espresso);
+    padding:8px 16px;border-radius:999px;white-space:nowrap;
+  }
+  .nav-cta:hover{background:#3a322c;text-decoration:none}
+
+  /* ---------- kicker ---------- */
+  .kicker{
+    display:inline-block;font-size:12.5px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--clay-deep);margin-bottom:18px;
+  }
+  .kicker .num{color:var(--ink-faint);margin-right:8px}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;overflow:hidden;padding:74px 0 60px;text-align:center}
+  .hero::before{
+    content:"";position:absolute;top:-220px;left:50%;transform:translateX(-50%);
+    width:760px;height:520px;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(212,150,125,.30),rgba(212,150,125,0));
+    z-index:0;pointer-events:none;
+  }
+  .hero .wrap{position:relative;z-index:1}
+  .hero-tag{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;
+    color:var(--clay-deep);background:rgba(212,150,125,.16);
+    padding:7px 16px;border-radius:999px;margin-bottom:26px;
+  }
+  .hero h1{font-size:clamp(42px,7vw,76px);margin:0 0 .28em}
+  .hero .sub{font-size:clamp(18px,2.4vw,21px);color:var(--ink-soft);max-width:680px;margin:0 auto 1.4em;line-height:1.62}
+  .hero .aside{font-size:15px;color:var(--ink-faint);max-width:560px;margin:0 auto 2em}
+  .hero-btns{display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:none;
+    font-family:'Poppins',sans-serif;font-size:15px;font-weight:600;
+    padding:13px 24px;border-radius:999px;transition:.18s;text-decoration:none;
+  }
+  .btn-primary{background:var(--clay);color:#fff}
+  .btn-primary:hover{background:var(--clay-deep);text-decoration:none;transform:translateY(-1px)}
+  .btn-dark{background:var(--espresso);color:#fff}
+  .btn-dark:hover{background:#3a322c;text-decoration:none;transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--clay);color:var(--clay-deep);text-decoration:none}
+
+  /* ---------- section heads ---------- */
+  .lead h2{font-size:clamp(30px,4.4vw,44px);margin:0 0 .35em}
+  .lead .deck{font-size:19px;color:var(--ink-soft);max-width:660px;line-height:1.6}
+
+  /* ---------- callout / quote ---------- */
+  .callout{
+    background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--clay);
+    border-radius:16px;padding:24px 28px;margin:30px 0;box-shadow:var(--shadow-sm);
+  }
+  .callout.big{font-size:21px;line-height:1.55;color:#3a3530}
+  .callout.big strong{color:#2b2622}
+  .quote{
+    border-left:3px solid var(--clay);padding:4px 0 4px 20px;margin:18px 0;
+    font-style:italic;color:#4a443d;
+  }
+  .quote .who{display:block;font-style:normal;font-size:13.5px;color:var(--ink-faint);margin-top:6px;letter-spacing:.02em}
+
+  /* ---------- anatomy layer cake ---------- */
+  .stack{display:flex;flex-direction:column;gap:12px;margin-top:36px}
+  .layer{
+    display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:center;
+    background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    padding:20px 24px;box-shadow:var(--shadow-sm);
+  }
+  .layer .lname{font-family:'Young Serif',serif;font-size:18px;color:#2b2622}
+  .layer .lfile{display:block;font-family:'Poppins';font-size:12.5px;color:var(--ink-faint);margin-top:3px;font-weight:500}
+  .layer .ldesc{color:var(--ink-soft);font-size:15.5px;line-height:1.55}
+  .tag{display:inline-block;font-size:11.5px;font-weight:600;letter-spacing:.05em;
+    text-transform:uppercase;padding:4px 11px;border-radius:999px;margin-bottom:8px}
+  .t-stable{background:#e7ece4;color:#5b6b58}
+  .t-now{background:#f6e2d6;color:#b06a4f}
+  .t-grows{background:#f3ead0;color:#94762d}
+  .t-live{background:#e1e8ec;color:#566c79}
+  .t-across{background:#e8e3f0;color:#6a5e88}
+
+  /* ---------- two agents ---------- */
+  .agents{display:grid;grid-template-columns:1fr 64px 1fr;gap:0;align-items:stretch;margin-top:34px}
+  .agent{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow-sm)}
+  .agent h4{font-size:21px;margin:0 0 4px}
+  .agent .role{font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--clay-deep);margin-bottom:12px}
+  .agent ul{margin:0;padding-left:18px;color:var(--ink-soft);font-size:15px;line-height:1.7}
+  .agent-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink-faint);font-size:12px;text-align:center;gap:6px}
+  .agent-mid .bar{width:2px;flex:1;background:linear-gradient(var(--clay),transparent 70%)}
+  .shared-note{text-align:center;margin-top:18px;color:var(--ink-soft);font-size:15px}
+  .shared-note b{color:var(--clay-deep)}
+
+  /* ---------- example grid ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:38px}
+  .card{
+    background:var(--surface);border:1px solid var(--line);border-radius:18px;
+    padding:26px 24px;box-shadow:var(--shadow-sm);transition:.2s;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .card .emoji{font-size:28px;display:block;margin-bottom:12px}
+  .card h4{font-size:18.5px;margin:0 0 8px}
+  .card p{font-size:14.8px;color:var(--ink-soft);line-height:1.6;margin:0}
+
+  /* ---------- doc cards (the 3) ---------- */
+  .doc{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+    padding:30px 32px;box-shadow:var(--shadow);margin-top:26px;
+  }
+  .doc-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+  .doc-head .fn{font-family:'Young Serif',serif;font-size:24px;color:#2b2622}
+  .doc-head .ft{font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--clay-deep)}
+  .doc .what{font-size:16px;color:var(--ink);margin:14px 0 6px}
+  .doc .why{font-size:15.5px;color:var(--ink-soft)}
+  .doc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+  .btn-sm{font-size:13.5px;padding:9px 16px}
+
+  /* ---------- file cards (start section) ---------- */
+  .files{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:30px}
+  .filecard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column}
+  .filecard .fname{font-family:'Young Serif',serif;font-size:18px;color:#2b2622}
+  .filecard .ftag{display:block;font-size:12.5px;color:var(--ink-faint);margin:2px 0 12px;font-weight:500}
+  .filecard .fdesc{font-size:14px;color:var(--ink-soft);line-height:1.55;flex:1;margin-bottom:16px}
+  .filecard-actions{display:flex;gap:9px;flex-wrap:wrap}
+
+  details.preview{margin-top:14px}
+  details.preview summary{cursor:pointer;font-size:13.5px;color:var(--clay-deep);font-weight:500;list-style:none}
+  details.preview summary::-webkit-details-marker{display:none}
+  details.preview summary::before{content:"▸ ";color:var(--ink-faint)}
+  details.preview[open] summary::before{content:"▾ "}
+  pre.code{
+    background:var(--espresso);color:#ece3d8;border-radius:14px;padding:20px;margin:14px 0 0;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.8px;line-height:1.6;
+    max-height:340px;overflow:auto;white-space:pre-wrap;word-break:break-word;
+  }
+
+  /* ---------- steps ---------- */
+  .steps{counter-reset:step;margin-top:36px;display:flex;flex-direction:column;gap:16px}
+  .step{display:grid;grid-template-columns:52px 1fr;gap:18px;align-items:start;
+    background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 24px;box-shadow:var(--shadow-sm)}
+  .step .n{counter-increment:step;width:44px;height:44px;border-radius:50%;background:var(--clay);
+    color:#fff;font-family:'Young Serif',serif;font-size:21px;display:flex;align-items:center;justify-content:center}
+  .step .n::before{content:counter(step)}
+  .step h4{font-size:18px;margin:2px 0 5px}
+  .step p{font-size:15px;color:var(--ink-soft);margin:0}
+  .step code{background:var(--bg-2);padding:2px 7px;border-radius:6px;font-size:13.5px;color:#5a4a40}
+
+  /* ---------- dark section ---------- */
+  .dark{background:var(--espresso);color:#e9e0d6}
+  .dark h2{color:#fbf4ea}
+  .dark .deck{color:#c4b8ab}
+  .dark .kicker{color:var(--clay)}
+  .badge-adv{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+    color:#f0d9c9;background:rgba(212,150,125,.22);padding:5px 14px;border-radius:999px;margin-bottom:18px}
+  .pieces{display:flex;flex-direction:column;gap:12px;margin-top:30px}
+  .piece{display:grid;grid-template-columns:46px 1fr;gap:16px;align-items:start;
+    background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:18px 22px}
+  .piece .pn{width:38px;height:38px;border-radius:10px;background:rgba(212,150,125,.25);color:#f6e2d6;
+    font-family:'Young Serif',serif;font-size:17px;display:flex;align-items:center;justify-content:center}
+  .piece h4{color:#fbf4ea;font-size:16.5px;margin:1px 0 4px}
+  .piece p{color:#bcae9f;font-size:14.5px;margin:0;line-height:1.55}
+  .dark .agent{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1)}
+  .dark .agent h4{color:#fbf4ea}
+  .dark .agent ul{color:#c4b8ab}
+  .dark .shared-note{color:#c4b8ab}
+  .dark .shared-note b{color:var(--clay)}
+
+  /* ---------- footer ---------- */
+  .foot{background:#1a1613;color:#cabeb0;text-align:center;padding:70px 26px}
+  .foot .sig{font-family:'Young Serif',serif;font-size:30px;color:#fbf4ea;margin-bottom:10px}
+  .foot p{max-width:520px;margin:0 auto 1em;font-size:15px;color:#a89c8e}
+  .foot .made{font-size:14px;color:var(--clay)}
+
+  .divider{display:flex;align-items:center;gap:16px;justify-content:center;color:var(--clay);margin:6px 0 0;font-size:14px}
+  .divider::before,.divider::after{content:"";height:1px;width:60px;background:var(--line)}
+
+  .toast{
+    position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:var(--espresso);color:#fff;padding:12px 22px;border-radius:999px;font-size:14.5px;font-weight:500;
+    opacity:0;pointer-events:none;transition:.25s;z-index:100;box-shadow:0 10px 30px rgba(0,0,0,.25);
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media(max-width:720px){
+    body{font-size:16.5px}
+    section{padding:62px 0}
+    .layer{grid-template-columns:1fr;gap:6px}
+    .agents{grid-template-columns:1fr;gap:14px}
+    .agent-mid{flex-direction:row;height:30px}
+    .agent-mid .bar{width:auto;height:2px;background:linear-gradient(90deg,var(--clay),transparent 80%)}
+    .brand{display:none}
+    .nav-inner{padding:9px 16px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="brand">Second Brain<span class="dot">.</span></span>
+    <div class="nav-links">
+      <a href="#idea">The Idea</a>
+      <a href="#anatomy">Anatomy</a>
+      <a href="#docs">The 3 Docs</a>
+      <a href="#magic">What It Does</a>
+      <a href="#hermes">Always-On</a>
+      <a href="#start">Start</a>
+    </div>
+    <a href="#start" class="nav-cta">Get the templates</a>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="wrap">
+    <span class="hero-tag">✦ for my friends + community</span>
+    <h1>My Second Brain</h1>
+    <p class="sub">I turned a plain folder of text files into a creative &amp; business partner that actually knows me — and a second agent that keeps working while I sleep. Here's the whole thing, no jargon, plus the templates to start your own.</p>
+    <p class="aside">No code required to start. If you can make a folder and type into a chat box, you can do this.</p>
+    <div class="hero-btns">
+      <a href="#idea" class="btn btn-primary">Start with the idea ↓</a>
+      <a href="#start" class="btn btn-ghost">Just give me the templates →</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== THE IDEA ===================== -->
+<section id="idea">
+  <div class="wrap lead">
+    <span class="kicker"><span class="num">01</span> The idea</span>
+    <h2>Your AI is a genius with amnesia.</h2>
+    <p class="deck">Here's the thing nobody tells you when you start using AI seriously.</p>
+    <p>The model is brilliant — but every new chat, it has total amnesia. It doesn't remember you, your projects, how you like things done, or what you decided last week. So you re-explain yourself. Forever. Every conversation starts from zero.</p>
+    <div class="callout big">
+      A <strong>second brain</strong> is just the memory you give it <em>once</em> — a folder of plain text it reads before it helps you. That's the whole trick. Everything else on this page is detail.
+    </div>
+    <p>Once the AI can read who you are, how you work, and what's happening in your life, its help stops being generic. It stops sounding like a press release and starts sounding like a partner who's been paying attention. And because it's just text files, it compounds: every time you correct it or teach it something, that lands in the folder and it's smarter the next time — not just for one answer, but for good.</p>
+    <p style="color:var(--ink-soft);font-size:15.5px">↓ Let's open the hood. It's simpler than it looks.</p>
+  </div>
+</section>
+
+<!-- ===================== ANATOMY ===================== -->
+<section id="anatomy" style="background:var(--bg-2)">
+  <div class="wrap lead">
+    <span class="kicker"><span class="num">02</span> Anatomy</span>
+    <h2>Six parts. One folder.</h2>
+    <p class="deck">The whole system is a folder on your computer. Inside, each file has one job — and that's the secret to why it stays clear instead of becoming a junk drawer.</p>
+  </div>
+  <div class="wide">
+    <div class="stack">
+      <div class="layer">
+        <div><span class="tag t-stable">stable</span><div class="lname">Who you are<span class="lfile">SOUL.md</span></div></div>
+        <div class="ldesc">Your story, your values, how you're wired. The AI reads this and its help starts fitting your actual life instead of a generic one.</div>
+      </div>
+      <div class="layer">
+        <div><span class="tag t-stable">stable</span><div class="lname">The rules<span class="lfile">CLAUDE.md</span></div></div>
+        <div class="ldesc">How you want it to behave. Your boundaries, your do's and never-do's, how it should talk to you. Read at the start of every session.</div>
+      </div>
+      <div class="layer">
+        <div><span class="tag t-now">changes weekly</span><div class="lname">Right now<span class="lfile">working-context.md</span></div></div>
+        <div class="ldesc">Where you are this week, what's loud, what's paused. Keeps it current so you never have to re-explain your situation from scratch.</div>
+      </div>
+      <div class="layer">
+        <div><span class="tag t-grows">grows itself</span><div class="lname">What it's learned<span class="lfile">memory/</span></div></div>
+        <div class="ldesc">Preferences and corrections, saved so it never makes the same mistake twice. You barely touch this — it fills itself as you work.</div>
+      </div>
+      <div class="layer">
+        <div><span class="tag t-live">live</span><div class="lname">The world<span class="lfile">your apps</span></div></div>
+        <div class="ldesc">Calendar, email, tasks, notes — connected so it works with real data, not a stale copy you have to keep updating by hand.</div>
+      </div>
+      <div class="layer">
+        <div><span class="tag t-across">across all of it</span><div class="lname">Who does the work<span class="lfile">the agents</span></div></div>
+        <div class="ldesc">You + your AI in a live session. And — optionally — an always-on agent that runs on its own. Both read the exact same brain. (More on that below.)</div>
+      </div>
+    </div>
+    <p class="shared-note">The golden rule that keeps it from turning into a mess: <b>each file has one job, and doesn't do another file's job.</b> Rules go in the rules file. Today's chaos goes in the "right now" file. That discipline is 80% of why it works.</p>
+  </div>
+</section>
+
+<!-- ===================== THE 3 DOCS ===================== -->
+<section id="docs">
+  <div class="wrap lead">
+    <span class="kicker"><span class="num">03</span> The three documents that start everything</span>
+    <h2>If you do nothing else, do these three.</h2>
+    <p class="deck">You don't need the whole system on day one. You need three text files. Here's what each one is, why it matters, and a template you can take home right now.</p>
+  </div>
+
+  <div class="wrap">
+    <!-- SOUL -->
+    <div class="doc">
+      <div class="doc-head"><span class="fn">SOUL.md</span><span class="ft">who you are</span></div>
+      <p class="what"><b>What it is:</b> The doc that tells your AI who it's actually working with — your story, your values, how you make decisions, what you'll never compromise on.</p>
+      <p class="why"><b>Why it matters:</b> This is the difference between generic advice and advice that fits. Mine opens with six lines — roughly <em>"musician → went viral singing people to sleep → burned out → walked away → now building something that integrates all of it."</em> Suddenly every suggestion my AI makes is shaped to the real arc of my life, not a stranger's.</p>
+      <div class="doc-actions">
+        <button class="btn btn-primary btn-sm" data-copy="tpl-soul">⧉ Copy template</button>
+        <button class="btn btn-ghost btn-sm" data-download="tpl-soul" data-filename="SOUL.md">↓ Download .md</button>
+      </div>
+      <details class="preview"><summary>Preview the full template</summary><pre class="code" data-preview="tpl-soul"></pre></details>
+    </div>
+
+    <!-- CLAUDE -->
+    <div class="doc">
+      <div class="doc-head"><span class="fn">CLAUDE.md</span><span class="ft">the rules</span></div>
+      <p class="what"><b>What it is:</b> The operating manual. SOUL says <em>who you are</em>; this says <em>how to behave</em> — your rules, your boundaries, how it should route work and talk to you.</p>
+      <p class="why"><b>Why it matters:</b> One line in mine says <em>"never schedule anything 9am–noon."</em> Now nothing — not a meeting suggestion, not my own agent — ever touches my creative mornings. When the AI gets something wrong, I add a rule here and it's fixed for good. It's a manual you write once and edit forever.</p>
+      <div class="doc-actions">
+        <button class="btn btn-primary btn-sm" data-copy="tpl-claude">⧉ Copy template</button>
+        <button class="btn btn-ghost btn-sm" data-download="tpl-claude" data-filename="CLAUDE.md">↓ Download .md</button>
+      </div>
+      <details class="preview"><summary>Preview the full template</summary><pre class="code" data-preview="tpl-claude"></pre></details>
+    </div>
+
+    <!-- WORKING CONTEXT -->
+    <div class="doc">
+      <div class="doc-head"><span class="fn">working-context.md</span><span class="ft">right now</span></div>
+      <p class="what"><b>What it is:</b> The whiteboard. The one file that changes often — where you are this week, what's loud, what you've set down.</p>
+      <p class="why"><b>Why it matters:</b> Mine right now basically says <em>"heads-down before a trip, creative projects are paused, these three threads are loud."</em> So my AI stops pitching me shiny new ideas and helps me land the plane. Update it weekly; it's the difference between an assistant that knows your situation and one you brief from scratch every time.</p>
+      <div class="doc-actions">
+        <button class="btn btn-primary btn-sm" data-copy="tpl-context">⧉ Copy template</button>
+        <button class="btn btn-ghost btn-sm" data-download="tpl-context" data-filename="working-context.md">↓ Download .md</button>
+      </div>
+      <details class="preview"><summary>Preview the full template</summary><pre class="code" data-preview="tpl-context"></pre></details>
+    </div>
+
+    <div class="callout" style="margin-top:30px">
+      <b>And the fourth, quietly:</b> <code style="background:var(--bg-2);padding:2px 7px;border-radius:6px;font-size:14px">MEMORY.md</code> — the learning layer. You start it nearly empty; your AI writes to it as it goes. "Remember I prefer X." "Don't get that name wrong again." Next session, it remembers. That's the part that compounds. Grab it in the <a href="#start">Start</a> section below.
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHAT IT DOES ===================== -->
+<section id="magic" style="background:var(--bg-2)">
+  <div class="wrap lead">
+    <span class="kicker"><span class="num">04</span> What it actually does for me</span>
+    <h2>The point isn't the folder. It's the time you get back.</h2>
+    <p class="deck">A few things this system does for me every week. None of it is magic — it's just an AI that finally has context. (Examples sanitized; the real ones have my clients' names in them.)</p>
+  </div>
+  <div class="wide">
+    <div class="grid">
+      <div class="card">
+        <span class="emoji">🌅</span>
+        <h4>The morning briefing</h4>
+        <p>Before I'm awake, one note is waiting: today's calendar, the three emails that actually need me, what's due, what I said I'd do. I read one thing instead of opening five apps.</p>
+      </div>
+      <div class="card">
+        <span class="emoji">🗂️</span>
+        <h4>Brain-dump → organized</h4>
+        <p>I ramble thoughts into a notes app all week. Once a week it sorts the chaos into projects, tasks, and ideas — nothing lost, nothing I have to file by hand.</p>
+      </div>
+      <div class="card">
+        <span class="emoji">💬</span>
+        <h4>Inbox triage, in my voice</h4>
+        <p>It reads my unread messages and drafts replies that actually sound like me. It never sends without me — I skim, tweak, approve. An hour of pinging becomes ten minutes.</p>
+      </div>
+      <div class="card">
+        <span class="emoji">🧠</span>
+        <h4>Ask my own brain</h4>
+        <p>Months of notes, bookmarks, and voice memos get compiled into a little knowledge base I can ask. "What do I know about X?" → a cited answer pulled from my own life.</p>
+      </div>
+      <div class="card">
+        <span class="emoji">🗓️</span>
+        <h4>Plan my week</h4>
+        <p>It reads my task list, estimates how long things take, and lays them onto my calendar — around my protected hours, never through them.</p>
+      </div>
+      <div class="card">
+        <span class="emoji">🎙️</span>
+        <h4>Voice memo → notes</h4>
+        <p>I talk for five minutes walking the dog. It turns the monologue into structured notes and routes the to-dos to the right place. Thinking out loud, finally captured.</p>
+      </div>
+    </div>
+    <p class="shared-note" style="margin-top:28px">Notice the pattern: it's not doing my work <i>for</i> me. It's clearing the gravel so I can do the work only I can do.</p>
+  </div>
+</section>
+
+<!-- ===================== HERMES / ALWAYS-ON ===================== -->
+<section id="hermes" class="dark">
+  <div class="wrap lead">
+    <span class="badge-adv">⚡ Advanced · optional · come back to this</span>
+    <span class="kicker"><span class="num">05</span> The always-on agent</span>
+    <h2>What if it worked while you slept?</h2>
+    <p class="deck">Everything so far runs when you're at your computer, in a session. This is the next level: a <em>second</em> agent that's always on — and it changes the whole feeling of the thing.</p>
+  </div>
+  <div class="wide">
+    <div class="agents">
+      <div class="agent">
+        <div class="role">with you</div>
+        <h4>Claude</h4>
+        <ul>
+          <li>Runs when you're working</li>
+          <li>Synthesis, drafting, planning</li>
+          <li>Powerful, but only awake when you are</li>
+        </ul>
+      </div>
+      <div class="agent-mid">
+        <div class="bar"></div>
+        <div>shared<br>brain</div>
+        <div class="bar"></div>
+      </div>
+      <div class="agent">
+        <div class="role">on its own</div>
+        <h4>Hermes</h4>
+        <ul>
+          <li>Always on — lives in the cloud</li>
+          <li>Runs tasks on a schedule</li>
+          <li>Messages you when something needs you</li>
+        </ul>
+      </div>
+    </div>
+    <p class="shared-note">They never talk to each other directly. They <b>share the same folder</b> — one writes, the other reads. Clean hand-offs, no chaos. The morning briefing? Hermes writes it at 6am so it's waiting when I wake up.</p>
+
+    <div class="wrap" style="padding:0;margin-top:8px">
+      <h3 style="color:#fbf4ea;font-size:24px;margin:44px 0 6px">The pieces, if you ever want to build one</h3>
+      <p style="color:#bcae9f;max-width:620px">Not a how-to with commands — just the map, so the idea isn't a black box. This is a weekend project for the technically curious, not a day-one move.</p>
+      <div class="pieces">
+        <div class="piece"><div class="pn">1</div><div><h4>A VPS</h4><p>A small cloud computer (think ~$5–10/month) that's always on. "VPS" just means a rented computer that never sleeps.</p></div></div>
+        <div class="piece"><div class="pn">2</div><div><h4>The agent runtime</h4><p>The always-on agent software running on that computer — the thing that actually does the work when you're gone.</p></div></div>
+        <div class="piece"><div class="pn">3</div><div><h4>A schedule</h4><p>Timed triggers ("cron jobs") that kick off tasks on their own — the 6am briefing, the weekly clean-up, the nightly digest.</p></div></div>
+        <div class="piece"><div class="pn">4</div><div><h4>A channel to reach you</h4><p>A messaging app (I use Telegram) so it can send you what it made and ping you when it needs a human.</p></div></div>
+        <div class="piece"><div class="pn">5</div><div><h4>Shared files</h4><p>The same second-brain folder synced to both your laptop and the server (via GitHub), so both agents read and write the one brain.</p></div></div>
+      </div>
+      <p style="color:#bcae9f;margin-top:26px"><b style="color:var(--clay)">Don't start here.</b> Get real value from the folder + your three docs first. Add the always-on layer when you find yourself wishing the work just… happened without you. That's the signal you're ready.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== START ===================== -->
+<section id="start">
+  <div class="wrap lead">
+    <span class="kicker"><span class="num">06</span> Start yours</span>
+    <h2>Twenty minutes to a brain of your own.</h2>
+    <p class="deck">You can have the core of this working before your coffee gets cold. Here's the on-ramp.</p>
+  </div>
+  <div class="wrap">
+    <div class="steps">
+      <div class="step"><div class="n"></div><div><h4>Make the folder</h4><p>Create a folder somewhere you'll keep it — <code>~/SecondBrain/</code>. That's it. It's just a folder.</p></div></div>
+      <div class="step"><div class="n"></div><div><h4>Drop in the three docs</h4><p>Copy in <code>SOUL.md</code>, <code>CLAUDE.md</code>, and <code>working-context.md</code> (below) and fill the [brackets]. Rough and honest beats polished and vague.</p></div></div>
+      <div class="step"><div class="n"></div><div><h4>Point your AI at it</h4><p>In Claude (Cowork or Claude Code), open the folder as your project — it reads <code>CLAUDE.md</code> every session. In any chat AI, paste SOUL + CLAUDE into custom instructions or a Project.</p></div></div>
+      <div class="step"><div class="n"></div><div><h4>Ask it something real</h4><p>"Given what you know about me, what should I focus on this week?" Watch it use <em>your</em> context. That's the moment it clicks.</p></div></div>
+      <div class="step"><div class="n"></div><div><h4>Let it remember</h4><p>When it learns something true about you, have it write a line to <code>MEMORY.md</code>. Next session, it remembers. That's the compounding part.</p></div></div>
+    </div>
+
+    <h3 style="font-size:24px;margin:46px 0 4px">Take the templates home</h3>
+    <p style="color:var(--ink-soft)">Copy to your clipboard, or download the <code style="background:var(--bg-2);padding:2px 7px;border-radius:6px;font-size:14px">.md</code> file. Each one has guidance baked in to walk you through filling it out.</p>
+
+    <div class="files">
+      <div class="filecard">
+        <span class="fname">SOUL.md</span><span class="ftag">who you are</span>
+        <p class="fdesc">Your story, values, and how you're wired — so its help fits your actual life.</p>
+        <div class="filecard-actions">
+          <button class="btn btn-primary btn-sm" data-copy="tpl-soul">⧉ Copy</button>
+          <button class="btn btn-ghost btn-sm" data-download="tpl-soul" data-filename="SOUL.md">↓ .md</button>
+        </div>
+        <details class="preview"><summary>Preview</summary><pre class="code" data-preview="tpl-soul"></pre></details>
+      </div>
+      <div class="filecard">
+        <span class="fname">CLAUDE.md</span><span class="ftag">the rules</span>
+        <p class="fdesc">How your AI should behave with you — boundaries, do's, never-do's, what to load when.</p>
+        <div class="filecard-actions">
+          <button class="btn btn-primary btn-sm" data-copy="tpl-claude">⧉ Copy</button>
+          <button class="btn btn-ghost btn-sm" data-download="tpl-claude" data-filename="CLAUDE.md">↓ .md</button>
+        </div>
+        <details class="preview"><summary>Preview</summary><pre class="code" data-preview="tpl-claude"></pre></details>
+      </div>
+      <div class="filecard">
+        <span class="fname">working-context.md</span><span class="ftag">right now</span>
+        <p class="fdesc">This week's whiteboard — where you are, what's loud, what's paused.</p>
+        <div class="filecard-actions">
+          <button class="btn btn-primary btn-sm" data-copy="tpl-context">⧉ Copy</button>
+          <button class="btn btn-ghost btn-sm" data-download="tpl-context" data-filename="working-context.md">↓ .md</button>
+        </div>
+        <details class="preview"><summary>Preview</summary><pre class="code" data-preview="tpl-context"></pre></details>
+      </div>
+      <div class="filecard">
+        <span class="fname">MEMORY.md</span><span class="ftag">what it learns</span>
+        <p class="fdesc">The learning layer. Start it empty; your AI fills it as it gets to know you.</p>
+        <div class="filecard-actions">
+          <button class="btn btn-primary btn-sm" data-copy="tpl-memory">⧉ Copy</button>
+          <button class="btn btn-ghost btn-sm" data-download="tpl-memory" data-filename="MEMORY.md">↓ .md</button>
+        </div>
+        <details class="preview"><summary>Preview</summary><pre class="code" data-preview="tpl-memory"></pre></details>
+      </div>
+      <div class="filecard">
+        <span class="fname">START-HERE.md</span><span class="ftag">the on-ramp</span>
+        <p class="fdesc">This whole 20-minute setup as a checklist you can keep in the folder.</p>
+        <div class="filecard-actions">
+          <button class="btn btn-primary btn-sm" data-copy="tpl-start">⧉ Copy</button>
+          <button class="btn btn-ghost btn-sm" data-download="tpl-start" data-filename="START-HERE.md">↓ .md</button>
+        </div>
+        <details class="preview"><summary>Preview</summary><pre class="code" data-preview="tpl-start"></pre></details>
+      </div>
+      <div class="filecard" style="background:linear-gradient(160deg,#fbeee6,#f8f2ea);border-color:rgba(212,150,125,.4)">
+        <span class="fname">The whole pack</span><span class="ftag">all five, at once</span>
+        <p class="fdesc">All five templates in one file — the fastest way to take the whole thing home.</p>
+        <div class="filecard-actions">
+          <button class="btn btn-dark btn-sm" id="download-all">↓ Download all</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="foot">
+  <div class="divider">✦</div>
+  <div style="height:18px"></div>
+  <div class="sig">Go make one.</div>
+  <p>This started as a living-room talk for a few friends. If it's useful to you, build your own and make it yours — the messy, honest version is the one that works.</p>
+  <p class="made">Made with love, Axel ❤️</p>
+</footer>
+
+<div class="toast" id="toast">Copied to clipboard ✓</div>
+
+<!-- ===================== TEMPLATE SOURCES (raw text) ===================== -->
+<script type="text/template" id="tpl-soul"># SOUL.md — Who I Am
+
+> This is the heart of your second brain. Not a resume — the doc that lets your AI understand *who it's working with* and *what matters to you*, so its help actually fits your life. Write it like you're describing yourself to a wise new friend who's going to help you for years. Replace everything in [brackets]. Delete what doesn't apply. Honest beats polished.
+
+## The Basics
+[Your name. Age, if it matters to you. Where you're from / where you live now. One or two lines of the real arc that got you here — including the messy parts.]
+
+*Shape it like: "[Name]. [City]. [What I used to do] -> [the turning point] -> [what I do now]."*
+
+## What I Do
+[In plain language, what's your actual work? Not the job title — the real thing you do and who it's for. If you wear several hats, name them.]
+
+## What I Care About
+[The handful of values you actually live by — the ones you'd want a collaborator to check decisions against. **Bold** the few that are truly non-negotiable.]
+
+## How I'm Wired
+[How do you make decisions — gut, analysis, sleeping on it? What's your energy like across a day or week? What consistently works for you, and what reliably doesn't? This is where you save your future self from advice that doesn't fit who you are.]
+
+## Non-Negotiables
+[The lines you don't cross. Protected time, commitments, ways of working you won't trade. Be specific — "[mornings are for creating; no meetings before noon]" beats "I value focus."]
+
+## Patterns to Know About Me
+[The honest stuff. Where do you avoid, over-commit, or spin out? Naming your patterns lets your AI gently catch them instead of feeding them. This section is a gift to yourself.]
+
+## Current Season
+[One or two lines on the chapter you're in right now — then point to your living file so this one can stay stable.]
+
+*The fast-changing details live in working-context.md, not here. This file holds the stable stuff.*
+
+## Mantras / Orienting Lines (optional)
+[Phrases you come back to. The ones that re-center you when you've drifted.]
+</script>
+
+<script type="text/template" id="tpl-claude"># CLAUDE.md — How to Work With Me
+
+> This is the operating manual your AI reads at the start of every session. SOUL.md says *who you are*; this says *how to behave* — your rules, your boundaries, how to route work, what to load when. Keep it prescriptive ("always do X / never do Y"). When the AI gets something wrong, the fix usually lives here. Replace everything in [brackets].
+
+## Who You Are To Me
+You are my [collaborator / partner / assistant] — not just a tool. [One line on the relationship you want — e.g. "a creative + business partner who knows my context and pushes back when I'm off."] Always prefer pulling real data from my files and connected tools before asking me to recap something you could look up.
+
+## Session Start
+At the start of every session, read working-context.md — my live "what's happening now" file. Then load only what the task needs (see **Loading** below). Don't load everything just in case.
+
+## How to Treat Me
+1. **Honesty over comfort.** Tell me what's true, not what's nice to hear.
+2. **Keep your objections on the table.** If you think I'm making a mistake, say so — and hold the position until I actually decide. Don't say it once and quietly go along.
+3. **Brevity.** If it fits in two sentences, don't write four. No preamble, no filler.
+4. [Add your own — e.g. "Don't add new ideas when I need to execute the ones I have."]
+
+## Rules
+1. **Read before you write.** Start here, then load only what's relevant to the task.
+2. **Ask first, then draft.** Don't generate big drafts without clarifying. Small tasks, just do them.
+3. **Flag, don't lecture.** If something's off, say it once, clearly.
+4. **Show a plan before multi-step work**, and wait for my yes.
+5. **Flag uncertainty instead of guessing.** Low confidence on a fact -> mark it, don't fill in a guess.
+6. **Match my voice.** Read brand-voice.md before writing anything as me. (Make that file when you're ready — see the guide.)
+7. [Your own hard rules — protected hours, things never to do, people never to email without asking, etc.]
+
+## Loading (keeps it fast + cheap)
+Map task types to files so nothing loads unnecessarily:
+- [Topic / domain A] -> [file or folder]
+- [Topic / domain B] -> [file or folder]
+- People -> [memory/people/[name].md]
+- Anything in my voice -> brand-voice.md
+
+## Where the Truth Lives
+My files hold *identity and synthesis*. My apps hold *live operational data*. Check the app for current facts; the files for context, voice, and decisions.
+
+| System | What's there | When to check |
+|---|---|---|
+| [Tasks app] | [my to-dos] | [all task tracking] |
+| [Notes / capture inbox] | [quick captures] | [on-the-fly jots] |
+| [Calendar / Email] | [events / mail] | [scheduling, triage] |
+
+## Content Boundaries (don't cross-file)
+- **CLAUDE.md** -> prescriptive rules (this file). Loaded every session.
+- **SOUL.md** -> who I am. Stable; rarely changes.
+- **working-context.md** -> what's happening now. Changes weekly.
+- **memory/** -> what you've learned about me over time. You write it, on demand.
+</script>
+
+<script type="text/template" id="tpl-context"># working-context.md — What's Happening Now
+
+> The whiteboard. This is the one file that changes often — where you are this week, what's loud, what's paused. Your AI reads it every session so it always has current footing. Update it weekly, or whenever the ground shifts. Keep the stable stuff in SOUL.md; keep only the *volatile* stuff here.
+
+**Last updated:** [day, date]
+
+## Where I Am
+[Location + the season in a sentence or two. "Home in [city], heads-down on [project] until [date]."]
+
+## Loud Right Now
+[The 3–6 threads actually taking up space in your head. Number them. One line each, ending in the next concrete move.]
+1. [Thread] — [status + the next action]
+2. [Thread] — [status + the next action]
+3. [Thread] — [status + the next action]
+
+## This Week
+[Key commitments / calendar at a glance. Only what matters — not every event.]
+- [Day] — [commitment]
+- [Day] — [commitment]
+
+## Paused / Not This Week
+[What you've consciously set down, so your AI stops surfacing it.]
+- [Thread] — paused until [when / condition]
+
+## Open Loops
+[Half-finished things worth not forgetting. Move them out of here once they resolve.]
+- [Loose end] — [what's left to do]
+</script>
+
+<script type="text/template" id="tpl-memory"># MEMORY.md — What You've Learned About Me
+
+> This is the learning layer. Over time, your AI writes down things worth remembering — your preferences, corrections you've made, context about people and projects — so it doesn't make the same mistake twice. Start it nearly empty. It grows itself.
+
+> **The rule:** one fact per line. When something's worth keeping, your AI adds it here (or as a small file in a memory/ folder) and reads it back in future sessions. You stay the editor — prune anything that goes stale. Leaner is better.
+
+## How To Use This
+- Tell your AI: *"remember that [fact]"* -> it writes it here.
+- Correct it once: *"actually, I prefer X"* -> it saves the correction so it sticks next time.
+- Review monthly. Delete what's no longer true.
+
+## Preferences
+- [e.g. "Lead drafts with the recommendation, not the analysis."]
+- [e.g. "I like options as a short list, not paragraphs."]
+
+## Corrections (things not to get wrong twice)
+- [e.g. "It's spelled '[Name]', not '[Name]'."]
+- [e.g. "Never schedule anything before [time]."]
+
+## People
+- [Name] — [who they are + what matters about working with / around them]
+
+## Projects & Context
+- [Ongoing thing] — [the context that isn't obvious from the files alone]
+</script>
+
+<script type="text/template" id="tpl-start"># START HERE — Build Your Second Brain in 20 Minutes
+
+> A second brain is just a folder of plain-text files your AI reads before it helps you. No app to buy, no code to write. Here's the whole on-ramp.
+
+## 1. Make the folder (2 min)
+Create a folder somewhere you'll keep it — e.g. ~/SecondBrain/. That's it. It's just a folder on your computer (or in your cloud drive).
+
+## 2. Drop in the three starter docs (10 min)
+Copy these templates in and fill the [brackets]:
+- SOUL.md — who you are.
+- CLAUDE.md — how your AI should work with you.
+- working-context.md — what's happening right now.
+
+Don't overthink it. Rough and honest beats polished and vague. You'll edit these forever — that's the point.
+
+## 3. Point your AI at the folder (2 min)
+- Claude (Cowork or Claude Code): open the folder as your project. It reads CLAUDE.md automatically, every session.
+- Any chat AI (ChatGPT, Claude.ai, etc.): paste SOUL.md + CLAUDE.md into a new chat, or into "custom instructions" / a "Project" so they load every time.
+
+## 4. Talk to it (5 min)
+Ask it something real:
+> "Given what you know about me, what should I focus on this week?"
+
+Watch it use your context instead of generic advice. That's the moment it clicks.
+
+## 5. Let it remember (ongoing)
+When it learns something true about you, have it write a line to MEMORY.md. Next session, it remembers. That's the compounding part — every conversation makes it smarter, not just the answer.
+
+## Want the always-on version? (advanced)
+Everything above runs while you're at your computer. The next level — a second agent that runs on its own while you sleep — is optional and more technical. Don't start there. Start here, get value this week, and add the always-on layer when you're hungry for it.
+</script>
+
+<script>
+  // --- fill previews from template sources ---
+  document.querySelectorAll('pre[data-preview]').forEach(function(pre){
+    var src = document.getElementById(pre.getAttribute('data-preview'));
+    if(src) pre.textContent = src.textContent.trim();
+  });
+
+  // --- toast ---
+  var toast = document.getElementById('toast');
+  var toastTimer;
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){toast.classList.remove('show')}, 1800);
+  }
+
+  // --- copy ---
+  document.querySelectorAll('[data-copy]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var src = document.getElementById(btn.getAttribute('data-copy'));
+      var text = src.textContent.trim();
+      navigator.clipboard.writeText(text).then(function(){
+        showToast('Copied to clipboard ✓');
+      }, function(){
+        // fallback
+        var ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta); ta.select();
+        try{document.execCommand('copy'); showToast('Copied to clipboard ✓');}catch(e){showToast('Copy failed — select & copy manually');}
+        document.body.removeChild(ta);
+      });
+    });
+  });
+
+  // --- download single ---
+  function downloadText(filename, text){
+    var blob = new Blob([text], {type:'text/markdown'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = filename; document.body.appendChild(a); a.click();
+    document.body.removeChild(a); URL.revokeObjectURL(url);
+  }
+  document.querySelectorAll('[data-download]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var src = document.getElementById(btn.getAttribute('data-download'));
+      downloadText(btn.getAttribute('data-filename'), src.textContent.trim());
+      showToast('Downloaded ' + btn.getAttribute('data-filename') + ' ✓');
+    });
+  });
+
+  // --- download all ---
+  document.getElementById('download-all').addEventListener('click', function(){
+    var order = [['SOUL.md','tpl-soul'],['CLAUDE.md','tpl-claude'],['working-context.md','tpl-context'],['MEMORY.md','tpl-memory'],['START-HERE.md','tpl-start']];
+    var out = '# Second Brain — Starter Pack\n\nFive templates to build your own second brain. Each is its own file in real life; they\'re bundled here for convenience.\n\n';
+    order.forEach(function(o){
+      out += '\n\n=====================================================\nFILE: ' + o[0] + '\n=====================================================\n\n';
+      out += document.getElementById(o[1]).textContent.trim() + '\n';
+    });
+    downloadText('second-brain-starter-pack.md', out);
+    showToast('Downloaded the whole pack ✓');
+  });
+
+  // --- scrollspy ---
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  var sections = navLinks.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  var spy = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var id = '#' + e.target.id;
+        navLinks.forEach(function(a){a.classList.toggle('active', a.getAttribute('href')===id)});
+      }
+    });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  sections.forEach(function(s){if(s) spy.observe(s)});
+</script>
+</body>
+</html>
