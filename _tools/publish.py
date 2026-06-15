@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
-"""Publish self-contained HTML pages to the public share site (share.axelmansoor.com).
+"""Publish documents to the public share site (share.axelmansoor.com).
 
-  python3 publish.py add --src PATH --slug SLUG [--title T] [--desc D] [--date YYYY-MM-DD] [--push]
+  python3 publish.py add --src PATH [--slug S] [--title T] [--desc D] \
+      [--listed] [--unlisted] [--date YYYY-MM-DD] [--dry-run] [--push]
   python3 publish.py rebuild                 # regenerate index.html from manifest.json
   python3 publish.py remove --slug SLUG [--push]
+
+HTML files become a styled page at /<slug>/. Any other file (PDF, image, etc.)
+is hosted at /<slug>/<filename> and linked. Pages/files are "unlisted" by
+default (work by link, but don't appear on the directory index) unless --listed.
 
 The repo root is inferred from this script's location (_tools/.. == repo root).
 """
@@ -14,7 +19,6 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE_TITLE = "Axel Mansoor"
 SITE_TAGLINE = "Things I've made and shared — guides, notes, and the occasional rabbit hole."
 CUSTOM_URL = "https://share.axelmansoor.com"
-PAGES_URL = "https://essentara.github.io/share"
 
 
 def manifest_path():
@@ -38,6 +42,10 @@ def save_manifest(items):
 def read(path):
     with open(path, encoding="utf-8") as f:
         return f.read()
+
+
+def is_html(path):
+    return os.path.splitext(path)[1].lower() in (".html", ".htm")
 
 
 def slugify(s):
@@ -81,52 +89,105 @@ def fmt_date(iso):
         return iso
 
 
+def entry_url(it):
+    if it.get("type") == "file" and it.get("file"):
+        return f"{CUSTOM_URL}/{it['slug']}/{it['file']}"
+    return f"{CUSTOM_URL}/{it['slug']}/"
+
+
+def entry_href(it):
+    if it.get("type") == "file" and it.get("file"):
+        return f"./{it['slug']}/{it['file']}"
+    return f"./{it['slug']}/"
+
+
 def card(it):
+    go = "Download &rarr;" if it.get("type") == "file" else "Open &rarr;"
     return (
-        f'  <a class="card" href="./{html.escape(it["slug"])}/">\n'
+        f'  <a class="card" href="{html.escape(entry_href(it))}">\n'
         f'    <span class="date">{html.escape(fmt_date(it["date"]))}</span>\n'
         f'    <span class="title">{html.escape(it["title"])}</span>\n'
         f'    <span class="desc">{html.escape(it.get("desc", ""))}</span>\n'
-        f'    <span class="go">Open &rarr;</span>\n'
+        f'    <span class="go">{go}</span>\n'
         f'  </a>'
     )
 
 
 def render_index(*_):
-    items = load_manifest()
-    cards = "\n".join(card(it) for it in items) or '<p class="empty">Nothing here yet.</p>'
+    listed = [it for it in load_manifest() if it.get("listed")]
+    cards = "\n".join(card(it) for it in listed) or '<p class="empty">Nothing here yet.</p>'
     out = (INDEX_TMPL
            .replace("{{TITLE}}", html.escape(SITE_TITLE))
            .replace("{{TAGLINE}}", html.escape(SITE_TAGLINE))
            .replace("{{CARDS}}", cards)
-           .replace("{{COUNT}}", str(len(items))))
+           .replace("{{COUNT}}", str(len(listed))))
     with open(os.path.join(REPO, "index.html"), "w", encoding="utf-8") as f:
         f.write(out)
-    print("Rebuilt index.html (%d page%s)" % (len(items), "" if len(items) == 1 else "s"))
+    print("Rebuilt index.html (%d listed)" % len(listed))
+
+
+def resolve_listed(args, existing):
+    if args.unlisted:
+        return False
+    if args.listed:
+        return True
+    if existing is not None:
+        return bool(existing.get("listed", False))
+    return False
 
 
 def add(args):
     src = os.path.abspath(args.src)
-    h = read(src)
-    title = args.title or extract_title(h)
-    desc = args.desc or extract_desc(h)
-    slug = args.slug or slugify(title)
+    if not os.path.exists(src):
+        raise SystemExit(f"ERROR: file not found: {src}")
     items = load_manifest()
+    page = is_html(src)
+    if page:
+        h = read(src)
+        title = args.title or extract_title(h)
+        desc = args.desc or extract_desc(h)
+        slug = args.slug or slugify(title)
+        fname = None
+    else:
+        fname = os.path.basename(src)
+        stem = os.path.splitext(fname)[0]
+        title = args.title or stem.replace("-", " ").replace("_", " ").strip().title()
+        desc = args.desc or ""
+        slug = args.slug or slugify(stem)
     existing = next((it for it in items if it["slug"] == slug), None)
     d = args.date or (existing["date"] if existing else date.today().isoformat())
+    listed = resolve_listed(args, existing)
+    if page:
+        entry = {"slug": slug, "title": title, "desc": desc, "date": d, "listed": listed, "type": "page"}
+    else:
+        entry = {"slug": slug, "title": title, "desc": desc, "date": d, "listed": listed, "type": "file", "file": fname}
+    url = entry_url(entry)
+
+    if args.dry_run:
+        print("DRY RUN — nothing published.")
+        print(f"  action : {'update existing' if existing else 'new'} ({'page' if page else 'file'})")
+        print(f"  title  : {title}")
+        print(f"  slug   : {slug}")
+        print(f"  listed : {'yes — shows on the directory' if listed else 'no — link-only'}")
+        print(f"  url    : {url}")
+        return
+
     dest_dir = os.path.join(REPO, slug)
     os.makedirs(dest_dir, exist_ok=True)
-    with open(os.path.join(dest_dir, "index.html"), "w", encoding="utf-8") as f:
-        f.write(inject_noindex(h))
+    if page:
+        with open(os.path.join(dest_dir, "index.html"), "w", encoding="utf-8") as f:
+            f.write(inject_noindex(h))
+    else:
+        shutil.copyfile(src, os.path.join(dest_dir, fname))
     items = [it for it in items if it["slug"] != slug]
-    items.append({"slug": slug, "title": title, "desc": desc, "date": d})
+    items.append(entry)
     items.sort(key=lambda it: (it["date"], it["title"]), reverse=True)
     save_manifest(items)
     render_index()
     verb = "Updated" if existing else "Published"
     print(f"{verb}: {title}")
-    print(f"  {CUSTOM_URL}/{slug}/")
-    print(f"  {PAGES_URL}/{slug}/")
+    print(f"  {url}")
+    print(f"  listed: {'yes' if listed else 'no (link-only)'}")
     if args.push:
         git_publish(f"{verb.lower()}: {slug}")
 
@@ -200,26 +261,29 @@ INDEX_TMPL = r'''<!DOCTYPE html>
 {{CARDS}}
   </div>
 </main>
-<footer><div class="wrap">{{COUNT}} pages &middot; made with love &#10084;&#65039;</div></footer>
+<footer><div class="wrap">{{COUNT}} shared &middot; made with love &#10084;&#65039;</div></footer>
 </body>
 </html>
 '''
 
 
 def main():
-    p = argparse.ArgumentParser(description="Publish HTML to share.axelmansoor.com")
+    p = argparse.ArgumentParser(description="Publish documents to share.axelmansoor.com")
     sub = p.add_subparsers(dest="cmd", required=True)
-    pa = sub.add_parser("add", help="publish or update a page")
+    pa = sub.add_parser("add", help="publish or update a document")
     pa.add_argument("--src", required=True)
     pa.add_argument("--slug")
     pa.add_argument("--title")
     pa.add_argument("--desc")
     pa.add_argument("--date")
+    pa.add_argument("--listed", action="store_true", help="show on the public directory index")
+    pa.add_argument("--unlisted", action="store_true", help="link-only, hide from the index (default)")
+    pa.add_argument("--dry-run", action="store_true", help="print what would happen without publishing")
     pa.add_argument("--push", action="store_true")
     pa.set_defaults(func=add)
     pr = sub.add_parser("rebuild", help="regenerate index.html from manifest.json")
     pr.set_defaults(func=render_index)
-    prm = sub.add_parser("remove", help="unpublish a page")
+    prm = sub.add_parser("remove", help="unpublish a document")
     prm.add_argument("--slug", required=True)
     prm.add_argument("--push", action="store_true")
     prm.set_defaults(func=remove)
