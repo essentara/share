@@ -21,6 +21,7 @@ SITE_TITLE = "Axel Mansoor"
 SITE_TAGLINE = "Things I've made and shared — guides, notes, and the occasional rabbit hole."
 CUSTOM_URL = "https://share.axelmansoor.com"
 CONTROL_PANEL_PATH = os.path.expanduser("~/Secondbrain/share-control-panel.html")
+PRIVATE_RECORD = os.path.expanduser("~/.share-vault/clients.json")
 
 
 def manifest_path():
@@ -144,6 +145,35 @@ def panel_row(it):
     )
 
 
+def private_section():
+    try:
+        if not os.path.exists(PRIVATE_RECORD):
+            return '<p class="empty">No private client files yet.</p>'
+        with open(PRIVATE_RECORD, encoding="utf-8") as f:
+            rec = json.load(f)
+        if not rec:
+            return '<p class="empty">No private client files yet.</p>'
+        blocks = []
+        for ckey in sorted(rec):
+            c = rec[ckey]
+            pw = c.get("password", "")
+            files = "".join(
+                f'<li><a href="{html.escape(fl["url"])}" target="_blank" rel="noopener">{html.escape(fl["name"])}</a>'
+                f'<button class="copy" data-url="{html.escape(fl["url"])}">Copy link</button></li>'
+                for fl in c.get("files", [])
+            ) or '<li class="none">no files yet</li>'
+            blocks.append(
+                f'<div class="client">'
+                f'<div class="chead"><span class="cname">{html.escape(c.get("name", ckey))}</span>'
+                f'<span class="cred">user <code>{html.escape(c.get("user", ""))}</code> &middot; pass <code>{html.escape(pw)}</code>'
+                f'<button class="copy" data-url="{html.escape(pw)}">Copy pass</button></span></div>'
+                f'<ul>{files}</ul></div>'
+            )
+        return "\n".join(blocks)
+    except Exception as e:
+        return f'<p class="empty">(private section unavailable: {html.escape(str(e))})</p>'
+
+
 def render_control_panel(*_):
     try:
         items = load_manifest()
@@ -154,6 +184,7 @@ def render_control_panel(*_):
                .replace("{{TOTAL}}", str(len(items)))
                .replace("{{LISTED}}", str(listed_n))
                .replace("{{UNLISTED}}", str(len(items) - listed_n))
+               .replace("{{PRIVATE}}", private_section())
                .replace("{{GENERATED}}", date.today().isoformat()))
         d = os.path.dirname(CONTROL_PANEL_PATH)
         if os.path.isdir(d):
@@ -345,6 +376,17 @@ CONTROL_PANEL_TMPL = r'''<!DOCTYPE html>
   .note{margin-top:22px;background:var(--surface);border:1px dashed var(--line);border-radius:14px;padding:18px 20px;color:var(--ink-soft);font-size:14px}
   .note b{color:#2b2622}
   .foot{margin-top:24px;color:var(--ink-faint);font-size:12.5px}
+  .sec{font-family:'Young Serif',serif;font-weight:400;font-size:22px;color:#2b2622;margin:40px 0 14px}
+  .private{display:flex;flex-direction:column;gap:14px}
+  .client{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow-sm)}
+  .chead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+  .cname{font-family:'Young Serif',serif;font-size:17px;color:#2b2622}
+  .cred{font-size:13px;color:var(--ink-soft);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .cred code{background:var(--bg);padding:2px 7px;border-radius:6px;font-size:12.5px;color:#5a4a40}
+  .client ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+  .client li{display:flex;align-items:center;gap:10px;font-size:14px}
+  .client li a{color:var(--clay-deep);word-break:break-all}
+  .client li.none{color:var(--ink-faint);font-style:italic}
   .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:#221d1a;color:#fff;padding:11px 20px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:.25s;box-shadow:0 10px 30px rgba(0,0,0,.25)}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
@@ -365,7 +407,10 @@ CONTROL_PANEL_TMPL = r'''<!DOCTYPE html>
 {{ROWS}}
     </tbody>
   </table>
-  <div class="note"><b>Private client files</b> will get their own section here once truly-private hosting is set up (separate from this public site).</div>
+  <h2 class="sec">&#128274; Private &middot; Client Vault</h2>
+  <div class="private">
+{{PRIVATE}}
+  </div>
   <p class="foot">Generated {{GENERATED}} &middot; lives in your Secondbrain (local only) &middot; double-click this file to open it anytime.</p>
 </div>
 <div class="toast" id="toast">Copied &#10003;</div>
