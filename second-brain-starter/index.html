@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build a Second Brain — A Field Guide (v1)</title>
+<style>
+  :root{
+    --paper:#f4eee2;
+    --paper-2:#fdf9f1;
+    --ink:#211f1b;
+    --ink-soft:#5b554a;
+    --line:#e2d9c9;
+    --clay:#c2563a;
+    --clay-soft:#ecd5c8;
+    --teal:#3d5b52;
+    --teal-soft:#d6e0d7;
+    --gold:#bd8a2c;
+    --shadow:0 1px 2px rgba(33,31,27,.04),0 10px 34px rgba(33,31,27,.07);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    background:var(--paper);color:var(--ink);line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 26px}
+  a{color:var(--clay)}
+
+  /* HERO */
+  header{padding:84px 0 56px;border-bottom:1px solid var(--line)}
+  .eyebrow{
+    font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--clay);font-weight:700;margin-bottom:22px;
+  }
+  h1{
+    font-size:clamp(38px,7vw,68px);line-height:1.02;font-weight:800;
+    letter-spacing:-.03em;margin-bottom:18px;
+  }
+  .subhead{font-size:clamp(19px,3vw,26px);color:var(--teal);font-weight:600;margin-bottom:28px;letter-spacing:-.01em}
+  .lede{font-size:18px;color:var(--ink-soft);max-width:620px}
+  .lede + .lede{margin-top:16px}
+  .whofor{
+    margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;
+  }
+  .whofor div{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:12px;
+    padding:12px 16px;font-size:14px;color:var(--ink-soft);flex:1;min-width:230px;
+  }
+  .whofor b{color:var(--ink)}
+
+  /* TOC */
+  .toc{
+    margin:34px 0 0;background:var(--paper-2);border:1px solid var(--line);
+    border-radius:16px;padding:22px 26px;box-shadow:var(--shadow);
+  }
+  .toc h4{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
+  .toc ol{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 26px;counter-reset:t}
+  .toc li{counter-increment:t;font-size:15px}
+  .toc li a{text-decoration:none;color:var(--ink);display:flex;gap:12px;padding:3px 0}
+  .toc li a::before{content:counter(t,decimal-leading-zero);color:var(--clay);font-weight:700;font-variant-numeric:tabular-nums}
+  .toc li a:hover{color:var(--clay)}
+
+  /* SECTIONS */
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  .kicker{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);font-weight:700;margin-bottom:13px}
+  h2{font-size:clamp(27px,4.4vw,40px);line-height:1.12;letter-spacing:-.02em;margin-bottom:16px}
+  h2 .num{color:var(--clay);font-weight:800;margin-right:10px}
+  .intro{font-size:17px;color:var(--ink-soft);max-width:660px;margin-bottom:32px}
+  p.body{font-size:16.5px;color:var(--ink-soft);max-width:680px;margin-bottom:16px}
+  p.body strong{color:var(--ink)}
+
+  /* PULL QUOTE */
+  .pq{
+    margin:30px 0;padding:6px 0 6px 26px;border-left:4px solid var(--clay);
+    font-size:clamp(21px,3.2vw,28px);line-height:1.28;font-weight:700;letter-spacing:-.015em;color:var(--ink);
+  }
+  .pq span{color:var(--ink-soft);font-weight:500;font-size:15px;display:block;margin-top:10px;letter-spacing:0}
+
+  /* GLOSSARY GRID */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .term{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow)}
+  .term h4{font-size:16px;margin-bottom:5px}
+  .term h4 em{font-style:normal;color:var(--clay);font-weight:600;font-size:13px;display:block;margin-top:2px}
+  .term p{font-size:14.5px;color:var(--ink-soft)}
+
+  /* ANALOGIES */
+  .analogies{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .analogy{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:26px;box-shadow:var(--shadow)}
+  .analogy svg{width:38px;height:38px;stroke:var(--clay);fill:none;stroke-width:1.6;margin-bottom:14px}
+  .analogy:nth-child(2) svg,.analogy:nth-child(3) svg{stroke:var(--teal)}
+  .analogy h4{font-size:18px;margin-bottom:7px}
+  .analogy p{font-size:15px;color:var(--ink-soft)}
+  .analogy .says{font-size:12px;color:var(--gold);font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-top:12px}
+
+  /* LAYER STACK */
+  .stack{display:flex;flex-direction:column;gap:13px}
+  .layer{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:15px;
+    padding:22px 24px;box-shadow:var(--shadow);display:grid;grid-template-columns:44px 1fr;gap:18px;
+    position:relative;overflow:hidden;
+  }
+  .layer::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--clay)}
+  .layer:nth-child(2)::before{background:#cf7b46}
+  .layer:nth-child(3)::before{background:var(--gold)}
+  .layer:nth-child(4)::before{background:var(--teal)}
+  .layer .n{font-size:20px;font-weight:800;color:var(--clay);border:2px solid var(--clay-soft);border-radius:12px;width:44px;height:44px;display:flex;align-items:center;justify-content:center}
+  .layer h4{font-size:18px;margin-bottom:3px}
+  .layer .who{font-size:12px;color:var(--teal);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+  .layer p{font-size:15px;color:var(--ink-soft)}
+  .callout{
+    margin-top:22px;background:var(--teal-soft);border:1px solid #c2d0c4;border-radius:14px;padding:20px 24px;
+  }
+  .callout b{color:var(--teal)}
+  .callout p{font-size:15.5px;color:#33473f}
+
+  /* USE CASES */
+  .cases{display:flex;flex-direction:column;gap:14px}
+  .case{background:var(--paper-2);border:1px solid var(--line);border-radius:15px;padding:22px 24px;box-shadow:var(--shadow)}
+  .case h4{font-size:17.5px;margin-bottom:6px;color:var(--ink)}
+  .case h4 .dot{color:var(--clay)}
+  .case p{font-size:15px;color:var(--ink-soft)}
+
+  /* PRACTICES */
+  .practice{padding:22px 0;border-bottom:1px dashed var(--line);display:grid;grid-template-columns:30px 1fr;gap:18px}
+  .practice:last-child{border-bottom:none}
+  .practice .ic{font-size:13px;font-weight:800;color:var(--clay);padding-top:3px;font-variant-numeric:tabular-nums}
+  .practice h4{font-size:18px;margin-bottom:6px}
+  .practice p{font-size:15.5px;color:var(--ink-soft);max-width:640px}
+  .practice .src{color:var(--gold);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+
+  /* CHECKLIST */
+  .steps{display:flex;flex-direction:column;gap:16px}
+  .step{display:grid;grid-template-columns:40px 1fr;gap:18px;align-items:start}
+  .step .d{width:40px;height:40px;border-radius:50%;background:var(--clay);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px}
+  .step h4{font-size:17.5px;margin-bottom:4px}
+  .step p{font-size:15px;color:var(--ink-soft)}
+
+  /* LEVELS */
+  .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .level{background:var(--paper-2);border:1px solid var(--line);border-radius:15px;padding:24px 22px;box-shadow:var(--shadow)}
+  .level .lv{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+  .level h4{font-size:18px;margin-bottom:8px}
+  .level p{font-size:14.5px;color:var(--ink-soft)}
+  .level.now{border-color:var(--clay);box-shadow:0 0 0 1px var(--clay),var(--shadow)}
+  .level.now .lv{color:var(--clay)}
+
+  /* CLOSING */
+  .closing{background:#211f1b;color:#f3ecdf;border-radius:20px;padding:46px 42px;margin-top:8px}
+  .closing .kicker{color:#d99a6c}
+  .closing h2{color:#fff;margin-bottom:18px}
+  .closing p{font-size:16.5px;color:#cfc6b6;max-width:640px;margin-bottom:16px}
+  .closing strong{color:#fff}
+  .closing .tip{background:#2c2a24;border:1px solid #403c33;border-radius:14px;padding:20px 22px;margin:22px 0;font-size:15.5px;color:#e6ddcd}
+  .sign{margin-top:26px;font-size:16px;color:#d99a6c;font-style:italic}
+
+  footer{padding:40px 0 70px;text-align:center;color:var(--ink-soft);font-size:13.5px}
+
+  @media(max-width:680px){
+    .grid,.analogies,.toc ol{grid-template-columns:1fr}
+    .levels{grid-template-columns:1fr}
+    section{padding:48px 0}
+    header{padding:60px 0 44px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Second Brain 101 &middot; v1 &middot; recorded live, gloriously messy</div>
+    <h1>Build a Second Brain</h1>
+    <div class="subhead">Because your AI is a genius with amnesia.</div>
+    <p class="lede">I sat a few friends down in a living room and tried to explain the whole AI setup I've been building. It spiraled — beautifully, mostly into installing Git. This is the part worth keeping.</p>
+    <p class="lede">What a "second brain" actually is, why it's worth the effort, and how to start one this week without losing your mind in the sauce.</p>
+    <div class="whofor">
+      <div><b>If you were there:</b> this is your recap. You didn't miss anything except more snacks.</div>
+      <div><b>If you couldn't make it:</b> start at the top. It stands on its own.</div>
+    </div>
+
+    <div class="toc">
+      <h4>What's inside</h4>
+      <ol>
+        <li><a href="#idea">The one idea</a></li>
+        <li><a href="#words">The words you need</a></li>
+        <li><a href="#analogies">Four analogies that click</a></li>
+        <li><a href="#architecture">The architecture (the layers)</a></li>
+        <li><a href="#cases">What it can actually do</a></li>
+        <li><a href="#practices">How to actually work with it</a></li>
+        <li><a href="#start">Your first 30 minutes</a></li>
+        <li><a href="#levels">The three levels</a></li>
+      </ol>
+    </div>
+  </div>
+</header>
+
+<!-- 1 -->
+<section id="idea">
+  <div class="wrap">
+    <div class="kicker">The one idea</div>
+    <h2><span class="num">01</span>Your AI is a genius with amnesia</h2>
+    <p class="body">Every time you open Claude or ChatGPT, you re-explain a bunch of stuff about yourself. Not because it's dumb — it's brilliant. It just has no <strong>permanent, updating context</strong> on your life. So every conversation starts from zero.</p>
+    <p class="body">A second brain fixes exactly that. It's not a notes app with AI bolted on. It's a <strong>folder of plain-text files</strong> — written in normal English — that your AI reads <em>before</em> it does anything. Who you are, how you work, what you're up to, what you've decided. So you're not talking to a stranger. You're talking to something that's known you for years.</p>
+    <p class="body">And here's the part that hooked me: it <strong>compounds</strong>. Every session feeds back into the folder, so the thing gets smarter the more you use it. Genius with amnesia → genius who remembers everything. It's a self-improving loop, and the engine is almost embarrassingly simple.</p>
+    <div class="pq">Six parts, one folder. That's literally all it is.<span>And it lives on YOUR computer — not uploaded to OpenAI, not to Anthropic. You own it. Switch models, switch tools, the brain stays yours.</span></div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="words">
+  <div class="wrap">
+    <div class="kicker">The vocabulary</div>
+    <h2><span class="num">02</span>The words you need</h2>
+    <p class="intro">Most of the confusion is just unfamiliar words. Learn these ten and 80% of the fog lifts. None of it is as technical as it sounds.</p>
+    <div class="grid">
+      <div class="term"><h4>Model <em>the brain</em></h4><p>The raw intelligence — the engine. Opus 4.8, Fable 5, GPT-5.5. This is the part that "thinks."</p></div>
+      <div class="term"><h4>Harness <em>the body</em></h4><p>The arms and legs around the brain — what lets it actually do things. Claude, Codex, Hermes. You can drop almost any brain into any body.</p></div>
+      <div class="term"><h4>Frontier vs. local <em>big vs. free</em></h4><p>Frontier = the biggest, smartest models (can't run on your laptop). Local/open-source = free, run on your own machine, less powerful, work offline.</p></div>
+      <div class="term"><h4>Routing <em>right tool, right job</em></h4><p>Match the task to the model. Simple task → cheap, fast model. Hard task → smart model. Saves money and time.</p></div>
+      <div class="term"><h4>Token <em>the unit of cost</em></h4><p>How AIs read and write. More tokens = more money + slower. "Token-hungry" = a process doing it the long, wasteful way.</p></div>
+      <div class="term"><h4>MCP <em>the Lego connector</em></h4><p>The standard plug that lets your AI connect to apps — your messages, your calendar, an image generator. Snaps things together.</p></div>
+      <div class="term"><h4>Skill <em>a saved routine</em></h4><p>A repeatable process you trigger by name. Runs the same way every time, so you stop re-explaining a task you do often.</p></div>
+      <div class="term"><h4>Human in the loop <em>the safety check</em></h4><p>It checks with you before anything goes <em>out</em> — sending, posting, buying. You stay the one who hits send.</p></div>
+      <div class="term"><h4>Cognitive debt <em>the trap</em></h4><p>The more you blindly outsource the decisions, the less you understand your own system — until you can't drive the thing you built.</p></div>
+      <div class="term"><h4>Data sovereignty <em>the whole point</em></h4><p>Your context lives in your folder, not a company's servers. The librarian can change; the library stays yours.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="analogies">
+  <div class="wrap">
+    <div class="kicker">Mental models</div>
+    <h2><span class="num">03</span>Four analogies that make it click</h2>
+    <p class="intro">If you only remember four pictures from the whole workshop, make it these. They do more work than any definition.</p>
+    <div class="analogies">
+      <div class="analogy">
+        <svg viewBox="0 0 24 24"><path d="M3 13l2-5a2 2 0 012-1.5h10A2 2 0 0119 8l2 5"/><path d="M3 13h18v4H3z"/><circle cx="7" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/></svg>
+        <h4>Brain &amp; body</h4>
+        <p>The <strong>model</strong> is the engine. The <strong>harness</strong> is the car built around it. Same engine, different cars — and you can swap either one without losing the road you've already mapped.</p>
+      </div>
+      <div class="analogy">
+        <svg viewBox="0 0 24 24"><path d="M4 4h6v16H4z"/><path d="M10 4h6v16h-6z"/><path d="M16 5l3 .6-2.4 15-3-.6z"/></svg>
+        <h4>The library</h4>
+        <p>You're building a <strong>library</strong> and teaching the AI when to walk in. It doesn't read every book every time — it checks the front desk, then grabs only the one book your question needs.</p>
+        <div class="says">whiteboard at the front · books in the back</div>
+      </div>
+      <div class="analogy">
+        <svg viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 00-4 10.5c.7.6 1 1.2 1 2.5h6c0-1.3.3-1.9 1-2.5A6 6 0 0012 3z"/></svg>
+        <h4>The light bulb</h4>
+        <p>Smart frontier models are <strong>power-hungry</strong>. Small models are LEDs — cheap and fast. Don't light a closet with a stadium bulb. Use the LED for the small stuff.</p>
+        <div class="says">Souki's analogy</div>
+      </div>
+      <div class="analogy">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 9V4M12 20v-5M9 12H4M20 12h-5M9.8 9.8L6 6M18 18l-3.8-3.8M14.2 9.8L18 6M6 18l3.8-3.8"/></svg>
+        <h4>The switchboard</h4>
+        <p>Your agent is a <strong>switchboard operator with eight arms</strong> — one arm reading your messages, one building a webpage, one generating images — all at once, behind a single chat window.</p>
+        <div class="says">Souki's analogy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="architecture">
+  <div class="wrap">
+    <div class="kicker">The build</div>
+    <h2><span class="num">04</span>The architecture, one layer at a time</h2>
+    <p class="intro">Don't build six things at once — you'll drown. Build <strong>one</strong>, get annoyed at what it can't do yet, then build the next. Here's the whole stack, top (always loaded) to bottom (loaded only when needed).</p>
+    <div class="stack">
+      <div class="layer">
+        <div class="n">1</div>
+        <div>
+          <h4>Identity</h4>
+          <div class="who">You + AI write it · read every session</div>
+          <p>Who you are, who <em>it</em> is, the rules, where the truth lives. The move: don't write it from a blank page — have it <strong>interview you</strong>. "Ask me how I like to work, then I'll voice-dump." Start here.</p>
+        </div>
+      </div>
+      <div class="layer">
+        <div class="n">2</div>
+        <div>
+          <h4>Active context</h4>
+          <div class="who">You + AI write it · read every session, overwritten weekly</div>
+          <p>Where you are this week, what's loud, what's paused. It can even ping you on a schedule — you reply with a voice memo, it updates the file. This is your second layer.</p>
+        </div>
+      </div>
+      <div class="layer">
+        <div class="n">3</div>
+        <div>
+          <h4>Memory</h4>
+          <div class="who">AI writes it · loaded on demand</div>
+          <p>People in your world, results of past sessions, anything you flag with "remember this." It's a <em>folder</em>, not one file — it searches and pulls only what's relevant. Build this up over time.</p>
+        </div>
+      </div>
+      <div class="layer">
+        <div class="n">4</div>
+        <div>
+          <h4>Knowledge base (your wiki)</h4>
+          <div class="who">AI compiles it · loaded on demand</div>
+          <p>Your personal Wikipedia — everything you learn, distilled and cross-linked. Kept separate so it doesn't hog the AI's attention on every little request. (Projects live around here too — a folder per project so the context stays with the work.)</p>
+        </div>
+      </div>
+    </div>
+    <div class="callout">
+      <p><b>The one distinction people trip on:</b> active context is the <b>whiteboard at the front of the library</b> — here's what's happening right now, wiped and rewritten weekly. Memory is <b>all the books in the back</b> — durable, only pulled when a task needs it. Same person can live in both: "prepping a client session Friday" goes on the whiteboard; "who this client is and what works for them" goes in the books.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="cases">
+  <div class="wrap">
+    <div class="kicker">Proof</div>
+    <h2><span class="num">05</span>What people actually watched it do</h2>
+    <p class="intro">The magic isn't any single task. It's that you never rebuild the scaffolding — it already knows you, so a lazy one-line prompt gets a real result.</p>
+    <div class="cases">
+      <div class="case">
+        <h4><span class="dot">&#9670;</span> A whole website in ~20 minutes</h4>
+        <p>One vague prompt: "build me a facilitation site." It went and read the working context, the brand voice, the pricing sheet, and even cropped photos already sitting in the folder. No one told it where to look — it just knew.</p>
+      </div>
+      <div class="case">
+        <h4><span class="dot">&#9670;</span> Fact-checking a decision against your own profile</h4>
+        <p>Hand it an article, ask "is this a good move for <em>me</em>?" It cross-references a profile you've already written, does the research, and turns the dense dump into a readable HTML with diagrams — "for the dumb-dumb brain," as I lovingly call mine.</p>
+      </div>
+      <div class="case">
+        <h4><span class="dot">&#9670;</span> Marketplace on autopilot</h4>
+        <p>Snap a photo of something you're selling. It writes the listing, runs a price comparison, generates extra product shots, posts it, triages the buyers, and pings you: "you've got three interested — who do you want?" (It always checks before it sends. Otherwise it'll cheerfully offer free shipping to Japan.)</p>
+      </div>
+      <div class="case">
+        <h4><span class="dot">&#9670;</span> Taming the inbox</h4>
+        <p>One app pulls every messaging platform into one place. The agent tells you who's actually waiting on a reply. You voice-note "tell them I'll be there at four," it drafts, you glance, you approve, it sends. Dictate-and-send — like having an assistant who already knows everyone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="practices">
+  <div class="wrap">
+    <div class="kicker">The craft</div>
+    <h2><span class="num">06</span>How to actually work with it</h2>
+    <p class="intro">This is the stuff that took me months to learn and would've taken minutes to be told. So here it is.</p>
+
+    <div class="practice"><div class="ic">A</div><div>
+      <h4>Use your voice. Seriously, today.</h4>
+      <p>Lowest-hanging fruit there is. A free, local tool (Type Whisper) — hit a key, talk, it pastes anywhere. Talking gives the AI <strong>ten times</strong> the context typing does, because you stop self-editing. If you change one thing from this whole guide, change this.</p>
+    </div></div>
+
+    <div class="practice"><div class="ic">B</div><div>
+      <h4>Make it ask <em>you</em> questions</h4>
+      <p>Don't say "make it better" and hope. Say <strong>"ask me questions about how to make it better"</strong> — then voice-dump your messy thoughts and let it sort them out. Socratic prompting. The AI is great at organizing your thinking once you actually give it your thinking.</p>
+    </div></div>
+
+    <div class="practice"><div class="ic">C</div><div>
+      <h4>Build the case study first, the skill second <span class="src">· Souki's method</span></h4>
+      <p>The instinct is to build the template up front. Don't — that's like writing the recipe before you've cooked the dish. Do the <strong>full task once</strong>, by hand, with the AI. Get an output you genuinely love. <em>Then</em> point skill-creator at the whole conversation and say "turn this into a skill." Bonus: re-run the distilled version in a fresh chat to check it's not taking the scenic, token-hungry route.</p>
+    </div></div>
+
+    <div class="practice"><div class="ic">D</div><div>
+      <h4>Stop "prompt engineering." Add context instead.</h4>
+      <p>Fancy prompt formatting is basically a bet that you're smarter than the model — and that bet gets worse every month. When you're not getting what you want, the fix is almost never a cleverer prompt. It's <strong>more context</strong>. Treat it like a sharp new assistant who just needs the backstory, not a magic incantation.</p>
+    </div></div>
+
+    <div class="practice"><div class="ic">E</div><div>
+      <h4>Keep a human in the loop</h4>
+      <p>Anything that leaves your hands — a message, a post, a purchase — gets a check-in first. Build trust task by task. Automate the boring inputs; keep your thumb on anything that touches another human.</p>
+    </div></div>
+
+    <div class="practice"><div class="ic">F</div><div>
+      <h4>Watch your cognitive debt</h4>
+      <p>"Just build it for me" is fine for a one-off output. For the <strong>system itself</strong>, it's a trap — delegate every decision and you end up with a machine you can't drive or fix. Understand the thing you're building, at least enough to steer it.</p>
+    </div></div>
+
+    <div class="practice"><div class="ic">G</div><div>
+      <h4>Stand on the shoulders of giants</h4>
+      <p>Start from a template (mine, or anyone's) and tweak it to fit you — don't invent a hundred new buckets from scratch. It gets feral fast. Trim the fat regularly, and set up something that periodically cleans itself, or the whole thing bloats into a mess you don't recognize.</p>
+    </div></div>
+
+    <div class="practice"><div class="ic">H</div><div>
+      <h4>Build plateaus so you don't get lost in the sauce <span class="src">· Souki's method</span></h4>
+      <p>It is genuinely easy to vanish into this for twelve hours and come out fried. Keep an open note: <em>what am I trying to do, what have I done, what's next.</em> Land there whenever you feel yourself floating. And celebrate the tiny wins — go smell something nice, do a jumping jack, look out a window. Give your brain a plateau to stand on between the leaps.</p>
+    </div></div>
+
+    <div class="practice"><div class="ic">★</div><div>
+      <h4>The meta-move: ask the model how to use itself</h4>
+      <p>Stuck on literally anything? Type "how do I use you?" or "I don't know what I'm doing, walk me through it." It will. This one tool collapses most of the learning curve.</p>
+    </div></div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="start">
+  <div class="wrap">
+    <div class="kicker">Go</div>
+    <h2><span class="num">07</span>Your first 30 minutes</h2>
+    <p class="intro">We're doing Claude, on your laptop. Not Hermes, not always-on, not the terminal wizard stuff — just the simplest version that works. You can climb later.</p>
+    <div class="steps">
+      <div class="step"><div class="d">1</div><div>
+        <h4>Make a folder</h4>
+        <p>Put it in your home/user folder (not the desktop — it gets broader permissions there). Call it whatever you want. Drag it into your Finder sidebar so you never have to hunt for it.</p>
+      </div></div>
+      <div class="step"><div class="d">2</div><div>
+        <h4>Get the Claude desktop app</h4>
+        <p>The desktop app, not the browser version. You'll want at least Pro (~$20/mo). You'll hit limits eventually — when you do, Max is genuinely worth it, it's a huge jump.</p>
+      </div></div>
+      <div class="step"><div class="d">3</div><div>
+        <h4>Point it at your folder</h4>
+        <p>Open Cowork (simpler) or Code (more power — internet + file access). Select your folder, hit "trust." That folder is now its brain. The same move works for Codex or any other harness later.</p>
+      </div></div>
+      <div class="step"><div class="d">4</div><div>
+        <h4>Build your identity doc</h4>
+        <p>Drop in a starter template, say "I want my own version — interview me about how I work," and voice-dump the answers. That's layer one, done. Active context comes next, memory builds over time.</p>
+      </div></div>
+      <div class="step"><div class="d">5</div><div>
+        <h4>Build smart while you're building the system</h4>
+        <p>Use the smartest model at the highest effort for infrastructure work — Opus 4.8, not Haiku. You build the foundation once; build it sharp. Save the cheap, fast models for everyday small tasks.</p>
+      </div></div>
+      <div class="step"><div class="d">6</div><div>
+        <h4>Build one skill, the right way</h4>
+        <p>Use the case-study-first method from above. A great first one is a <strong>wrap-up</strong> skill: at the end of any session, it files everything back into the right corners of your second brain automatically. It's the one I run most.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section id="levels">
+  <div class="wrap">
+    <div class="kicker">The map</div>
+    <h2><span class="num">08</span>The three levels (don't skip)</h2>
+    <p class="intro">Knowing the whole climb makes the first step less scary — and stops you from sprinting to level two and faceplanting.</p>
+    <div class="levels">
+      <div class="level now">
+        <div class="lv">Level 1 · start here</div>
+        <h4>Local</h4>
+        <p>The folder on your laptop, read by Claude. Simple, safe, owned by you. Live here for a while. Get comfortable. Get annoyed.</p>
+      </div>
+      <div class="level">
+        <div class="lv">Level 2 · later</div>
+        <h4>Always-on</h4>
+        <p>Put a harness on a rented, always-on computer (~$8/mo), mirror the folder to the cloud, and talk to it from your phone — anywhere. Don't start here. Wait until you're <em>annoyed</em> you don't have it. <em>Then</em> build it.</p>
+      </div>
+      <div class="level">
+        <div class="lv">Level 3 · the horizon</div>
+        <h4>Fleets</h4>
+        <p>A crew of agents with an orchestrator running cheaper sub-agents — a little org of AI employees, cheap interns plus senior models. Not now. Just know the ceiling is absurdly high.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section style="border-bottom:none">
+  <div class="wrap">
+    <div class="closing">
+      <div class="kicker">Last thing</div>
+      <h2>Let yourself be bad at it first</h2>
+      <p>This is v1 and it shows — half the workshop was us fumbling through installing Git. That's kind of the point. This is a genuinely <strong>new skill</strong>, and the only way I learned it was by being bad at it for a while. Two months ago someone asked me if AI agents were useful yet and I said "honestly, no." I was wrong within weeks.</p>
+      <p>The wild part is the ceiling. Once it clicks, the only real limit is your imagination — annoying, but true.</p>
+      <div class="tip">Don't know where to start? Take this whole guide, hand it to your AI, and say: <strong>"I don't know what I'm doing — walk me through it step by step."</strong> That's not a cop-out. That's exactly how it's supposed to work.</div>
+      <p>Questions, breakthroughs, things that broke — bring them. We're all alpha-testing our own brains here.</p>
+      <div class="sign">made with love (and an absurd number of voice memos) — Axel</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">A living document. Built from a real workshop, cleaned up by the system it describes.</div>
+</footer>
+
+</body>
+</html>

@@ -1,5 +1,13 @@
 [
   {
+    "slug": "second-brain-starter",
+    "title": "Build a Second Brain \u2014 A Field Guide (v1)",
+    "desc": "",
+    "date": "2026-06-15",
+    "listed": false,
+    "type": "page"
+  },
+  {
     "slug": "second-brain",
     "title": "My Second Brain \u2014 and how to build your own",
     "desc": "How I turned a folder of text files into an AI that actually knows me \u2014 plus the templates to start your own.",
