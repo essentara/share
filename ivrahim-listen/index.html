@@ -5,27 +5,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IVRAHIM</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&display=swap" rel="stylesheet">
 <style>
+  @font-face{font-family:'Cortese';src:url('fonts/cortese-300.woff') format('woff');font-weight:300;font-style:normal;font-display:swap;}
+  @font-face{font-family:'Kalice';src:url('fonts/kalice-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+  @font-face{font-family:'Kalice';src:url('fonts/kalice-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap;}
+  @font-face{font-family:'Lining';src:url('fonts/lining-400.woff') format('woff');font-weight:400;font-style:normal;font-display:swap;}
+
   :root{
     --bone:#F4EFE6; --char:#1C1917;
     --bronze:#8C6239; --copper:#A85A31; --peach:#E8C0A4; --coppergold:#D18B3C;
     --ink:#3a332c; --mute:#7d7266; --hair:rgba(140,98,57,.28);
     --hair-dark:rgba(232,192,164,.24);
     --on-dark:rgba(244,239,230,.88); --on-dark-mute:rgba(232,192,164,.66);
+    --display:'Kalice',Georgia,serif;
+    --text:'Lining','Helvetica Neue',Helvetica,Arial,sans-serif;
+    --wordmark:'Cortese',Georgia,serif;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{-webkit-text-size-adjust:100%;}
   body{
     background:var(--bone);color:var(--ink);
-    font-family:'Newsreader',Georgia,serif;
-    font-size:17.5px;line-height:1.62;
+    font-family:var(--text);font-weight:400;
+    font-size:17px;line-height:1.65;
     -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:1080px;margin:0 auto;padding:0 40px;}
-  .narrow{max-width:60ch;}
+  .narrow{max-width:62ch;}
 
   section{padding:104px 0;}
   .dark{background:var(--char);color:var(--on-dark);}
@@ -34,50 +39,49 @@
   .dark p,.dark .lede{color:var(--on-dark);}
   .dark b,.dark strong{color:var(--peach);}
 
+  /* labels: Lining, caps, letterspaced. Never bold — there is no bold. */
   .eyebrow{
-    font-family:'Cinzel',serif;font-size:11px;font-weight:500;
-    letter-spacing:.24em;text-transform:uppercase;color:var(--bronze);
+    font-family:var(--text);font-size:11.5px;font-weight:400;
+    letter-spacing:.26em;text-transform:uppercase;color:var(--bronze);
     margin-bottom:26px;
   }
   h2{
-    font-family:'Cinzel',serif;font-weight:400;font-size:27px;
-    letter-spacing:.04em;text-transform:uppercase;color:var(--char);
-    margin-bottom:22px;line-height:1.25;
+    font-family:var(--display);font-weight:400;font-size:32px;
+    letter-spacing:-.005em;color:var(--char);
+    margin-bottom:22px;line-height:1.22;
   }
   p{margin-bottom:18px;}
   p:last-child{margin-bottom:0;}
-  .lede{font-size:20px;color:var(--ink);}
-  b,strong{font-weight:500;color:var(--char);}
+  .lede{font-size:19.5px;color:var(--ink);line-height:1.55;}
+  b,strong{font-weight:400;color:var(--char);}
 
-  /* ---- hero: light ground, wordmark hard left, never centred on axis ---- */
+  /* ---- hero ---- */
   header{background:var(--bone);padding:104px 0 88px;}
   .mark{
-    font-family:'Cinzel',serif;font-weight:400;
-    font-size:clamp(52px,11vw,124px);line-height:.94;
-    letter-spacing:.11em;text-transform:uppercase;
+    font-family:var(--wordmark);font-weight:300;
+    font-size:clamp(56px,12vw,140px);line-height:.92;
+    letter-spacing:.09em;text-transform:uppercase;
     background:linear-gradient(96deg,#4E3620 0%,#8C6239 34%,#C9A46A 52%,#8C6239 72%,#5A3F27 100%);
     -webkit-background-clip:text;background-clip:text;
     -webkit-text-fill-color:transparent;color:var(--bronze);
     margin-bottom:34px;
   }
   .tagline{
-    font-size:clamp(19px,2.4vw,26px);line-height:1.4;
-    color:var(--char);max-width:22ch;font-weight:300;
+    font-family:var(--display);font-weight:400;
+    font-size:clamp(21px,2.6vw,30px);line-height:1.32;
+    color:var(--char);max-width:24ch;
   }
-  .position{margin-top:30px;font-size:16px;color:var(--mute);max-width:46ch;}
+  .position{margin-top:30px;font-size:16px;color:var(--mute);max-width:48ch;}
   .hero-meta{
     margin-top:60px;padding-top:22px;border-top:1px solid var(--hair);
-    font-family:'Cinzel',serif;font-size:10.5px;letter-spacing:.2em;
+    font-family:var(--text);font-size:11px;letter-spacing:.22em;
     text-transform:uppercase;color:var(--mute);
   }
+  .heroshot{width:100%;height:min(76vh,720px);object-fit:cover;object-position:center 22%;display:block;}
 
-  /* HERO PHOTO — drop a file at img/axel-hero.jpg and delete the comment wrapper
-  .heroshot{width:100%;height:min(74vh,700px);object-fit:cover;object-position:center 28%;display:block;}
-  */
-
-  /* ---- player (lives on the dark section) ---- */
+  /* ---- player ---- */
   .seed-note{
-    font-family:'Cinzel',serif;font-size:10.5px;letter-spacing:.18em;
+    font-family:var(--text);font-size:11px;letter-spacing:.2em;
     text-transform:uppercase;color:var(--peach);margin-bottom:10px;
   }
   .tracks{margin-top:40px;border-top:1px solid var(--hair-dark);}
@@ -107,22 +111,22 @@
   }
   .t-body{flex:1;min-width:0;display:block;}
   .t-name{
-    display:block;font-family:'Cinzel',serif;font-size:16px;letter-spacing:.06em;
+    display:block;font-family:var(--text);font-size:14px;letter-spacing:.16em;
     text-transform:uppercase;color:var(--peach);
   }
-  .t-sub{display:block;font-size:15px;color:var(--on-dark-mute);margin-top:5px;line-height:1.45;}
-  .t-time{flex-shrink:0;font-size:13.5px;color:var(--on-dark-mute);font-variant-numeric:tabular-nums;}
+  .t-sub{display:block;font-size:15px;color:var(--on-dark-mute);margin-top:7px;line-height:1.45;}
+  .t-time{flex-shrink:0;font-size:13px;color:var(--on-dark-mute);font-variant-numeric:tabular-nums;letter-spacing:.06em;}
   .scrub{display:block;height:2px;background:var(--hair-dark);margin-top:12px;position:relative;max-width:360px;}
   .scrub i{display:block;height:100%;width:0;background:var(--peach);transition:width .18s linear;}
 
-  /* ---- triangle, on the light ground ---- */
+  /* ---- triangle ---- */
   .stage{margin-top:14px;}
   svg{display:block;width:100%;height:auto;max-width:760px;}
-  .v-name{font-family:'Cinzel',serif;font-size:21px;letter-spacing:.07em;text-transform:uppercase;fill:var(--char);}
-  .v-name2{font-family:'Cinzel',serif;font-size:16px;letter-spacing:.08em;text-transform:uppercase;fill:var(--bronze);}
-  .v-desc{font-family:'Newsreader',serif;font-size:16px;fill:var(--mute);}
-  .core{font-family:'Cinzel',serif;font-size:28px;letter-spacing:.15em;text-transform:uppercase;fill:var(--bronze);}
-  .core-sub{font-family:'Newsreader',serif;font-size:14.5px;fill:var(--mute);}
+  .v-name{font-family:'Lining',sans-serif;font-size:18px;letter-spacing:.13em;text-transform:uppercase;fill:var(--char);}
+  .v-name2{font-family:'Lining',sans-serif;font-size:14.5px;letter-spacing:.14em;text-transform:uppercase;fill:var(--bronze);}
+  .v-desc{font-family:'Lining',sans-serif;font-size:15px;fill:var(--mute);}
+  .core{font-family:'Cortese',serif;font-weight:300;font-size:36px;letter-spacing:.1em;text-transform:uppercase;fill:var(--bronze);}
+  .core-sub{font-family:'Lining',sans-serif;font-size:14px;fill:var(--mute);}
   .edge{stroke:rgba(140,98,57,.42);stroke-width:1.6;fill:none;}
   .node{fill:var(--bronze);}
 
@@ -131,14 +135,14 @@
   .strip figure{margin:0;}
   .strip img{width:100%;height:250px;object-fit:cover;display:block;}
   .strip figcaption{
-    font-family:'Cinzel',serif;font-size:12px;font-weight:500;letter-spacing:.12em;
+    font-family:var(--text);font-size:11.5px;font-weight:400;letter-spacing:.16em;
     text-transform:uppercase;color:var(--peach);margin-top:11px;
   }
   .wave-list{margin-top:30px;}
   .wl{display:flex;gap:18px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--hair);}
   .dark .wl{border-bottom-color:var(--hair-dark);}
   .wl:last-child{border-bottom:none;}
-  .wl .a{width:240px;flex-shrink:0;font-family:'Cinzel',serif;font-size:13.5px;letter-spacing:.06em;text-transform:uppercase;}
+  .wl .a{width:250px;flex-shrink:0;font-family:var(--text);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;}
   .wl .b{flex:1;font-size:15px;color:var(--mute);}
   .dark .wl .b{color:var(--on-dark-mute);}
 
@@ -146,20 +150,21 @@
   .asks{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px;margin-top:34px;}
   .ask{padding-top:18px;border-top:2px solid var(--peach);}
   .ask h3{
-    font-family:'Cinzel',serif;font-weight:400;font-size:14px;letter-spacing:.09em;
-    text-transform:uppercase;color:var(--peach);margin-bottom:8px;
+    font-family:var(--display);font-weight:400;font-size:19px;letter-spacing:0;
+    text-transform:none;color:var(--peach);margin-bottom:8px;
   }
   .ask p{font-size:15px;color:var(--on-dark-mute);margin:0;}
 
   .pull{
     border-left:2px solid var(--peach);padding:6px 0 6px 26px;
-    font-size:21px;line-height:1.45;color:var(--peach);margin:34px 0 0;max-width:52ch;
+    font-family:var(--display);font-size:24px;line-height:1.4;
+    color:var(--peach);margin:34px 0 0;max-width:50ch;
   }
 
   .cta{
-    display:inline-block;margin-top:14px;padding:15px 34px;
+    display:inline-block;margin-top:14px;padding:16px 34px;
     background:var(--peach);color:var(--char);text-decoration:none;
-    font-family:'Cinzel',serif;font-size:12.5px;letter-spacing:.15em;text-transform:uppercase;
+    font-family:var(--text);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
     transition:background .22s ease;
   }
   .cta:hover{background:var(--coppergold);}
@@ -168,18 +173,19 @@
   footer a{color:var(--bronze);}
 
   @media (max-width:768px){
-    body{font-size:16.5px;}
+    body{font-size:16px;}
     .wrap{padding:0 22px;}
     section{padding:68px 0;}
     header{padding:64px 0 56px;}
-    h2{font-size:22px;}
+    h2{font-size:25px;}
     .lede{font-size:18px;}
     .track{gap:14px;padding:16px 2px;}
     .t-time{display:none;}
     .wl{flex-direction:column;gap:2px;}
     .wl .a{width:auto;}
     .strip img{height:200px;}
-    .pull{font-size:18px;padding-left:18px;}
+    .pull{font-size:20px;padding-left:18px;}
+    .heroshot{height:62vh;}
   }
 </style>
 </head>
