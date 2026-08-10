@@ -65,7 +65,9 @@
     font-family:var(--wordmark);font-weight:300;
     font-size:clamp(56px,12vw,140px);line-height:.92;
     letter-spacing:.09em;text-transform:uppercase;
-    color:var(--char);
+    background:linear-gradient(180deg,#1C1917 0%,#1C1917 48%,#4E3620 82%,#7A5733 100%);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:var(--char);
     margin-bottom:34px;
   }
   .tagline{
@@ -79,8 +81,8 @@
     font-family:var(--text);font-size:11px;letter-spacing:.22em;
     text-transform:uppercase;color:var(--mute);
   }
-  .heroband{background:var(--bone);padding:0 0 96px;}
-  .heroshot{width:100%;max-width:1000px;height:auto;display:block;}
+  .heroband{background:var(--bone);padding:0 0 88px;}
+  .heroshot{width:100%;max-width:440px;height:auto;display:block;}
 
   /* ---- player ---- */
   .seed-note{
@@ -134,13 +136,10 @@
   .node{fill:var(--bronze);}
 
   /* ---- wave ---- */
-  .strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px;margin-top:34px;}
+  .strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:14px;margin-top:30px;}
   .strip figure{margin:0;}
-  .strip img{width:100%;height:250px;object-fit:cover;display:block;}
-  .strip figcaption{
-    font-family:var(--text);font-size:11.5px;font-weight:400;letter-spacing:.16em;
-    text-transform:uppercase;color:var(--peach);margin-top:11px;
-  }
+  .strip img{width:100%;height:290px;object-fit:cover;display:block;}
+  
   .wave-list{margin-top:30px;}
   .wl{display:flex;gap:18px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--hair);}
   .dark .wl{border-bottom-color:var(--hair-dark);}
@@ -148,32 +147,46 @@
   .wl .a{width:250px;flex-shrink:0;font-family:var(--text);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;}
   .wl .b{flex:1;font-size:15px;color:var(--mute);}
   .dark .wl .b{color:var(--on-dark-mute);}
+  .wl .lk{flex-shrink:0;display:flex;gap:14px;}
+  .wl .lk a{
+    font-family:var(--text);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--bronze);text-decoration:none;border-bottom:1px solid transparent;
+  }
+  .dark .wl .lk a{color:var(--peach);}
+  .wl .lk a:hover{border-bottom-color:currentColor;}
 
   /* ---- asks ---- */
   .asks{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px;margin-top:34px;}
-  .ask{padding-top:18px;border-top:2px solid var(--peach);}
+  .ask{padding-top:18px;border-top:2px solid var(--bronze);}
+  .dark .ask{border-top-color:var(--peach);}
   .ask h3{
     font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:0;
-    text-transform:none;color:var(--peach);margin-bottom:8px;
+    text-transform:none;color:var(--char);margin-bottom:8px;
   }
-  .ask p{font-size:15px;color:var(--on-dark-mute);margin:0;}
+  .ask h3{}
+  .dark .ask h3{color:var(--peach);}
+  .ask p{font-size:15px;color:var(--mute);margin:0;}
+  .dark .ask p{color:var(--on-dark-mute);}
 
   .pull{
-    border-left:2px solid var(--peach);padding:6px 0 6px 26px;
+    border-left:2px solid var(--bronze);padding:6px 0 6px 26px;
     font-family:var(--display);font-size:24px;line-height:1.4;
-    color:var(--peach);margin:34px 0 0;max-width:50ch;
+    color:var(--char);margin:34px 0 0;max-width:50ch;
   }
+  .dark .pull{border-left-color:var(--peach);color:var(--peach);}
 
   .cta{
     display:inline-block;margin-top:14px;padding:16px 34px;
-    background:var(--peach);color:var(--char);text-decoration:none;
+    background:var(--bronze);color:var(--bone);text-decoration:none;
     font-family:var(--text);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
     transition:background .22s ease;
   }
-  .cta:hover{background:var(--coppergold);}
+  .cta:hover{background:var(--copper);}
+  .dark .cta{background:var(--peach);color:var(--char);}
+  .dark .cta:hover{background:var(--coppergold);}
 
-  footer{background:var(--bone);color:var(--mute);padding:56px 0;font-size:13px;}
-  footer a{color:var(--bronze);}
+  footer{background:var(--char);color:var(--on-dark-mute);padding:56px 0;font-size:13px;}
+  footer a{color:var(--peach);}
 
   @media (max-width:768px){
     body{font-size:16px;}
@@ -187,7 +200,7 @@
     .t-time{display:none;}
     .wl{flex-direction:column;gap:2px;}
     .wl .a{width:auto;}
-    .strip img{height:200px;}
+    .strip img{height:230px;}
     .pull{font-size:20px;padding-left:18px;}
 
   }
@@ -354,30 +367,37 @@
       <p>These are not sound-alikes. They are the room I think this belongs in.</p>
     </div>
     <div class="wave-list">
-      <div class="wl"><div class="a">Aksharu</div><div class="b">Indian, ancestral material made genuinely cool</div></div>
-      <div class="wl"><div class="a">Arc De Soleil</div><div class="b">groovy, mostly instrumental</div></div>
-      <div class="wl"><div class="a">Curtain Blue</div><div class="b">recent find, squarely in this lane</div></div>
-      <div class="wl"><div class="a">Glass Beams</div><div class="b">the same move, masked and instrumental</div></div>
-      <div class="wl"><div class="a">Arooj Aftab</div><div class="b">inherited poetry over contemporary production</div></div>
-      <div class="wl"><div class="a">Ali Sethi &amp; Nicol&aacute;s Jaar</div><div class="b">the furthest along, and the method reference</div></div>
-      <div class="wl"><div class="a">FaceSoul &middot; Chantress Seba</div><div class="b">channeling, and proof it travels</div></div>
+      <div class="wl"><div class="a">Aksharu</div><div class="b">Indian, ancestral material made genuinely cool</div><div class="lk"><a href="https://open.spotify.com/search/Aksharu" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/explore/search/keyword/?q=Aksharu" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Arc De Soleil</div><div class="b">groovy, mostly instrumental</div><div class="lk"><a href="https://open.spotify.com/search/Arc%20De%20Soleil" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/explore/search/keyword/?q=Arc%20De%20Soleil" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Curtain Blue</div><div class="b">recent find, squarely in this lane</div><div class="lk"><a href="https://open.spotify.com/search/Curtain%20Blue" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/explore/search/keyword/?q=Curtain%20Blue" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Glass Beams</div><div class="b">the same move, masked and instrumental</div><div class="lk"><a href="https://open.spotify.com/search/Glass%20Beams" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/explore/search/keyword/?q=Glass%20Beams" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Arooj Aftab</div><div class="b">inherited poetry over contemporary production</div><div class="lk"><a href="https://open.spotify.com/search/Arooj%20Aftab" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/explore/search/keyword/?q=Arooj%20Aftab" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Ali Sethi &amp; Nicol&aacute;s Jaar</div><div class="b">the furthest along, and the method reference</div><div class="lk"><a href="https://open.spotify.com/search/Ali%20Sethi" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/explore/search/keyword/?q=Ali%20Sethi" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">FaceSoul</div><div class="b">channeling</div><div class="lk"><a href="https://open.spotify.com/search/FaceSoul" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/explore/search/keyword/?q=FaceSoul" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Chantress Seba</div><div class="b">proof that spiritual music travels</div><div class="lk"><a href="https://open.spotify.com/search/Chantress%20Seba" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/explore/search/keyword/?q=Chantress%20Seba" target="_blank" rel="noopener">Instagram</a></div></div>
     </div>
-
-    <div class="strip" style="margin-top:48px">
-      <figure><img src="img/ref-3.jpg" alt="Reference: Ali Sethi"><figcaption>Ali Sethi</figcaption></figure>
-      <figure><img src="img/ref-1.jpg" alt="Reference: Prince"><figcaption>Prince</figcaption></figure>
-      <figure><img src="img/ref-5.jpg" alt="Reference: Arc De Soleil"><figcaption>Arc De Soleil</figcaption></figure>
-      <figure><img src="img/ref-2.jpg" alt="Reference: Prince"><figcaption>Prince</figcaption></figure>
-      <figure><img src="img/ref-6.jpg" alt="Reference: Arc De Soleil"><figcaption>Arc De Soleil</figcaption></figure>
-      <figure><img src="img/ref-4.jpg" alt="Reference: Ali Sethi"><figcaption>Ali Sethi</figcaption></figure>
-      <figure><img src="img/ref-7.jpg" alt="Reference: Arc De Soleil"><figcaption>Arc De Soleil</figcaption></figure>
-      <figure><img src="img/ref-9.jpg" alt="Reference: Arc De Soleil"><figcaption>Arc De Soleil</figcaption></figure>
-    </div>
-    <p style="margin-top:22px;font-size:14px;color:var(--on-dark-mute)">Other people's photographs, collected as reference. Not Ivrahim, and not shot for this. They are here because they say the look faster than I can write it.</p>
   </div>
 </section>
 
 <section>
+  <div class="wrap">
+    <div class="eyebrow">The look</div>
+    <h2>Where this is pointed</h2>
+    <div class="narrow"><p>Other people’s photographs, collected as reference. Not Ivrahim, not shot for this. They are here because they say it faster than I can write it.</p></div>
+    <div class="strip">
+      <figure><img src="img/ref-3.jpg" alt="Reference: Ali Sethi"></figure>
+      <figure><img src="img/ref-1.jpg" alt="Reference: Prince"></figure>
+      <figure><img src="img/ref-5.jpg" alt="Reference: Arc De Soleil"></figure>
+      <figure><img src="img/ref-2.jpg" alt="Reference: Prince"></figure>
+      <figure><img src="img/ref-6.jpg" alt="Reference: Arc De Soleil"></figure>
+      <figure><img src="img/ref-4.jpg" alt="Reference: Ali Sethi"></figure>
+      <figure><img src="img/ref-7.jpg" alt="Reference: Arc De Soleil"></figure>
+      <figure><img src="img/ref-9.jpg" alt="Reference: Arc De Soleil"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
   <div class="wrap">
     <div class="eyebrow">Straight up</div>
     <h2>What does not exist yet</h2>
@@ -389,7 +409,7 @@
   </div>
 </section>
 
-<section class="dark">
+<section>
   <div class="wrap">
     <div class="eyebrow">The ask</div>
     <h2>I am looking for people to build this with</h2>
