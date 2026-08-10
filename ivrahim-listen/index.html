@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IVRAHIM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#F4EFE6; --char:#1C1917;
+    --bronze:#8C6239; --copper:#A85A31; --peach:#E8C0A4; --coppergold:#D18B3C;
+    --ink:#3a332c; --mute:#7d7266; --hair:rgba(140,98,57,.28);
+    --hair-dark:rgba(232,192,164,.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  body{
+    background:var(--bone);color:var(--ink);
+    font-family:'Newsreader',Georgia,serif;
+    font-size:17.5px;line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 40px;}
+  .narrow{max-width:60ch;}
+
+  /* ---- sections ---- */
+  section{padding:104px 0;}
+  .dark{background:var(--char);color:var(--peach);}
+  .dark .eyebrow{color:var(--peach);}
+  .dark h2{color:var(--peach);}
+  .dark .lede,.dark p{color:rgba(232,192,164,.82);}
+
+  .eyebrow{
+    font-family:'Cinzel',serif;font-size:11px;font-weight:500;
+    letter-spacing:.24em;text-transform:uppercase;color:var(--bronze);
+    margin-bottom:26px;
+  }
+  h2{
+    font-family:'Cinzel',serif;font-weight:400;font-size:27px;
+    letter-spacing:.04em;text-transform:uppercase;color:var(--char);
+    margin-bottom:22px;line-height:1.25;
+  }
+  p{margin-bottom:18px;}
+  p:last-child{margin-bottom:0;}
+  .lede{font-size:20px;color:var(--ink);}
+  em{font-style:italic;}
+  b,strong{font-weight:500;color:var(--char);}
+  .dark b,.dark strong{color:var(--peach);}
+
+  /* ---- hero: wordmark hard left, never centred on axis ---- */
+  header{
+    background:var(--char);color:var(--peach);
+    padding:112px 0 96px;
+  }
+  .mark{
+    font-family:'Cinzel',serif;font-weight:400;
+    font-size:clamp(52px,11vw,124px);line-height:.94;
+    letter-spacing:.11em;text-transform:uppercase;
+    background:linear-gradient(96deg,#A8825F 0%,#E8C0A4 38%,#F7DFCB 52%,#D9A87F 70%,#A8825F 100%);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:var(--peach);
+    margin-bottom:34px;
+  }
+  .tagline{
+    font-size:clamp(19px,2.4vw,26px);line-height:1.4;
+    color:var(--peach);max-width:22ch;font-weight:300;
+  }
+  .position{
+    margin-top:30px;font-size:16px;color:rgba(232,192,164,.72);
+    max-width:46ch;
+  }
+  .hero-meta{
+    margin-top:60px;padding-top:22px;border-top:1px solid var(--hair-dark);
+    font-family:'Cinzel',serif;font-size:10.5px;letter-spacing:.2em;
+    text-transform:uppercase;color:rgba(232,192,164,.6);
+  }
+
+  /* ---- player ---- */
+  .seed-note{
+    font-family:'Cinzel',serif;font-size:10.5px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--bronze);margin-bottom:8px;
+  }
+  .tracks{margin-top:38px;border-top:1px solid var(--hair);}
+  .track{
+    display:flex;align-items:center;gap:20px;width:100%;
+    padding:19px 4px;border-bottom:1px solid var(--hair);
+    background:none;border-left:0;border-right:0;border-top:0;
+    font-family:inherit;font-size:inherit;color:inherit;
+    text-align:left;cursor:pointer;transition:background .22s ease;
+  }
+  .track:hover{background:rgba(140,98,57,.06);}
+  .track.on{background:rgba(140,98,57,.09);}
+  .pbtn{
+    flex-shrink:0;width:34px;height:34px;border-radius:50%;
+    border:1px solid var(--bronze);position:relative;
+    transition:background .22s ease;
+  }
+  .track.on .pbtn{background:var(--bronze);}
+  .pbtn::before{
+    content:"";position:absolute;top:50%;left:53%;transform:translate(-50%,-50%);
+    border-left:9px solid var(--bronze);border-top:6px solid transparent;
+    border-bottom:6px solid transparent;
+  }
+  .track.on .pbtn::before{border-left-color:var(--bone);}
+  .track.on.playing .pbtn::before{
+    border:0;left:50%;width:9px;height:11px;
+    background:linear-gradient(90deg,var(--bone) 0 3px,transparent 3px 6px,var(--bone) 6px 9px);
+  }
+  .t-body{flex:1;min-width:0;display:block;}
+  .t-name{
+    display:block;
+    font-family:'Cinzel',serif;font-size:15.5px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--char);
+  }
+  .t-sub{display:block;font-size:14.5px;color:var(--mute);margin-top:4px;line-height:1.45;}
+  .t-time{
+    flex-shrink:0;font-size:13.5px;color:var(--mute);
+    font-variant-numeric:tabular-nums;
+  }
+  .scrub{display:block;height:2px;background:var(--hair);margin-top:11px;position:relative;max-width:340px;}
+  .scrub i{
+    display:block;height:100%;width:0;background:var(--bronze);
+    transition:width .18s linear;
+  }
+
+  /* ---- triangle ---- */
+  .stage{margin-top:20px;}
+  svg{display:block;width:100%;height:auto;max-width:720px;}
+  .v-name{font-family:'Cinzel',serif;font-size:19px;letter-spacing:.07em;text-transform:uppercase;fill:var(--peach);}
+  .v-name2{font-family:'Cinzel',serif;font-size:13.5px;letter-spacing:.09em;text-transform:uppercase;fill:rgba(232,192,164,.6);}
+  .v-desc{font-family:'Newsreader',serif;font-size:14px;fill:rgba(232,192,164,.55);}
+  .core{font-family:'Cinzel',serif;font-size:26px;letter-spacing:.15em;text-transform:uppercase;fill:var(--coppergold);}
+  .core-sub{font-family:'Newsreader',serif;font-size:13px;fill:rgba(232,192,164,.55);}
+  .edge{stroke:rgba(232,192,164,.34);stroke-width:1.4;fill:none;}
+  .node{fill:var(--peach);}
+
+  /* ---- the wave / mood ---- */
+  .strip{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+    gap:14px;margin-top:34px;
+  }
+  .strip figure{margin:0;}
+  .strip img{width:100%;height:250px;object-fit:cover;display:block;filter:saturate(1.02);}
+  .strip figcaption{
+    font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--mute);margin-top:8px;
+  }
+  .dark .strip figcaption{color:rgba(232,192,164,.5);}
+  .wave-list{margin-top:30px;}
+  .wl{
+    display:flex;gap:18px;align-items:baseline;
+    padding:12px 0;border-bottom:1px solid var(--hair);
+  }
+  .dark .wl{border-bottom-color:var(--hair-dark);}
+  .wl:last-child{border-bottom:none;}
+  .wl .a{width:240px;flex-shrink:0;font-family:'Cinzel',serif;font-size:13.5px;letter-spacing:.06em;text-transform:uppercase;}
+  .wl .b{flex:1;font-size:15px;color:var(--mute);}
+  .dark .wl .b{color:rgba(232,192,164,.62);}
+
+  /* ---- asks ---- */
+  .asks{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px;margin-top:34px;}
+  .ask{padding-top:18px;border-top:2px solid var(--bronze);}
+  .ask h3{
+    font-family:'Cinzel',serif;font-weight:400;font-size:14px;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--char);margin-bottom:8px;
+  }
+  .ask p{font-size:15px;color:var(--mute);margin:0;}
+
+  .pull{
+    border-left:2px solid var(--bronze);padding:6px 0 6px 26px;
+    font-size:21px;line-height:1.45;color:var(--char);margin:34px 0;
+    max-width:52ch;
+  }
+  .dark .pull{border-left-color:var(--peach);color:var(--peach);}
+
+  .cta{
+    display:inline-block;margin-top:14px;padding:15px 34px;
+    background:var(--bronze);color:var(--bone);text-decoration:none;
+    font-family:'Cinzel',serif;font-size:12.5px;letter-spacing:.15em;text-transform:uppercase;
+    transition:background .22s ease;
+  }
+  .cta:hover{background:var(--copper);}
+
+  footer{
+    background:var(--char);color:rgba(232,192,164,.5);
+    padding:56px 0;font-size:13px;
+  }
+  footer a{color:var(--peach);}
+
+  @media (max-width:768px){
+    body{font-size:16.5px;}
+    .wrap{padding:0 22px;}
+    section{padding:68px 0;}
+    header{padding:72px 0 60px;}
+    h2{font-size:22px;}
+    .lede{font-size:18px;}
+    .track{gap:14px;padding:16px 2px;}
+    .t-time{display:none;}
+    .wl{flex-direction:column;gap:2px;}
+    .wl .a{width:auto;}
+    .strip img{height:200px;}
+    .pull{font-size:18px;padding-left:18px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="mark">Ivrahim</div>
+    <div class="tagline">If Moses dressed like Prince and sounded like Jeff Buckley.</div>
+    <div class="position">A channeling music project. Old prayers, new production, and a rhythm section. Spiritual music that grooves.</div>
+    <div class="hero-meta">Six seeds &middot; Los Angeles &middot; August 2026</div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Listen first</div>
+    <div class="seed-note">Seeds, not singles</div>
+    <div class="narrow">
+      <p class="lede">These are demos. Rough on purpose, and none of them are finished. They exist to show you the sound is real and not a description of a sound.</p>
+      <p>Most of the words are older than anyone reading this. Lecha Dodi is the Friday-night poem that welcomes Shabbat like a bride. Adon Olam and Hine Ma Tov come off the same shelf. Modeh Ani is the line you say before you get out of bed. Metta is the Buddhist loving-kindness practice. <em>Call Your Parents</em> is the one I wrote.</p>
+    </div>
+
+    <div class="tracks" id="tracks">
+      <button class="track" data-src="audio/01-lecha-dodi.mp3">
+        <span class="pbtn"></span>
+        <span class="t-body">
+          <span class="t-name">Lecha Dodi</span>
+          <span class="t-sub">Motown funk. Welcoming Shabbat like you would welcome a person.</span>
+          <span class="scrub"><i></i></span>
+        </span>
+        <span class="t-time">2:31</span>
+      </button>
+      <button class="track" data-src="audio/02-metta-mantra.mp3">
+        <span class="pbtn"></span>
+        <span class="t-body">
+          <span class="t-name">Metta Mantra</span>
+          <span class="t-sub">Loving-kindness, in the Khruangbin lane.</span>
+          <span class="scrub"><i></i></span>
+        </span>
+        <span class="t-time">3:00</span>
+      </button>
+      <button class="track" data-src="audio/03-hine-ma-tov.mp3">
+        <span class="pbtn"></span>
+        <span class="t-body">
+          <span class="t-name">Hine Ma Tov</span>
+          <span class="t-sub">Psalm 133. How good it is to sit together. Funky V1.</span>
+          <span class="scrub"><i></i></span>
+        </span>
+        <span class="t-time">2:48</span>
+      </button>
+      <button class="track" data-src="audio/04-adon-olam.mp3">
+        <span class="pbtn"></span>
+        <span class="t-body">
+          <span class="t-name">Adon Olam</span>
+          <span class="t-sub">A thousand-year-old hymn that has been set to almost every melody there is. Here is one more.</span>
+          <span class="scrub"><i></i></span>
+        </span>
+        <span class="t-time">4:30</span>
+      </button>
+      <button class="track" data-src="audio/05-call-your-parents.mp3">
+        <span class="pbtn"></span>
+        <span class="t-body">
+          <span class="t-name">Call Your Parents</span>
+          <span class="t-sub">Mine. Not liturgy, same instruction.</span>
+          <span class="scrub"><i></i></span>
+        </span>
+        <span class="t-time">4:52</span>
+      </button>
+      <button class="track" data-src="audio/06-modeh-ani.mp3">
+        <span class="pbtn"></span>
+        <span class="t-body">
+          <span class="t-name">Modeh Ani + Om Namo</span>
+          <span class="t-sub">The Hebrew you say on waking, and the Sanskrit, in the same room.</span>
+          <span class="scrub"><i></i></span>
+        </span>
+        <span class="t-time">5:16</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="eyebrow">The sound</div>
+    <h2>Three points, and what sits between them</h2>
+    <div class="narrow">
+      <p>Each point is an axis rather than a name: what the singing does, what the rhythm section does, what the arrangement does. All six of these are audible in the demos above. That is the only rule the diagram follows.</p>
+    </div>
+    <div class="stage">
+      <svg viewBox="0 0 800 700" role="img" aria-label="Triangle: Jeff Buckley and FaceSoul on voice, Jungle and Earth Wind and Fire on groove, Khruangbin and Radiohead on arrangement, with IVRAHIM at the centre">
+        <polygon class="edge" points="400,175 130,565 670,565"></polygon>
+        <circle class="node" cx="400" cy="175" r="4.5"></circle>
+        <circle class="node" cx="130" cy="565" r="4.5"></circle>
+        <circle class="node" cx="670" cy="565" r="4.5"></circle>
+
+        <text class="v-name" x="400" y="95" text-anchor="middle">Jeff Buckley</text>
+        <text class="v-name2" x="400" y="120" text-anchor="middle">FaceSoul</text>
+        <text class="v-desc" x="400" y="145" text-anchor="middle">the feel, the ache, the humanity</text>
+
+        <text class="v-name" x="130" y="610" text-anchor="middle">Jungle</text>
+        <text class="v-name2" x="130" y="635" text-anchor="middle">Earth, Wind &amp; Fire</text>
+        <text class="v-desc" x="130" y="658" text-anchor="middle">danceable, vintage, warm tape</text>
+
+        <text class="v-name" x="670" y="610" text-anchor="middle">Khruangbin</text>
+        <text class="v-name2" x="670" y="635" text-anchor="middle">Radiohead</text>
+        <text class="v-desc" x="670" y="658" text-anchor="middle">hypnotic and groovy</text>
+
+        <text class="core" x="400" y="400" text-anchor="middle">Ivrahim</text>
+        <text class="core-sub" x="400" y="428" text-anchor="middle">spiritual music that grooves</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The method</div>
+    <h2>Old words, borrowed rooms</h2>
+    <div class="narrow">
+      <p class="lede">Sing inherited poetry over an instrumental world somebody else built.</p>
+      <p>Ali Sethi did it with Nicol&aacute;s Jaar on <em>Intiha</em>: he cut loops out of Jaar's ambient record, improvised Urdu couplets from poets two hundred years dead, and sent the voice notes back. Almost none of the words were new. The record still sounds like now.</p>
+      <p>Jews ran this play first. Israel Najara set Hebrew sacred poems to Turkish and Greek and Spanish street melodies in the fifteen hundreds and got criticised for it. Shalom Shabazi mixed Hebrew, Judeo-Arabic and Aramaic inside single poems in Yemen. Ofra Haza put Shabazi over 1988 dance production and it went around the world.</p>
+      <p><b>Nothing has to be invented to be true.</b> The voice is mine, the words carry a thousand years, and the room is whatever a collaborator wants to build.</p>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="eyebrow">The wave</div>
+    <h2>Who this is with</h2>
+    <div class="narrow">
+      <p class="lede">There is a wave of artists reaching back into their own traditions and dragging them into the present, because we are all so rootless.</p>
+      <p>These are not sound-alikes. They are the room I think this belongs in.</p>
+    </div>
+    <div class="wave-list">
+      <div class="wl"><div class="a">Aksharu</div><div class="b">Indian, ancestral material made genuinely cool</div></div>
+      <div class="wl"><div class="a">Arc De Soleil</div><div class="b">groovy, mostly instrumental</div></div>
+      <div class="wl"><div class="a">Curtain Blue</div><div class="b">recent find, squarely in this lane</div></div>
+      <div class="wl"><div class="a">Glass Beams</div><div class="b">the same move, masked and instrumental</div></div>
+      <div class="wl"><div class="a">Arooj Aftab</div><div class="b">inherited poetry over contemporary production</div></div>
+      <div class="wl"><div class="a">Ali Sethi &amp; Nicol&aacute;s Jaar</div><div class="b">the furthest along, and the method reference</div></div>
+      <div class="wl"><div class="a">FaceSoul &middot; Chantress Seba</div><div class="b">channeling, and proof it travels</div></div>
+    </div>
+
+    <div class="strip" style="margin-top:44px">
+      <figure><img src="img/ref-3.jpg" alt="Reference: Ali Sethi"><figcaption>Ali Sethi</figcaption></figure>
+      <figure><img src="img/ref-1.jpg" alt="Reference: Prince"><figcaption>Prince</figcaption></figure>
+      <figure><img src="img/ref-5.jpg" alt="Reference: Arc De Soleil"><figcaption>Arc De Soleil</figcaption></figure>
+      <figure><img src="img/ref-2.jpg" alt="Reference: Prince"><figcaption>Prince</figcaption></figure>
+      <figure><img src="img/ref-6.jpg" alt="Reference: Arc De Soleil"><figcaption>Arc De Soleil</figcaption></figure>
+      <figure><img src="img/ref-4.jpg" alt="Reference: Ali Sethi"><figcaption>Ali Sethi</figcaption></figure>
+      <figure><img src="img/ref-7.jpg" alt="Reference: Arc De Soleil"><figcaption>Arc De Soleil</figcaption></figure>
+      <figure><img src="img/ref-9.jpg" alt="Reference: Arc De Soleil"><figcaption>Arc De Soleil</figcaption></figure>
+    </div>
+    <p style="margin-top:18px;font-size:13.5px;color:rgba(232,192,164,.45)">Other people's photographs, collected as reference. Not Ivrahim, and not shot for this. They are here because they say the look faster than I can write it.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The name</div>
+    <h2>Ivrahim</h2>
+    <div class="narrow">
+      <p>Avraham and Ibrahim. The Hebrew and the Arabic for the same ancestor, and both of them are already sitting inside my legal name: Axel Ivrahim Mansoor.</p>
+      <p>Spelled with a V, which is nobody's standard transliteration. That is the point. It is the seam between the two, which is the same seam the music is working.</p>
+    </div>
+    <div class="pull">A third culture kid is from everywhere and nowhere at once. So is a Jew. That is not a wound to manage, it is a working method.</div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="eyebrow">Straight up</div>
+    <h2>What does not exist yet</h2>
+    <div class="narrow">
+      <p class="lede">There is no record. No release date, no label, no streaming numbers worth quoting.</p>
+      <p>What exists is six demos, a method with four hundred years behind it, a room in Los Angeles where musicians are starting to gather, and a very clear idea of what this is supposed to feel like.</p>
+      <p>Axel Mansoor is building Ivrahim in public. The journals, the false starts, the parts that are not working. If you want the behind-the-scenes, that is where it lives.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The ask</div>
+    <h2>I am looking for people to build this with</h2>
+    <div class="narrow">
+      <p class="lede">Not a team. A collective. Ivrahim is one artist inside it, and it is called Minyan, which is the ten people Jewish prayer needs before it can start.</p>
+    </div>
+    <div class="asks">
+      <div class="ask">
+        <h3>Producers</h3>
+        <p>Per song, not per career. If you have a sonic world and you want a voice in it, that is the whole job.</p>
+      </div>
+      <div class="ask">
+        <h3>Musicians</h3>
+        <p>Especially if you have never made anything that sounds like your own tradition and have been quietly curious about it.</p>
+      </div>
+      <div class="ask">
+        <h3>Photo &amp; video</h3>
+        <p>The look above is borrowed. It should not stay borrowed.</p>
+      </div>
+      <div class="ask">
+        <h3>Anyone who gets it</h3>
+        <p>Including if what you have is an introduction rather than a skill. That counts.</p>
+      </div>
+    </div>
+    <p style="margin-top:44px"><a class="cta" href="mailto:axelmansoor@gmail.com?subject=Ivrahim">Say something</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p style="margin-bottom:8px">IVRAHIM &middot; Los Angeles &middot; <a href="mailto:axelmansoor@gmail.com">axelmansoor@gmail.com</a></p>
+    <p style="font-size:12px;color:rgba(232,192,164,.34);margin:0">Unlisted draft, August 2026. Display face is a stand-in for Cortese. Reference photography belongs to its photographers and is here for direction only.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var audio = new Audio();
+  audio.preload = "none";
+  var rows = Array.prototype.slice.call(document.querySelectorAll(".track"));
+  var current = null;
+
+  function clear(){
+    rows.forEach(function(r){
+      r.classList.remove("on","playing");
+      r.querySelector(".scrub i").style.width = "0";
+    });
+  }
+
+  rows.forEach(function(row){
+    row.addEventListener("click", function(){
+      var src = row.getAttribute("data-src");
+      if (current === row) {
+        if (audio.paused) { audio.play(); row.classList.add("playing"); }
+        else { audio.pause(); row.classList.remove("playing"); }
+        return;
+      }
+      clear();
+      current = row;
+      audio.src = src;
+      audio.play().then(function(){
+        row.classList.add("on","playing");
+      }).catch(function(){
+        row.classList.add("on");
+      });
+      row.classList.add("on");
+    });
+  });
+
+  audio.addEventListener("timeupdate", function(){
+    if (!current || !audio.duration) return;
+    var pct = (audio.currentTime / audio.duration) * 100;
+    current.querySelector(".scrub i").style.width = pct + "%";
+  });
+
+  audio.addEventListener("ended", function(){
+    var i = rows.indexOf(current);
+    clear();
+    if (i > -1 && i < rows.length - 1) { rows[i+1].click(); }
+    else { current = null; }
+  });
+})();
+</script>
+</body>
+</html>
