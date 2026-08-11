@@ -190,7 +190,7 @@
   /* ---- wave ---- */
   .strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:14px;margin-top:30px;}
   .strip figure{margin:0;}
-  .strip img{width:100%;height:290px;object-fit:cover;display:block;}
+  .strip img{width:100%;height:290px;object-fit:cover;object-position:50% 26%;display:block;}
   
   .wave-list{margin-top:30px;}
   .wl{display:flex;gap:18px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--hair);}
@@ -234,6 +234,9 @@
     transition:background .22s ease;
   }
   .cta:hover{background:var(--copper);}
+  .cta.ghost{background:none;color:var(--bronze);box-shadow:inset 0 0 0 1px var(--bronze);}
+  .cta.ghost:hover{background:var(--bronze);color:var(--bone);}
+  .ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:44px;}
   .dark .cta{background:var(--peach);color:var(--char);}
   .dark .cta:hover{background:var(--coppergold);}
 
@@ -256,8 +259,17 @@
     .wl{flex-direction:column;gap:2px;}
     .wl .a{width:auto;}
     .strip img{height:230px;}
-    .tri-dot{width:32px;height:32px;}
-    .tri-tip{width:170px;}
+    .tri-dot{width:30px;height:30px;}
+    .tri-tip{width:172px;}
+    .strip img{height:250px;object-position:50% 22%;}
+    /* the SVG shrinks with the viewport, so the type has to grow inside it */
+    .v-name{font-size:42px;}
+    .v-name2{font-size:34px;}
+    .v-desc{display:none;}
+    .core{font-size:66px;}
+    .core-sub{font-size:30px;}
+    .ctas .cta{flex:1 1 100%;text-align:center;}
+    .drawer{margin-top:34px;}
     .pull{font-size:20px;padding-left:18px;}
 
   }
@@ -301,24 +313,24 @@
         <text class="v-name2" x="500" y="92" text-anchor="middle">FaceSoul</text>
         <text class="v-desc" x="500" y="121" text-anchor="middle">the feel, the ache, the humanity</text>
 
-        <text class="v-name" x="120" y="812" text-anchor="middle">Earth, Wind &amp; Fire</text>
-        <text class="v-name2" x="120" y="842" text-anchor="middle">Jungle</text>
-        <text class="v-desc" x="120" y="871" text-anchor="middle">danceable, vintage, warm tape</text>
+        <text class="v-name" x="8" y="812" text-anchor="start">Earth, Wind &amp; Fire</text>
+        <text class="v-name2" x="8" y="842" text-anchor="start">Jungle</text>
+        <text class="v-desc" x="8" y="871" text-anchor="start">danceable, vintage, warm tape</text>
 
-        <text class="v-name" x="880" y="812" text-anchor="middle">Radiohead</text>
-        <text class="v-name2" x="880" y="842" text-anchor="middle">Khruangbin</text>
-        <text class="v-desc" x="880" y="871" text-anchor="middle">hypnotic and groovy</text>
+        <text class="v-name" x="992" y="812" text-anchor="end">Radiohead</text>
+        <text class="v-name2" x="992" y="842" text-anchor="end">Khruangbin</text>
+        <text class="v-desc" x="992" y="871" text-anchor="end">hypnotic and groovy</text>
 
         <text class="core" x="500" y="505" text-anchor="middle">Ivrahim</text>
         <text class="core-sub" x="500" y="540" text-anchor="middle">spiritual music that grooves</text>
       </svg>
-        <button class="tri-dot" data-src="audio/05-call-your-parents.mp3" aria-label="Play Call Your Parents" style="left:52.05%;top:41.49%"><span class="tri-tip"><span class="n">Call Your Parents</span><span class="d">Mine. Not liturgy, same instruction.</span></span></button>
-        <button class="tri-dot" data-src="audio/06-ong-namo.mp3" aria-label="Play Ong Namo" style="left:36.94%;top:63.83%"><span class="tri-tip"><span class="n">Ong Namo</span><span class="d">Sanskrit. The line you open a practice with.</span></span></button>
-        <button class="tri-dot" data-src="audio/01-lecha-dodi.mp3" aria-label="Play Lecha Dodi" style="left:48.72%;top:63.83%"><span class="tri-tip"><span class="n">Lecha Dodi</span><span class="d">Motown funk. Welcoming Shabbat like you would welcome a person.</span></span></button>
-        <button class="tri-dot" data-src="audio/02-metta-mantra.mp3" aria-label="Play Metta Mantra" style="left:63.14%;top:63.83%"><span class="tri-tip"><span class="n">Metta Mantra</span><span class="d">Loving-kindness, in the Khruangbin lane.</span></span></button>
-        <button class="tri-dot" data-src="audio/03-hine-ma-tov.mp3" aria-label="Play Hine Ma Tov" style="left:32.21%;top:73.4%"><span class="tri-tip"><span class="n">Hine Ma Tov</span><span class="d">Psalm 133. How good it is to sit together.</span></span></button>
-        <button class="tri-dot" data-src="audio/04-adon-olam.mp3" aria-label="Play Adon Olam" style="left:49.9%;top:73.4%"><span class="tri-tip"><span class="n">Adon Olam</span><span class="d">A thousand-year-old hymn set to almost every melody there is. Here is one more.</span></span></button>
-        <button class="tri-dot" data-src="audio/07-modeh-ani.mp3" aria-label="Play Modeh Ani + Om Namo" style="left:64.58%;top:73.4%"><span class="tri-tip"><span class="n">Modeh Ani + Om Namo</span><span class="d">The Hebrew you say on waking, and the Sanskrit, in the same room.</span></span></button>
+        <button class="tri-dot" data-src="audio/05-call-your-parents.mp3" aria-label="Play Call Your Parents" style="left:50.0%;top:41.49%"><span class="tri-tip"><span class="n">Call Your Parents</span><span class="d">Mine. Not liturgy, same instruction.</span></span></button>
+        <button class="tri-dot" data-src="audio/06-ong-namo.mp3" aria-label="Play Ong Namo" style="left:35.0%;top:63.83%"><span class="tri-tip"><span class="n">Ong Namo</span><span class="d">Sanskrit. The line you open a practice with.</span></span></button>
+        <button class="tri-dot" data-src="audio/01-lecha-dodi.mp3" aria-label="Play Lecha Dodi" style="left:50.0%;top:63.83%"><span class="tri-tip"><span class="n">Lecha Dodi</span><span class="d">Motown funk. Welcoming Shabbat like you would welcome a person.</span></span></button>
+        <button class="tri-dot" data-src="audio/02-metta-mantra.mp3" aria-label="Play Metta Mantra" style="left:65.0%;top:63.83%"><span class="tri-tip"><span class="n">Metta Mantra</span><span class="d">Loving-kindness, in the Khruangbin lane.</span></span></button>
+        <button class="tri-dot" data-src="audio/03-hine-ma-tov.mp3" aria-label="Play Hine Ma Tov" style="left:35.0%;top:73.4%"><span class="tri-tip"><span class="n">Hine Ma Tov</span><span class="d">Psalm 133. How good it is to sit together.</span></span></button>
+        <button class="tri-dot" data-src="audio/04-adon-olam.mp3" aria-label="Play Adon Olam" style="left:50.0%;top:73.4%"><span class="tri-tip"><span class="n">Adon Olam</span><span class="d">A thousand-year-old hymn set to almost every melody there is. Here is one more.</span></span></button>
+        <button class="tri-dot" data-src="audio/07-modeh-ani.mp3" aria-label="Play Modeh Ani + Om Namo" style="left:65.0%;top:73.4%"><span class="tri-tip"><span class="n">Modeh Ani + Om Namo</span><span class="d">The Hebrew you say on waking, and the Sanskrit, in the same room.</span></span></button>
     </div>
 
     <details class="drawer">
@@ -496,7 +508,10 @@
         <p>Including if what you have is an introduction rather than a skill. That counts.</p>
       </div>
     </div>
-    <p style="margin-top:44px"><a class="cta" href="mailto:axelmansoor@gmail.com?subject=Ivrahim">Say something</a></p>
+    <div class="ctas">
+      <a class="cta" href="mailto:axelmansoor@gmail.com?subject=Ivrahim">Email me</a>
+      <a class="cta ghost" href="https://cal.com/axelmansoor/chat" target="_blank" rel="noopener">Let&rsquo;s chat</a>
+    </div>
   </div>
 </section>
 
