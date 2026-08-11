@@ -90,47 +90,47 @@
     font-family:var(--text);font-size:13.5px;letter-spacing:.18em;
     text-transform:uppercase;color:var(--peach);margin-bottom:12px;
   }
-  .tracks{margin-top:40px;border-top:1px solid var(--hair-dark);}
+  .tracks{margin-top:10px;border-top:1px solid var(--hair);}
   .track{
     display:flex;align-items:center;gap:20px;width:100%;
-    padding:19px 4px;border-bottom:1px solid var(--hair-dark);
+    padding:19px 4px;border-bottom:1px solid var(--hair);
     background:none;border-left:0;border-right:0;border-top:0;
     font-family:inherit;font-size:inherit;color:inherit;
     text-align:left;cursor:pointer;transition:background .22s ease;
   }
-  .track:hover{background:rgba(232,192,164,.07);}
-  .track.on{background:rgba(232,192,164,.11);}
+  .track:hover{background:rgba(140,98,57,.05);}
+  .track.on{background:rgba(140,98,57,.08);}
   .pbtn{
     flex-shrink:0;width:34px;height:34px;border-radius:50%;
-    border:1px solid var(--peach);position:relative;transition:background .22s ease;
+    border:1px solid var(--bronze);position:relative;transition:background .22s ease;
   }
-  .track.on .pbtn{background:var(--peach);}
+  .track.on .pbtn{background:var(--bronze);}
   .pbtn::before{
     content:"";position:absolute;top:50%;left:53%;transform:translate(-50%,-50%);
-    border-left:9px solid var(--peach);border-top:6px solid transparent;
+    border-left:9px solid var(--bronze);border-top:6px solid transparent;
     border-bottom:6px solid transparent;
   }
-  .track.on .pbtn::before{border-left-color:var(--char);}
+  .track.on .pbtn::before{border-left-color:var(--bone);}
   .track.on.playing .pbtn::before{
     border:0;left:50%;width:9px;height:11px;
-    background:linear-gradient(90deg,var(--char) 0 3px,transparent 3px 6px,var(--char) 6px 9px);
+    background:linear-gradient(90deg,var(--bone) 0 3px,transparent 3px 6px,var(--bone) 6px 9px);
   }
   .t-body{flex:1;min-width:0;display:block;}
   .t-name{
     display:block;font-family:var(--text);font-size:14px;letter-spacing:.16em;
-    text-transform:uppercase;color:var(--peach);
+    text-transform:uppercase;color:var(--char);
   }
-  .t-sub{display:block;font-size:15px;color:var(--on-dark-mute);margin-top:7px;line-height:1.45;}
-  .t-time{flex-shrink:0;font-size:13px;color:var(--on-dark-mute);font-variant-numeric:tabular-nums;letter-spacing:.06em;}
-  .scrub{display:block;height:2px;background:var(--hair-dark);margin-top:12px;position:relative;max-width:360px;}
-  .scrub i{display:block;height:100%;width:0;background:var(--peach);transition:width .18s linear;}
+  .t-sub{display:block;font-size:15px;color:var(--mute);margin-top:7px;line-height:1.45;}
+  .t-time{flex-shrink:0;font-size:13px;color:var(--mute);font-variant-numeric:tabular-nums;letter-spacing:.06em;}
+  .scrub{display:block;height:2px;background:var(--hair);margin-top:12px;position:relative;max-width:360px;}
+  .scrub i{display:block;height:100%;width:0;background:var(--bronze);transition:width .18s linear;}
 
 
   /* ---- interactive triangle ---- */
-  .tri-wrap{position:relative;max-width:880px;margin-top:18px;}
+  .tri-wrap{position:relative;max-width:900px;margin:26px auto 0;}
   .tri-wrap svg{width:100%;height:auto;display:block;}
   .tri-dot{
-    position:absolute;transform:translate(-50%,-50%);
+    position:absolute;transform:translate(-50%,-50%);z-index:2;
     width:38px;height:38px;border-radius:50%;padding:0;
     background:var(--bone);border:1.5px solid var(--bronze);
     cursor:pointer;transition:background .2s ease,transform .2s ease;
@@ -139,7 +139,7 @@
     content:"";position:absolute;top:50%;left:54%;transform:translate(-50%,-50%);
     border-left:10px solid var(--bronze);border-top:7px solid transparent;border-bottom:7px solid transparent;
   }
-  .tri-dot:hover,.tri-dot:focus-visible{background:var(--bronze);transform:translate(-50%,-50%) scale(1.1);outline:none;}
+  .tri-dot:hover,.tri-dot:focus-visible{background:var(--bronze);transform:translate(-50%,-50%) scale(1.1);outline:none;z-index:40;}
   .tri-dot:hover::before,.tri-dot:focus-visible::before{border-left-color:var(--bone);}
   .tri-dot.on{background:var(--bronze);}
   .tri-dot.on::before{border-left-color:var(--bone);}
@@ -159,7 +159,23 @@
     text-transform:uppercase;color:var(--peach);
   }
   .tri-tip .d{display:block;font-size:13.5px;line-height:1.4;color:rgba(244,239,230,.8);margin-top:6px;}
-  .tri-note{margin-top:26px;font-size:14.5px;color:var(--mute);max-width:56ch;}
+  .centered{text-align:center;}
+  .centered .narrow{margin-left:auto;margin-right:auto;}
+  .centered .tracks{text-align:left;}
+
+  /* ---- tracklist drawer ---- */
+  .drawer{max-width:740px;margin:56px auto 0;text-align:left;}
+  .drawer summary{
+    list-style:none;cursor:pointer;text-align:center;
+    font-family:var(--text);font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--bronze);padding:14px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+  }
+  .drawer summary::-webkit-details-marker{display:none;}
+  .drawer summary::after{content:" +";}
+  .drawer[open] summary::after{content:" \2212";}
+  .drawer summary:hover{color:var(--copper);}
+  .drawer-body{padding-top:26px;}
+  .drawer-intro{font-size:15.5px;color:var(--mute);margin-bottom:10px;}
 
   /* ---- triangle ---- */
   .stage{margin-top:14px;}
@@ -265,121 +281,117 @@
   </div>
 </header>
 
-<section class="dark">
+<section class="centered">
   <div class="wrap">
-    <div class="eyebrow">Listen first</div>
-    <div class="seed-note">Seeds, not singles</div>
+    <div class="eyebrow">Listen</div>
+    <h2>Seven seeds</h2>
     <div class="narrow">
-      <p class="lede">These are demos. Rough on purpose, and none of them are finished. They exist to show you the sound is real and not a description of a sound.</p>
-      <p>Most of the words are older than anyone reading this. Lecha Dodi is the Friday-night poem that welcomes Shabbat like a bride. Adon Olam and Hine Ma Tov come off the same shelf. Modeh Ani is the line you say before you get out of bed. Metta is the Buddhist loving-kindness practice. <em>Call Your Parents</em> is the one I wrote.</p>
+      <p class="lede">These are demos. Rough on purpose, none of them finished. They exist to show you the sound is real and not a description of a sound.</p>
+      <p>Each corner is an axis: what the singing does, what the rhythm section does, what the arrangement does. Every demo is plotted where it actually sits between them. Hover for the track, click to play.</p>
     </div>
 
-    <div class="tracks" id="tracks">
-      <button class="track" data-src="audio/01-lecha-dodi.mp3">
-        <span class="pbtn"></span>
-        <span class="t-body">
-          <span class="t-name">Lecha Dodi</span>
-          <span class="t-sub">Motown funk. Welcoming Shabbat like you would welcome a person.</span>
-          <span class="scrub"><i></i></span>
-        </span>
-        <span class="t-time">2:31</span>
-      </button>
-      <button class="track" data-src="audio/02-metta-mantra.mp3">
-        <span class="pbtn"></span>
-        <span class="t-body">
-          <span class="t-name">Metta Mantra</span>
-          <span class="t-sub">Loving-kindness, in the Khruangbin lane.</span>
-          <span class="scrub"><i></i></span>
-        </span>
-        <span class="t-time">3:00</span>
-      </button>
-      <button class="track" data-src="audio/03-hine-ma-tov.mp3">
-        <span class="pbtn"></span>
-        <span class="t-body">
-          <span class="t-name">Hine Ma Tov</span>
-          <span class="t-sub">Psalm 133. How good it is to sit together. Funky V1.</span>
-          <span class="scrub"><i></i></span>
-        </span>
-        <span class="t-time">2:48</span>
-      </button>
-      <button class="track" data-src="audio/04-adon-olam.mp3">
-        <span class="pbtn"></span>
-        <span class="t-body">
-          <span class="t-name">Adon Olam</span>
-          <span class="t-sub">A thousand-year-old hymn that has been set to almost every melody there is. Here is one more.</span>
-          <span class="scrub"><i></i></span>
-        </span>
-        <span class="t-time">4:30</span>
-      </button>
-      <button class="track" data-src="audio/05-call-your-parents.mp3">
-        <span class="pbtn"></span>
-        <span class="t-body">
-          <span class="t-name">Call Your Parents</span>
-          <span class="t-sub">Mine. Not liturgy, same instruction.</span>
-          <span class="scrub"><i></i></span>
-        </span>
-        <span class="t-time">4:52</span>
-      </button>
-      <button class="track" data-src="audio/06-ong-namo.mp3">
-        <span class="pbtn"></span>
-        <span class="t-body">
-          <span class="t-name">Ong Namo</span>
-          <span class="t-sub">Sanskrit. The line you open a practice with.</span>
-          <span class="scrub"><i></i></span>
-        </span>
-        <span class="t-time">2:45</span>
-      </button>
-      <button class="track" data-src="audio/07-modeh-ani.mp3">
-        <span class="pbtn"></span>
-        <span class="t-body">
-          <span class="t-name">Modeh Ani + Om Namo</span>
-          <span class="t-sub">The Hebrew you say on waking, and the Sanskrit, in the same room.</span>
-          <span class="scrub"><i></i></span>
-        </span>
-        <span class="t-time">5:16</span>
-      </button>
-    </div>
-  </div>
-</section>
+    <div class="tri-wrap">
+      <svg viewBox="0 0 1000 940" role="img" aria-label="The three axes, with each demo plotted where it sits between them">
+        <polygon class="edge" points="500,150 120,760 880,760"></polygon>
+        <circle class="node" cx="500" cy="150" r="5"></circle>
+        <circle class="node" cx="120" cy="760" r="5"></circle>
+        <circle class="node" cx="880" cy="760" r="5"></circle>
 
-<section>
-  <div class="wrap">
-    <div class="eyebrow">The sound</div>
-    <h2>Three points, and what sits between them</h2>
-    <div class="narrow">
-      <p>Each point is an axis rather than a name: what the singing does, what the rhythm section does, what the arrangement does. All six of these are audible in the demos above. That is the only rule the diagram follows.</p>
-    </div>
-        <div class="tri-wrap">
-      <svg viewBox="0 0 1000 900" role="img" aria-label="The three axes, with each demo plotted where it sits between them">
-        <polygon class="edge" points="500,175 140,720 860,720"></polygon>
-        <circle class="node" cx="500" cy="175" r="5"></circle>
-        <circle class="node" cx="140" cy="720" r="5"></circle>
-        <circle class="node" cx="860" cy="720" r="5"></circle>
+        <text class="v-name" x="500" y="62" text-anchor="middle">Jeff Buckley</text>
+        <text class="v-name2" x="500" y="92" text-anchor="middle">FaceSoul</text>
+        <text class="v-desc" x="500" y="121" text-anchor="middle">the feel, the ache, the humanity</text>
 
-        <text class="v-name" x="500" y="88" text-anchor="middle">Jeff Buckley</text>
-        <text class="v-name2" x="500" y="118" text-anchor="middle">FaceSoul</text>
-        <text class="v-desc" x="500" y="147" text-anchor="middle">the feel, the ache, the humanity</text>
+        <text class="v-name" x="120" y="812" text-anchor="middle">Earth, Wind &amp; Fire</text>
+        <text class="v-name2" x="120" y="842" text-anchor="middle">Jungle</text>
+        <text class="v-desc" x="120" y="871" text-anchor="middle">danceable, vintage, warm tape</text>
 
-        <text class="v-name" x="140" y="772" text-anchor="middle">Earth, Wind &amp; Fire</text>
-        <text class="v-name2" x="140" y="802" text-anchor="middle">Jungle</text>
-        <text class="v-desc" x="140" y="831" text-anchor="middle">danceable, vintage, warm tape</text>
+        <text class="v-name" x="880" y="812" text-anchor="middle">Radiohead</text>
+        <text class="v-name2" x="880" y="842" text-anchor="middle">Khruangbin</text>
+        <text class="v-desc" x="880" y="871" text-anchor="middle">hypnotic and groovy</text>
 
-        <text class="v-name" x="860" y="772" text-anchor="middle">Radiohead</text>
-        <text class="v-name2" x="860" y="802" text-anchor="middle">Khruangbin</text>
-        <text class="v-desc" x="860" y="831" text-anchor="middle">hypnotic and groovy</text>
-
-        <text class="core" x="500" y="390" text-anchor="middle">Ivrahim</text>
-        <text class="core-sub" x="500" y="424" text-anchor="middle">spiritual music that grooves</text>
+        <text class="core" x="500" y="505" text-anchor="middle">Ivrahim</text>
+        <text class="core-sub" x="500" y="540" text-anchor="middle">spiritual music that grooves</text>
       </svg>
-        <button class="tri-dot" data-src="audio/01-lecha-dodi.mp3" aria-label="Play Lecha Dodi" style="left:44.6%;top:64.86%"><span class="tri-tip"><span class="n">Lecha Dodi</span><span class="d">Motown funk. Welcoming Shabbat like you would welcome a person.</span></span></button>
-        <button class="tri-dot" data-src="audio/02-metta-mantra.mp3" aria-label="Play Metta Mantra" style="left:64.4%;top:67.89%"><span class="tri-tip"><span class="n">Metta Mantra</span><span class="d">Loving-kindness, in the Khruangbin lane.</span></span></button>
-        <button class="tri-dot" data-src="audio/03-hine-ma-tov.mp3" aria-label="Play Hine Ma Tov" style="left:30.2%;top:70.92%"><span class="tri-tip"><span class="n">Hine Ma Tov</span><span class="d">Psalm 133. How good it is to sit together.</span></span></button>
-        <button class="tri-dot" data-src="audio/04-adon-olam.mp3" aria-label="Play Adon Olam" style="left:49.64%;top:70.92%"><span class="tri-tip"><span class="n">Adon Olam</span><span class="d">A thousand-year-old hymn set to almost every melody there is. Here is one more.</span></span></button>
-        <button class="tri-dot" data-src="audio/05-call-your-parents.mp3" aria-label="Play Call Your Parents" style="left:62.96%;top:55.78%"><span class="tri-tip"><span class="n">Call Your Parents</span><span class="d">Mine. Not liturgy, same instruction.</span></span></button>
-        <button class="tri-dot" data-src="audio/06-ong-namo.mp3" aria-label="Play Ong Namo" style="left:36.32%;top:66.68%"><span class="tri-tip"><span class="n">Ong Namo</span><span class="d">Sanskrit. The line you open a practice with.</span></span></button>
-        <button class="tri-dot" data-src="audio/07-modeh-ani.mp3" aria-label="Play Modeh Ani + Om Namo" style="left:57.92%;top:72.73%"><span class="tri-tip"><span class="n">Modeh Ani + Om Namo</span><span class="d">The Hebrew you say on waking, and the Sanskrit, in the same room.</span></span></button>
+        <button class="tri-dot" data-src="audio/05-call-your-parents.mp3" aria-label="Play Call Your Parents" style="left:52.05%;top:41.49%"><span class="tri-tip"><span class="n">Call Your Parents</span><span class="d">Mine. Not liturgy, same instruction.</span></span></button>
+        <button class="tri-dot" data-src="audio/06-ong-namo.mp3" aria-label="Play Ong Namo" style="left:36.94%;top:63.83%"><span class="tri-tip"><span class="n">Ong Namo</span><span class="d">Sanskrit. The line you open a practice with.</span></span></button>
+        <button class="tri-dot" data-src="audio/01-lecha-dodi.mp3" aria-label="Play Lecha Dodi" style="left:48.72%;top:63.83%"><span class="tri-tip"><span class="n">Lecha Dodi</span><span class="d">Motown funk. Welcoming Shabbat like you would welcome a person.</span></span></button>
+        <button class="tri-dot" data-src="audio/02-metta-mantra.mp3" aria-label="Play Metta Mantra" style="left:63.14%;top:63.83%"><span class="tri-tip"><span class="n">Metta Mantra</span><span class="d">Loving-kindness, in the Khruangbin lane.</span></span></button>
+        <button class="tri-dot" data-src="audio/03-hine-ma-tov.mp3" aria-label="Play Hine Ma Tov" style="left:32.21%;top:73.4%"><span class="tri-tip"><span class="n">Hine Ma Tov</span><span class="d">Psalm 133. How good it is to sit together.</span></span></button>
+        <button class="tri-dot" data-src="audio/04-adon-olam.mp3" aria-label="Play Adon Olam" style="left:49.9%;top:73.4%"><span class="tri-tip"><span class="n">Adon Olam</span><span class="d">A thousand-year-old hymn set to almost every melody there is. Here is one more.</span></span></button>
+        <button class="tri-dot" data-src="audio/07-modeh-ani.mp3" aria-label="Play Modeh Ani + Om Namo" style="left:64.58%;top:73.4%"><span class="tri-tip"><span class="n">Modeh Ani + Om Namo</span><span class="d">The Hebrew you say on waking, and the Sanskrit, in the same room.</span></span></button>
     </div>
-    <p class="tri-note">Every demo is plotted where it actually sits. Hover a dot for the track, click to play it.</p>
+
+    <details class="drawer">
+      <summary>The tracklist</summary>
+      <div class="drawer-body">
+        <p class="drawer-intro">Most of the words are older than anyone reading this. Lecha Dodi is the Friday-night poem that welcomes Shabbat like a bride. Adon Olam and Hine Ma Tov come off the same shelf. Modeh Ani is the line you say before you get out of bed. Metta is the Buddhist loving-kindness practice. <em>Call Your Parents</em> is the one I wrote.</p>
+        <div class="tracks">
+        <button class="track" data-src="audio/01-lecha-dodi.mp3">
+          <span class="pbtn"></span>
+          <span class="t-body">
+            <span class="t-name">Lecha Dodi</span>
+            <span class="t-sub">Motown funk. Welcoming Shabbat like you would welcome a person.</span>
+            <span class="scrub"><i></i></span>
+          </span>
+          <span class="t-time">2:31</span>
+        </button>
+        <button class="track" data-src="audio/02-metta-mantra.mp3">
+          <span class="pbtn"></span>
+          <span class="t-body">
+            <span class="t-name">Metta Mantra</span>
+            <span class="t-sub">Loving-kindness, in the Khruangbin lane.</span>
+            <span class="scrub"><i></i></span>
+          </span>
+          <span class="t-time">3:00</span>
+        </button>
+        <button class="track" data-src="audio/03-hine-ma-tov.mp3">
+          <span class="pbtn"></span>
+          <span class="t-body">
+            <span class="t-name">Hine Ma Tov</span>
+            <span class="t-sub">Psalm 133. How good it is to sit together.</span>
+            <span class="scrub"><i></i></span>
+          </span>
+          <span class="t-time">2:48</span>
+        </button>
+        <button class="track" data-src="audio/04-adon-olam.mp3">
+          <span class="pbtn"></span>
+          <span class="t-body">
+            <span class="t-name">Adon Olam</span>
+            <span class="t-sub">A thousand-year-old hymn set to almost every melody there is. Here is one more.</span>
+            <span class="scrub"><i></i></span>
+          </span>
+          <span class="t-time">4:30</span>
+        </button>
+        <button class="track" data-src="audio/05-call-your-parents.mp3">
+          <span class="pbtn"></span>
+          <span class="t-body">
+            <span class="t-name">Call Your Parents</span>
+            <span class="t-sub">Mine. Not liturgy, same instruction.</span>
+            <span class="scrub"><i></i></span>
+          </span>
+          <span class="t-time">4:52</span>
+        </button>
+        <button class="track" data-src="audio/06-ong-namo.mp3">
+          <span class="pbtn"></span>
+          <span class="t-body">
+            <span class="t-name">Ong Namo</span>
+            <span class="t-sub">Sanskrit. The line you open a practice with.</span>
+            <span class="scrub"><i></i></span>
+          </span>
+          <span class="t-time">2:45</span>
+        </button>
+        <button class="track" data-src="audio/07-modeh-ani.mp3">
+          <span class="pbtn"></span>
+          <span class="t-body">
+            <span class="t-name">Modeh Ani + Om Namo</span>
+            <span class="t-sub">The Hebrew you say on waking, and the Sanskrit, in the same room.</span>
+            <span class="scrub"><i></i></span>
+          </span>
+          <span class="t-time">5:16</span>
+        </button>
+        </div>
+      </div>
+    </details>
   </div>
 </section>
 
