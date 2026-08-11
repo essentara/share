@@ -272,22 +272,6 @@
     .pull{font-size:20px;padding-left:18px;}
 
   }
-
-  /* ---- edit mode (?edit=1 only) ---- */
-  body.editing [data-e]{outline:1px dashed rgba(140,98,57,.38);outline-offset:3px;border-radius:2px;}
-  body.editing [data-e]:hover{outline-color:var(--bronze);background:rgba(140,98,57,.05);}
-  body.editing [data-e]:focus{outline:2px solid var(--bronze);background:rgba(140,98,57,.08);}
-  body.editing .tri-dot{position:static;width:auto;height:auto;border:0;background:none;display:block;margin:0 0 10px;pointer-events:auto;}
-  body.editing .tri-dot::before{display:none;}
-  body.editing .tri-tip{opacity:1 !important;position:static;transform:none;width:auto;pointer-events:auto;}
-  #editbar{position:fixed;left:20px;bottom:20px;z-index:9999;background:var(--char);color:var(--bone);
-    padding:14px 18px;border-radius:4px;font-family:var(--text);font-size:12.5px;letter-spacing:.06em;
-    display:flex;align-items:center;gap:16px;box-shadow:0 6px 30px rgba(0,0,0,.3);}
-  #editbar b{color:var(--peach);font-weight:400;letter-spacing:.16em;text-transform:uppercase;font-size:11px;}
-  #editbar .count{color:rgba(244,239,230,.62);}
-  #editbar button{font-family:var(--text);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-    background:var(--peach);color:var(--char);border:0;padding:8px 14px;border-radius:3px;cursor:pointer;}
-  #editbar button.ghost{background:none;color:rgba(244,239,230,.7);box-shadow:inset 0 0 0 1px rgba(232,192,164,.4);}
 </style>
 </head>
 <body>
@@ -297,7 +281,7 @@
     <div class="herogrid">
       <div class="heroleft">
         <div class="mark">Ivrahim</div>
-        <div class="tagline" data-e="1">An ancestral music project by Axel Mansoor.</div>
+        <div class="tagline">An ancestral music project by Axel Mansoor.</div>
       </div>
       <div class="heroright">
         <img class="heroshot" src="img/axel-hero.jpg" alt="Ivrahim">
@@ -308,11 +292,11 @@
 
 <section class="centered">
   <div class="wrap">
-    <div class="eyebrow" data-e="2">Listen</div>
-    <h2 data-e="7">Demos</h2>
+    <div class="eyebrow">Listen</div>
+    <h2>Demos</h2>
     <div class="narrow">
-      <p class="lede" data-e="12">The triangulation of a new wave.</p>
-      <p data-e="73">Every demo is plotted. Hover for the track, click to play.</p>
+      <p class="lede">The triangulation of a new wave.</p>
+      <p>Songs that our ancestors sang, revitalized to meet us in this moment.</p>
     </div>
 
     <div class="tri-wrap">
@@ -337,82 +321,81 @@
         <text class="core" x="500" y="505" text-anchor="middle">Ivrahim</text>
         <text class="core-sub" x="500" y="540" text-anchor="middle">spiritual music that grooves</text>
       </svg>
-        <button class="tri-dot" data-src="audio/05-call-your-parents.mp3" aria-label="Play Call Your Parents" style="left:50.0%;top:41.49%"><span class="tri-tip"><span class="n" data-e="37">Call Your Parents</span><span class="d" data-e="44">A reminder to myself.</span></span></button>
-        <button class="tri-dot" data-src="audio/06-ong-namo.mp3" aria-label="Play Ong Namo" style="left:35.0%;top:63.83%"><span class="tri-tip"><span class="n" data-e="38">Ong Namo</span><span class="d" data-e="45">Sanskrit. How you open a practice.</span></span></button>
-        <button class="tri-dot" data-src="audio/01-lecha-dodi.mp3" aria-label="Play Lecha Dodi" style="left:50.0%;top:63.83%"><span class="tri-tip"><span class="n" data-e="39">Lecha Dodi</span><span class="d" data-e="46">A classic hymn for welcoming in shabbat.</span></span></button>
-        <button class="tri-dot" data-src="audio/02-metta-mantra.mp3" aria-label="Play Metta Mantra" style="left:65.0%;top:63.83%"><span class="tri-tip"><span class="n" data-e="40">Metta Mantra</span><span class="d" data-e="47">Loving-kindness.</span></span></button>
-        <button class="tri-dot" data-src="audio/03-hine-ma-tov.mp3" aria-label="Play Hine Ma Tov" style="left:35.0%;top:73.4%"><span class="tri-tip"><span class="n" data-e="41">Hine Ma Tov</span><span class="d" data-e="48">How good it is to sit with brothers and sisters.</span></span></button>
-        <button class="tri-dot" data-src="audio/04-adon-olam.mp3" aria-label="Play Adon Olam" style="left:50.0%;top:73.4%"><span class="tri-tip"><span class="n" data-e="42">Adon Olam</span><span class="d" data-e="49">A thousand-year-old hymn.</span></span></button>
-        <button class="tri-dot" data-src="audio/07-modeh-ani.mp3" aria-label="Play Modeh Ani + Om Namo" style="left:65.0%;top:73.4%"><span class="tri-tip"><span class="n" data-e="43">Modeh Ani + Om Namo</span><span class="d" data-e="50">A combination of gratitude hymns from two of my cultures.</span></span></button>
+        <button class="tri-dot" data-src="audio/05-call-your-parents.mp3" aria-label="Play Call Your Parents" style="left:50.0%;top:41.49%"><span class="tri-tip"><span class="n">Call Your Parents</span><span class="d">A reminder to myself.</span></span></button>
+        <button class="tri-dot" data-src="audio/06-ong-namo.mp3" aria-label="Play Ong Namo" style="left:35.0%;top:63.83%"><span class="tri-tip"><span class="n">Ong Namo</span><span class="d">A Sanskrit chant for opening</span></span></button>
+        <button class="tri-dot" data-src="audio/01-lecha-dodi.mp3" aria-label="Play Lecha Dodi" style="left:50.0%;top:63.83%"><span class="tri-tip"><span class="n">Lecha Dodi</span><span class="d">Classic Jewish hymn to welcome in a restful weekend</span></span></button>
+        <button class="tri-dot" data-src="audio/02-metta-mantra.mp3" aria-label="Play Metta Mantra" style="left:65.0%;top:63.83%"><span class="tri-tip"><span class="n">Metta Mantra</span><span class="d">Loving-kindness meditation.</span></span></button>
+        <button class="tri-dot" data-src="audio/03-hine-ma-tov.mp3" aria-label="Play Hine Ma Tov" style="left:35.0%;top:73.4%"><span class="tri-tip"><span class="n">Hine Ma Tov</span><span class="d">How good it is to sit with brothers and sisters.</span></span></button>
+        <button class="tri-dot" data-src="audio/04-adon-olam.mp3" aria-label="Play Adon Olam" style="left:50.0%;top:73.4%"><span class="tri-tip"><span class="n">Adon Olam</span><span class="d">A thousand-year-old hymn praising the power of mystery</span></span></button>
+        <button class="tri-dot" data-src="audio/07-modeh-ani.mp3" aria-label="Play Modeh Ani + Om Namo" style="left:65.0%;top:73.4%"><span class="tri-tip"><span class="n">Modeh Ani + Om Namo</span><span class="d">A combination of gratitude prayers from two of my cultures.</span></span></button>
     </div>
 
     <details class="drawer">
-      <summary data-e="15">The tracklist</summary>
+      <summary>The tracklist</summary>
       <div class="drawer-body">
-        <p class="drawer-intro" data-e="14">Words that have outlived us, revitalized. Lecha Dodi is a Friday-night poem that welcomes Shabbat like a bride. Adon Olam and Hine Ma Tov come off the same shelf. Modeh Ani is the line you say before you get out of bed. Metta is the Buddhist loving-kindness practice. <em>Call Your Parents</em> is my own reminder.</p>
         <div class="tracks">
         <button class="track" data-src="audio/01-lecha-dodi.mp3">
           <span class="pbtn"></span>
           <span class="t-body">
-            <span class="t-name" data-e="16">Lecha Dodi</span>
-            <span class="t-sub" data-e="23">A classic hymn for welcoming in shabbat.</span>
+            <span class="t-name">Lecha Dodi</span>
+            <span class="t-sub">Classic Jewish hymn to welcome in a restful weekend</span>
             <span class="scrub"><i></i></span>
           </span>
-          <span class="t-time" data-e="30">2:31</span>
+          <span class="t-time">2:31</span>
         </button>
         <button class="track" data-src="audio/02-metta-mantra.mp3">
           <span class="pbtn"></span>
           <span class="t-body">
-            <span class="t-name" data-e="17">Metta Mantra</span>
-            <span class="t-sub" data-e="24">Loving-kindness.</span>
+            <span class="t-name">Metta Mantra</span>
+            <span class="t-sub">Loving-kindness meditation.</span>
             <span class="scrub"><i></i></span>
           </span>
-          <span class="t-time" data-e="31">3:00</span>
+          <span class="t-time">3:00</span>
         </button>
         <button class="track" data-src="audio/03-hine-ma-tov.mp3">
           <span class="pbtn"></span>
           <span class="t-body">
-            <span class="t-name" data-e="18">Hine Ma Tov</span>
-            <span class="t-sub" data-e="25">How good it is to sit with brothers and sisters.</span>
+            <span class="t-name">Hine Ma Tov</span>
+            <span class="t-sub">How good it is to sit with brothers and sisters.</span>
             <span class="scrub"><i></i></span>
           </span>
-          <span class="t-time" data-e="32">2:48</span>
+          <span class="t-time">2:48</span>
         </button>
         <button class="track" data-src="audio/04-adon-olam.mp3">
           <span class="pbtn"></span>
           <span class="t-body">
-            <span class="t-name" data-e="19">Adon Olam</span>
-            <span class="t-sub" data-e="26">A thousand-year-old hymn.</span>
+            <span class="t-name">Adon Olam</span>
+            <span class="t-sub">A thousand-year-old hymn praising the power of mystery</span>
             <span class="scrub"><i></i></span>
           </span>
-          <span class="t-time" data-e="33">4:30</span>
+          <span class="t-time">4:30</span>
         </button>
         <button class="track" data-src="audio/05-call-your-parents.mp3">
           <span class="pbtn"></span>
           <span class="t-body">
-            <span class="t-name" data-e="20">Call Your Parents</span>
-            <span class="t-sub" data-e="27">A reminder to myself.</span>
+            <span class="t-name">Call Your Parents</span>
+            <span class="t-sub">A reminder to myself.</span>
             <span class="scrub"><i></i></span>
           </span>
-          <span class="t-time" data-e="34">4:52</span>
+          <span class="t-time">4:52</span>
         </button>
         <button class="track" data-src="audio/06-ong-namo.mp3">
           <span class="pbtn"></span>
           <span class="t-body">
-            <span class="t-name" data-e="21">Ong Namo</span>
-            <span class="t-sub" data-e="28">Sanskrit. How you open a practice.</span>
+            <span class="t-name">Ong Namo</span>
+            <span class="t-sub">A Sanskrit chant for opening</span>
             <span class="scrub"><i></i></span>
           </span>
-          <span class="t-time" data-e="35">2:45</span>
+          <span class="t-time">2:45</span>
         </button>
         <button class="track" data-src="audio/07-modeh-ani.mp3">
           <span class="pbtn"></span>
           <span class="t-body">
-            <span class="t-name" data-e="22">Modeh Ani + Om Namo</span>
-            <span class="t-sub" data-e="29">A combination of gratitude hymns from two of my cultures.</span>
+            <span class="t-name">Modeh Ani + Om Namo</span>
+            <span class="t-sub">A combination of gratitude prayers from two of my cultures.</span>
             <span class="scrub"><i></i></span>
           </span>
-          <span class="t-time" data-e="36">5:16</span>
+          <span class="t-time">5:16</span>
         </button>
         </div>
       </div>
@@ -422,19 +405,19 @@
 
 <section class="dark">
   <div class="wrap">
-    <div class="eyebrow" data-e="3">The name</div>
-    <h2 data-e="8">Ivrahim</h2>
+    <div class="eyebrow">The name</div>
+    <h2>Ivrahim</h2>
     <div class="narrow">
-      <p data-e="74">I am from everywhere and nowhere: I am Ashkenazi, Mauritian-Creole, and Indian; I come from a family of Jews, Muslims, and Catholics. Avraham and Ibrahim are my given names. Ivrahim is the name I use to bridge my ancestries and create from all of them.</p>
+      <p>I am from everywhere and nowhere: I am Ashkenazi, Mauritian-Creole, and Indian; I come from a family of Jews, Muslims, and Catholics. Avraham and Ibrahim are my given names. Ivrahim is the name I use to bridge my ancestries and create from all of them.</p>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <div class="eyebrow" data-e="4">The look</div>
-    <h2 data-e="9">Style references</h2>
-    <div class="narrow"><p data-e="75">If Moses dressed like Prince.</p></div>
+    <div class="eyebrow">The look</div>
+    <h2>Style references</h2>
+    <div class="narrow"><p>If Moses dressed like Prince.</p></div>
     <div class="strip">
       <figure><img src="img/ref-3.jpg" alt="Reference: Ali Sethi"></figure>
       <figure><img src="img/ref-1.jpg" alt="Reference: Prince"></figure>
@@ -450,20 +433,20 @@
 
 <section class="dark">
   <div class="wrap">
-    <div class="eyebrow" data-e="5">The wave</div>
-    <h2 data-e="10">It&rsquo;s already happening</h2>
+    <div class="eyebrow">The wave</div>
+    <h2>It&rsquo;s already happening</h2>
     <div class="narrow">
-      <p class="lede" data-e="13">So many of us feel unrooted. There is a wave of artists reaching back into their own traditions and innovating them into the present.</p>
+      <p class="lede">So many now feel unrooted. There is a wave of artists reaching back into their own traditions and innovating them into the present.</p>
     </div>
     <div class="wave-list">
-      <div class="wl"><div class="a" data-e="51">Akshara</div><div class="b" data-e="59">Indian melody with a Western alternative edge; ancestral material made genuinely cool</div><div class="lk"><a href="https://open.spotify.com/artist/7j6UTsx4e5HxsHMPXCYy7Z" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/aksharasings/" target="_blank" rel="noopener">Instagram</a></div></div>
-      <div class="wl"><div class="a" data-e="52">Arc De Soleil</div><div class="b" data-e="60">groovy, mostly instrumental</div><div class="lk"><a href="https://open.spotify.com/artist/2iLMJdaqsQ44X7MPRD7rR5" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/arcdesoleil/" target="_blank" rel="noopener">Instagram</a></div></div>
-      <div class="wl"><div class="a" data-e="53">Curtain Blue</div><div class="b" data-e="61">recent find, squarely in this lane</div><div class="lk"><a href="https://open.spotify.com/artist/6r8STBLeZpOSMiYySins15" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/curtainblue/" target="_blank" rel="noopener">Instagram</a></div></div>
-      <div class="wl"><div class="a" data-e="54">Glass Beams</div><div class="b" data-e="62">the same move, masked and instrumental</div><div class="lk"><a href="https://open.spotify.com/artist/1LTFJvVvRw7ghAyThxYmnF" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/glass_beams/" target="_blank" rel="noopener">Instagram</a></div></div>
-      <div class="wl"><div class="a" data-e="55">Arooj Aftab</div><div class="b" data-e="63">inherited poetry over contemporary production</div><div class="lk"><a href="https://open.spotify.com/artist/00JAfwtx5gNiiqyor88Dr5" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/aroojaftab/" target="_blank" rel="noopener">Instagram</a></div></div>
-      <div class="wl"><div class="a" data-e="56">Ali Sethi &amp; Nicol&aacute;s Jaar</div><div class="b" data-e="64">the furthest along, and the method reference</div><div class="lk"><a href="https://open.spotify.com/album/4oZlubGdEr7YbhOlpE0qkJ" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/ali_sethi_/" target="_blank" rel="noopener">Instagram</a></div></div>
-      <div class="wl"><div class="a" data-e="57">FaceSoul</div><div class="b" data-e="65">channeling</div><div class="lk"><a href="https://open.spotify.com/artist/0OcOX42YhjTjFbbiMRHBUC" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/ifacesoul/" target="_blank" rel="noopener">Instagram</a></div></div>
-      <div class="wl"><div class="a" data-e="58">Chantress Seba</div><div class="b" data-e="66">proof that spiritual music travels</div><div class="lk"><a href="https://open.spotify.com/artist/4oTzhtimVVQIgOofBNFVp4" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/chantressseba/" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Akshara</div><div class="b">Indian melody with a Western alternative edge; ancestral material made genuinely cool</div><div class="lk"><a href="https://open.spotify.com/artist/7j6UTsx4e5HxsHMPXCYy7Z" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/aksharasings/" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Arc De Soleil</div><div class="b">groovy, mostly instrumental</div><div class="lk"><a href="https://open.spotify.com/artist/2iLMJdaqsQ44X7MPRD7rR5" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/arcdesoleil/" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Curtain Blue</div><div class="b">recent find, squarely in this lane</div><div class="lk"><a href="https://open.spotify.com/artist/6r8STBLeZpOSMiYySins15" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/curtainblue/" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Glass Beams</div><div class="b">the same move, masked and instrumental</div><div class="lk"><a href="https://open.spotify.com/artist/1LTFJvVvRw7ghAyThxYmnF" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/glass_beams/" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Arooj Aftab</div><div class="b">inherited poetry over contemporary production</div><div class="lk"><a href="https://open.spotify.com/artist/00JAfwtx5gNiiqyor88Dr5" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/aroojaftab/" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Ali Sethi &amp; Nicol&aacute;s Jaar</div><div class="b">the furthest along, and the method reference</div><div class="lk"><a href="https://open.spotify.com/album/4oZlubGdEr7YbhOlpE0qkJ" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/ali_sethi_/" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">FaceSoul</div><div class="b">channeling</div><div class="lk"><a href="https://open.spotify.com/artist/0OcOX42YhjTjFbbiMRHBUC" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/ifacesoul/" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Chantress Seba</div><div class="b">proof that spiritual music travels</div><div class="lk"><a href="https://open.spotify.com/artist/4oTzhtimVVQIgOofBNFVp4" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/chantressseba/" target="_blank" rel="noopener">Instagram</a></div></div>
     </div>
   </div>
 </section>
@@ -473,29 +456,29 @@
 
 <section>
   <div class="wrap">
-    <div class="eyebrow" data-e="6">The ask</div>
-    <h2 data-e="11">I am looking for collaborators</h2>
+    <div class="eyebrow">this can only happen collectively</div>
+    <h2>Calling in the right collaborators</h2>
     <div class="asks">
       <div class="ask">
-        <h3 data-e="67">Producers</h3>
-        <p data-e="76">Per song, not per career. If you have a sonic world and you want a voice in it, that is the whole job.</p>
+        <h3>Co-Producers / Mixers</h3>
+        <p>There&rsquo;s such a wealth of genres and styles to explore. I love making demos and...the best finishing moves happen in collaboration.</p>
       </div>
       <div class="ask">
-        <h3 data-e="68">Musicians</h3>
-        <p data-e="77">Especially if you have never made anything that sounds like your own tradition and have been quietly curious about it.</p>
+        <h3>Artists / Musicians</h3>
+        <p>These songs need live drums and an actual bassist. Most also need more than a single voice or perspective. Plus, these are meant to be performed live. Backing tracks will displease the ancestors.</p>
       </div>
       <div class="ask">
-        <h3 data-e="69">Photo &amp; video</h3>
-        <p data-e="78">The look above is borrowed. It should not stay borrowed.</p>
+        <h3>Photo + Video</h3>
+        <p>Translating the world of sound into visuals is not my forte. There is so much inspiration to be found here.</p>
       </div>
       <div class="ask">
-        <h3 data-e="70">Anyone who gets it</h3>
-        <p data-e="79">Including if what you have is an introduction rather than a skill. That counts.</p>
+        <h3>Other Areas</h3>
+        <p>Management, Funders, Distribution, Licensing, Legal, etc.</p>
       </div>
     </div>
     <div class="ctas">
-      <a class="cta" href="mailto:axelmansoor@gmail.com?subject=Ivrahim" data-e="71">Email me</a>
-      <a class="cta ghost" href="https://cal.com/axelmansoor/chat" target="_blank" rel="noopener" data-e="72">Let&rsquo;s chat</a>
+      <a class="cta" href="mailto:axelmansoor@gmail.com?subject=Ivrahim">Email me</a>
+      <a class="cta ghost" href="https://cal.com/axelmansoor/chat" target="_blank" rel="noopener">Let&rsquo;s chat</a>
     </div>
   </div>
 </section>
@@ -574,56 +557,5 @@
 
 
 
-<script>
-(function(){
-  if (!/[?&]edit=1/.test(location.search)) return;
-  var KEY = "ivrahim-edits-v3";
-  var saved = {}; try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e){}
-  var els = [].slice.call(document.querySelectorAll("[data-e]"));
-  els.forEach(function(el){
-    var id = el.getAttribute("data-e");
-    if (saved[id] != null) el.innerHTML = saved[id];
-    el.setAttribute("contenteditable","true");
-    el.setAttribute("spellcheck","true");
-  });
-  els.forEach(function(el){ el.dataset.orig = el.innerHTML; });
-  document.body.classList.add("editing");
-  document.addEventListener("click", function(e){
-    var a = e.target.closest("a[data-e], .track, .tri-dot");
-    if (a) { e.preventDefault(); e.stopPropagation(); }
-  }, true);
-  var bar = document.createElement("div");
-  bar.id = "editbar";
-  bar.innerHTML = '<b>Edit mode</b><span class="count">0 changed</span>' +
-    '<button id="ed-done">Done</button><button class="ghost" id="ed-reset">Reset</button>';
-  document.body.appendChild(bar);
-  var countEl = bar.querySelector(".count");
-  function changed(){ return els.filter(function(el){ return el.innerHTML !== el.dataset.orig; }); }
-  function persist(){
-    var out = {};
-    els.forEach(function(el){ out[el.getAttribute("data-e")] = el.innerHTML; });
-    localStorage.setItem(KEY, JSON.stringify(out));
-    countEl.textContent = changed().length + " changed";
-  }
-  document.addEventListener("input", function(e){
-    if (e.target.hasAttribute && e.target.hasAttribute("data-e")) persist();
-  });
-  document.addEventListener("paste", function(e){
-    if (!e.target.hasAttribute || !e.target.hasAttribute("data-e")) return;
-    e.preventDefault();
-    document.execCommand("insertText", false, (e.clipboardData || window.clipboardData).getData("text"));
-  });
-  bar.querySelector("#ed-done").addEventListener("click", function(){
-    persist();
-    var b = bar.querySelector("#ed-done");
-    b.textContent = "Saved locally";
-    setTimeout(function(){ b.textContent = "Done"; }, 1600);
-  });
-  bar.querySelector("#ed-reset").addEventListener("click", function(){
-    localStorage.removeItem(KEY); location.reload();
-  });
-  countEl.textContent = "0 changed";
-})();
-</script>
 </body>
 </html>
