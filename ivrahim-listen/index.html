@@ -125,14 +125,49 @@
   .scrub{display:block;height:2px;background:var(--hair-dark);margin-top:12px;position:relative;max-width:360px;}
   .scrub i{display:block;height:100%;width:0;background:var(--peach);transition:width .18s linear;}
 
+
+  /* ---- interactive triangle ---- */
+  .tri-wrap{position:relative;max-width:880px;margin-top:18px;}
+  .tri-wrap svg{width:100%;height:auto;display:block;}
+  .tri-dot{
+    position:absolute;transform:translate(-50%,-50%);
+    width:38px;height:38px;border-radius:50%;padding:0;
+    background:var(--bone);border:1.5px solid var(--bronze);
+    cursor:pointer;transition:background .2s ease,transform .2s ease;
+  }
+  .tri-dot::before{
+    content:"";position:absolute;top:50%;left:54%;transform:translate(-50%,-50%);
+    border-left:10px solid var(--bronze);border-top:7px solid transparent;border-bottom:7px solid transparent;
+  }
+  .tri-dot:hover,.tri-dot:focus-visible{background:var(--bronze);transform:translate(-50%,-50%) scale(1.1);outline:none;}
+  .tri-dot:hover::before,.tri-dot:focus-visible::before{border-left-color:var(--bone);}
+  .tri-dot.on{background:var(--bronze);}
+  .tri-dot.on::before{border-left-color:var(--bone);}
+  .tri-dot.on.playing::before{
+    border:0;left:50%;width:10px;height:12px;
+    background:linear-gradient(90deg,var(--bone) 0 3.5px,transparent 3.5px 6.5px,var(--bone) 6.5px 10px);
+  }
+  .tri-tip{
+    position:absolute;left:50%;bottom:calc(100% + 12px);transform:translateX(-50%);
+    width:220px;background:var(--char);color:var(--bone);
+    padding:12px 14px;border-radius:3px;pointer-events:none;
+    opacity:0;transition:opacity .18s ease;z-index:5;
+  }
+  .tri-dot:hover .tri-tip,.tri-dot:focus-visible .tri-tip{opacity:1;}
+  .tri-tip .n{
+    display:block;font-family:var(--text);font-size:12px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--peach);
+  }
+  .tri-tip .d{display:block;font-size:13.5px;line-height:1.4;color:rgba(244,239,230,.8);margin-top:6px;}
+  .tri-note{margin-top:26px;font-size:14.5px;color:var(--mute);max-width:56ch;}
+
   /* ---- triangle ---- */
   .stage{margin-top:14px;}
-  svg{display:block;width:100%;height:auto;max-width:760px;}
-  .v-name{font-family:'Lining',sans-serif;font-size:18px;letter-spacing:.13em;text-transform:uppercase;fill:var(--char);}
-  .v-name2{font-family:'Lining',sans-serif;font-size:14.5px;letter-spacing:.14em;text-transform:uppercase;fill:var(--bronze);}
-  .v-desc{font-family:'Lining',sans-serif;font-size:15px;fill:var(--mute);}
-  .core{font-family:'Cortese',serif;font-weight:300;font-size:36px;letter-spacing:.1em;text-transform:uppercase;fill:var(--bronze);}
-  .core-sub{font-family:'Lining',sans-serif;font-size:14px;fill:var(--mute);}
+  .v-name{font-family:'Lining',sans-serif;font-size:20px;letter-spacing:.13em;text-transform:uppercase;fill:var(--char);}
+  .v-name2{font-family:'Lining',sans-serif;font-size:16px;letter-spacing:.14em;text-transform:uppercase;fill:var(--bronze);}
+  .v-desc{font-family:'Lining',sans-serif;font-size:16px;fill:var(--mute);}
+  .core{font-family:'Cortese',serif;font-weight:300;font-size:42px;letter-spacing:.1em;text-transform:uppercase;fill:var(--bronze);}
+  .core-sub{font-family:'Lining',sans-serif;font-size:15px;fill:var(--mute);}
   .edge{stroke:rgba(140,98,57,.42);stroke-width:1.6;fill:none;}
   .node{fill:var(--bronze);}
 
@@ -205,6 +240,8 @@
     .wl{flex-direction:column;gap:2px;}
     .wl .a{width:auto;}
     .strip img{height:230px;}
+    .tri-dot{width:32px;height:32px;}
+    .tri-tip{width:170px;}
     .pull{font-size:20px;padding-left:18px;}
 
   }
@@ -312,29 +349,37 @@
     <div class="narrow">
       <p>Each point is an axis rather than a name: what the singing does, what the rhythm section does, what the arrangement does. All six of these are audible in the demos above. That is the only rule the diagram follows.</p>
     </div>
-    <div class="stage">
-      <svg viewBox="0 0 800 710" role="img" aria-label="Triangle: Jeff Buckley and FaceSoul on voice, Earth Wind and Fire and Jungle on groove, Radiohead and Khruangbin on arrangement, with IVRAHIM at the centre">
-        <polygon class="edge" points="400,180 130,570 670,570"></polygon>
-        <circle class="node" cx="400" cy="180" r="5"></circle>
-        <circle class="node" cx="130" cy="570" r="5"></circle>
-        <circle class="node" cx="670" cy="570" r="5"></circle>
+        <div class="tri-wrap">
+      <svg viewBox="0 0 1000 900" role="img" aria-label="The three axes, with each demo plotted where it sits between them">
+        <polygon class="edge" points="500,175 140,720 860,720"></polygon>
+        <circle class="node" cx="500" cy="175" r="5"></circle>
+        <circle class="node" cx="140" cy="720" r="5"></circle>
+        <circle class="node" cx="860" cy="720" r="5"></circle>
 
-        <text class="v-name" x="400" y="92" text-anchor="middle">Jeff Buckley</text>
-        <text class="v-name2" x="400" y="122" text-anchor="middle">FaceSoul</text>
-        <text class="v-desc" x="400" y="150" text-anchor="middle">the feel, the ache, the humanity</text>
+        <text class="v-name" x="500" y="88" text-anchor="middle">Jeff Buckley</text>
+        <text class="v-name2" x="500" y="118" text-anchor="middle">FaceSoul</text>
+        <text class="v-desc" x="500" y="147" text-anchor="middle">the feel, the ache, the humanity</text>
 
-        <text class="v-name" x="130" y="616" text-anchor="middle">Earth, Wind &amp; Fire</text>
-        <text class="v-name2" x="130" y="646" text-anchor="middle">Jungle</text>
-        <text class="v-desc" x="130" y="674" text-anchor="middle">danceable, vintage, warm tape</text>
+        <text class="v-name" x="140" y="772" text-anchor="middle">Earth, Wind &amp; Fire</text>
+        <text class="v-name2" x="140" y="802" text-anchor="middle">Jungle</text>
+        <text class="v-desc" x="140" y="831" text-anchor="middle">danceable, vintage, warm tape</text>
 
-        <text class="v-name" x="670" y="616" text-anchor="middle">Radiohead</text>
-        <text class="v-name2" x="670" y="646" text-anchor="middle">Khruangbin</text>
-        <text class="v-desc" x="670" y="674" text-anchor="middle">hypnotic and groovy</text>
+        <text class="v-name" x="860" y="772" text-anchor="middle">Radiohead</text>
+        <text class="v-name2" x="860" y="802" text-anchor="middle">Khruangbin</text>
+        <text class="v-desc" x="860" y="831" text-anchor="middle">hypnotic and groovy</text>
 
-        <text class="core" x="400" y="404" text-anchor="middle">Ivrahim</text>
-        <text class="core-sub" x="400" y="434" text-anchor="middle">spiritual music that grooves</text>
+        <text class="core" x="500" y="390" text-anchor="middle">Ivrahim</text>
+        <text class="core-sub" x="500" y="424" text-anchor="middle">spiritual music that grooves</text>
       </svg>
+        <button class="tri-dot" data-src="audio/01-lecha-dodi.mp3" aria-label="Play Lecha Dodi" style="left:44.6%;top:64.86%"><span class="tri-tip"><span class="n">Lecha Dodi</span><span class="d">Motown funk. Welcoming Shabbat like you would welcome a person.</span></span></button>
+        <button class="tri-dot" data-src="audio/02-metta-mantra.mp3" aria-label="Play Metta Mantra" style="left:64.4%;top:67.89%"><span class="tri-tip"><span class="n">Metta Mantra</span><span class="d">Loving-kindness, in the Khruangbin lane.</span></span></button>
+        <button class="tri-dot" data-src="audio/03-hine-ma-tov.mp3" aria-label="Play Hine Ma Tov" style="left:30.2%;top:70.92%"><span class="tri-tip"><span class="n">Hine Ma Tov</span><span class="d">Psalm 133. How good it is to sit together.</span></span></button>
+        <button class="tri-dot" data-src="audio/04-adon-olam.mp3" aria-label="Play Adon Olam" style="left:49.64%;top:70.92%"><span class="tri-tip"><span class="n">Adon Olam</span><span class="d">A thousand-year-old hymn set to almost every melody there is. Here is one more.</span></span></button>
+        <button class="tri-dot" data-src="audio/05-call-your-parents.mp3" aria-label="Play Call Your Parents" style="left:62.96%;top:55.78%"><span class="tri-tip"><span class="n">Call Your Parents</span><span class="d">Mine. Not liturgy, same instruction.</span></span></button>
+        <button class="tri-dot" data-src="audio/06-ong-namo.mp3" aria-label="Play Ong Namo" style="left:36.32%;top:66.68%"><span class="tri-tip"><span class="n">Ong Namo</span><span class="d">Sanskrit. The line you open a practice with.</span></span></button>
+        <button class="tri-dot" data-src="audio/07-modeh-ani.mp3" aria-label="Play Modeh Ani + Om Namo" style="left:57.92%;top:72.73%"><span class="tri-tip"><span class="n">Modeh Ani + Om Namo</span><span class="d">The Hebrew you say on waking, and the Sanskrit, in the same room.</span></span></button>
     </div>
+    <p class="tri-note">Every demo is plotted where it actually sits. Hover a dot for the track, click to play it.</p>
   </div>
 </section>
 
@@ -454,46 +499,62 @@
 (function(){
   var audio = new Audio();
   audio.preload = "none";
-  var rows = Array.prototype.slice.call(document.querySelectorAll(".track"));
-  var current = null;
 
-  function clear(){
-    rows.forEach(function(r){
-      r.classList.remove("on","playing");
-      r.querySelector(".scrub i").style.width = "0";
+  // every clickable thing that maps to a track: list rows and triangle dots
+  var nodes = Array.prototype.slice.call(document.querySelectorAll("[data-src]"));
+  var order = Array.prototype.slice.call(document.querySelectorAll(".track"));
+  var currentSrc = null;
+
+  function forSrc(src){
+    return nodes.filter(function(n){ return n.getAttribute("data-src") === src; });
+  }
+  function paint(){
+    nodes.forEach(function(n){
+      var mine = n.getAttribute("data-src") === currentSrc;
+      n.classList.toggle("on", mine);
+      n.classList.toggle("playing", mine && !audio.paused);
+      if (!mine){
+        var s = n.querySelector(".scrub i");
+        if (s) s.style.width = "0";
+      }
     });
   }
+  function play(src){
+    if (currentSrc === src){
+      if (audio.paused) { audio.play().catch(function(){}); } else { audio.pause(); }
+      paint();
+      return;
+    }
+    currentSrc = src;
+    audio.src = src;
+    audio.play().catch(function(){});
+    paint();
+  }
 
-  rows.forEach(function(row){
-    row.addEventListener("click", function(){
-      var src = row.getAttribute("data-src");
-      if (current === row) {
-        if (audio.paused) { audio.play(); row.classList.add("playing"); }
-        else { audio.pause(); row.classList.remove("playing"); }
-        return;
-      }
-      clear();
-      current = row;
-      audio.src = src;
-      audio.play().then(function(){
-        row.classList.add("on","playing");
-      }).catch(function(){
-        row.classList.add("on");
-      });
-      row.classList.add("on");
-    });
+  nodes.forEach(function(n){
+    n.addEventListener("click", function(){ play(n.getAttribute("data-src")); });
   });
 
+  audio.addEventListener("play", paint);
+  audio.addEventListener("pause", paint);
+
   audio.addEventListener("timeupdate", function(){
-    if (!current || !audio.duration) return;
-    current.querySelector(".scrub i").style.width = ((audio.currentTime/audio.duration)*100) + "%";
+    if (!currentSrc || !audio.duration) return;
+    var pct = (audio.currentTime / audio.duration) * 100;
+    forSrc(currentSrc).forEach(function(n){
+      var s = n.querySelector(".scrub i");
+      if (s) s.style.width = pct + "%";
+    });
   });
 
   audio.addEventListener("ended", function(){
-    var i = rows.indexOf(current);
-    clear();
-    if (i > -1 && i < rows.length - 1) { rows[i+1].click(); }
-    else { current = null; }
+    var i = order.findIndex(function(n){ return n.getAttribute("data-src") === currentSrc; });
+    if (i > -1 && i < order.length - 1){
+      play(order[i+1].getAttribute("data-src"));
+    } else {
+      currentSrc = null;
+      paint();
+    }
   });
 })();
 </script>
