@@ -201,7 +201,22 @@
   .strip figure{margin:0;}
   .strip img{width:100%;height:290px;object-fit:cover;object-position:50% 26%;display:block;}
   
-  .wave-list{margin-top:30px;}
+  .wave-stat{
+    margin-top:44px;padding:28px 0 30px;
+    border-top:1px solid var(--hair-dark);border-bottom:1px solid var(--hair-dark);
+    display:flex;align-items:baseline;gap:26px;
+  }
+  .wave-stat .n{
+    font-family:var(--display);font-weight:700;font-size:58px;line-height:1;
+    letter-spacing:-.02em;color:var(--peach);flex-shrink:0;
+  }
+  .wave-stat .s{
+    font-family:var(--text);font-size:15px;line-height:1.5;
+    color:var(--on-dark-mute);max-width:32ch;
+  }
+  .wave-stat .s em{font-style:normal;display:block;font-size:12px;letter-spacing:.16em;
+    text-transform:uppercase;margin-top:8px;color:rgba(232,192,164,.45);}
+  .wave-list{margin-top:38px;}
   .wl{display:flex;gap:18px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--hair);}
   .dark .wl{border-bottom-color:var(--hair-dark);}
   .wl:last-child{border-bottom:none;}
@@ -263,6 +278,8 @@
     h2{font-size:29px;}
     .lede{font-size:21px;}
     .avatar h3{font-size:18px;}
+    .wave-stat{flex-direction:column;align-items:flex-start;gap:12px;}
+    .wave-stat .n{font-size:46px;}
     .avatar .sub{margin-top:42px;padding-top:28px;}
     .eyebrow{font-size:12.5px;}
     .track{gap:14px;padding:16px 2px;}
@@ -466,15 +483,19 @@
     <div class="narrow">
       <p class="lede">There is a wave of artists reaching back into their own traditions and innovating them into the present. Why? So many of us feel unrooted in our own culture.</p>
     </div>
+    <div class="wave-stat">
+      <div class="n">4.8M</div>
+      <div class="s">monthly listeners on Spotify, across the eight artists below.<em>August 2026</em></div>
+    </div>
     <div class="wave-list">
-      <div class="wl"><div class="a">Akshara</div><div class="b">Indian melody with a Western alternative edge</div><div class="lk"><a href="https://open.spotify.com/artist/7j6UTsx4e5HxsHMPXCYy7Z" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/aksharasings/" target="_blank" rel="noopener">Instagram</a></div></div>
-      <div class="wl"><div class="a">Arc De Soleil</div><div class="b">groovy instrumentals</div><div class="lk"><a href="https://open.spotify.com/artist/2iLMJdaqsQ44X7MPRD7rR5" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/arcdesoleil/" target="_blank" rel="noopener">Instagram</a></div></div>
-      <div class="wl"><div class="a">Curtain Blue</div><div class="b">Indian melodies with a Western alternative edge</div><div class="lk"><a href="https://open.spotify.com/artist/6r8STBLeZpOSMiYySins15" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/curtainblue/" target="_blank" rel="noopener">Instagram</a></div></div>
-      <div class="wl"><div class="a">Glass Beams</div><div class="b">groovy instrumentals with amazing aesthetics</div><div class="lk"><a href="https://open.spotify.com/artist/1LTFJvVvRw7ghAyThxYmnF" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/glass_beams/" target="_blank" rel="noopener">Instagram</a></div></div>
-      <div class="wl"><div class="a">Arooj Aftab</div><div class="b">inherited poetry over contemporary production</div><div class="lk"><a href="https://open.spotify.com/artist/00JAfwtx5gNiiqyor88Dr5" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/aroojaftab/" target="_blank" rel="noopener">Instagram</a></div></div>
-      <div class="wl"><div class="a">Ali Sethi &amp; Nicol&aacute;s Jaar</div><div class="b"></div><div class="lk"><a href="https://open.spotify.com/album/4oZlubGdEr7YbhOlpE0qkJ" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/ali_sethi_/" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Akshara</div><div class="b"></div><div class="lk"><a href="https://open.spotify.com/artist/7j6UTsx4e5HxsHMPXCYy7Z" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/aksharasings/" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Arc De Soleil</div><div class="b">melodic guitar, emotional storytelling, acoustic to synthwave</div><div class="lk"><a href="https://open.spotify.com/artist/2iLMJdaqsQ44X7MPRD7rR5" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/arcdesoleil/" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Curtain Blue</div><div class="b">haunting vocal melodies, electronica, brass</div><div class="lk"><a href="https://open.spotify.com/artist/6r8STBLeZpOSMiYySins15" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/curtainblue/" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Glass Beams</div><div class="b">psych and groove, modern psychedelia, instrumental funk</div><div class="lk"><a href="https://open.spotify.com/artist/1LTFJvVvRw7ghAyThxYmnF" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/glass_beams/" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Arooj Aftab</div><div class="b">contemporary folk, ambient, experimental</div><div class="lk"><a href="https://open.spotify.com/artist/00JAfwtx5gNiiqyor88Dr5" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/aroojaftab/" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Ali Sethi &amp; Nicol&aacute;s Jaar</div><div class="b">classical ragas over contemporary beats, Punjabi poetry</div><div class="lk"><a href="https://open.spotify.com/album/4oZlubGdEr7YbhOlpE0qkJ" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/ali_sethi_/" target="_blank" rel="noopener">Instagram</a></div></div>
       <div class="wl"><div class="a">FaceSoul</div><div class="b"></div><div class="lk"><a href="https://open.spotify.com/artist/0OcOX42YhjTjFbbiMRHBUC" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/ifacesoul/" target="_blank" rel="noopener">Instagram</a></div></div>
-      <div class="wl"><div class="a">Chantress Seba</div><div class="b"></div><div class="lk"><a href="https://open.spotify.com/artist/4oTzhtimVVQIgOofBNFVp4" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/chantressseba/" target="_blank" rel="noopener">Instagram</a></div></div>
+      <div class="wl"><div class="a">Chantress Seba</div><div class="b">sacred sound healing, frequency music, channeled vocals</div><div class="lk"><a href="https://open.spotify.com/artist/4oTzhtimVVQIgOofBNFVp4" target="_blank" rel="noopener">Spotify</a><a href="https://www.instagram.com/chantressseba/" target="_blank" rel="noopener">Instagram</a></div></div>
     </div>
   </div>
 </section>
