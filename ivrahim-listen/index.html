@@ -41,10 +41,17 @@
 
   /* labels: Lining, caps, letterspaced. Never bold — there is no bold. */
   .eyebrow{
-    font-family:var(--text);font-size:14px;font-weight:400;
-    letter-spacing:.2em;text-transform:uppercase;color:var(--bronze);
-    margin-bottom:22px;
+    font-family:var(--text);font-size:15px;font-weight:400;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--bronze);
+    margin-bottom:20px;
   }
+  /* Lining has no bold, so a section label gets its weight from a rule, size and space */
+  .eyebrow::before{
+    content:"";display:block;width:30px;height:1px;
+    background:var(--bronze);margin-bottom:18px;
+  }
+  .centered .eyebrow::before{margin-left:auto;margin-right:auto;}
+  .dark .eyebrow::before{background:var(--peach);}
   h2{
     font-family:var(--display);font-weight:700;font-size:42px;
     letter-spacing:-.012em;color:var(--char);
@@ -186,8 +193,8 @@
   .drawer{max-width:740px;margin:56px auto 0;text-align:left;}
   .drawer summary{
     list-style:none;cursor:pointer;text-align:center;
-    font-family:var(--text);font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;
-    color:var(--bronze);padding:14px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+    font-family:var(--display);font-size:21px;letter-spacing:-.004em;
+    color:var(--char);padding:18px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
   }
   .drawer summary::-webkit-details-marker{display:none;}
   .drawer summary::after{content:" +";}
@@ -293,7 +300,9 @@
     .wave-stat{flex-direction:column;align-items:flex-start;gap:12px;}
     .wave-stat .n{font-size:46px;}
     .avatar .sub{margin-top:42px;padding-top:28px;}
-    .eyebrow{font-size:12.5px;}
+    .eyebrow{font-size:13.5px;}
+    .eyebrow::before{width:24px;margin-bottom:14px;}
+    .drawer summary{font-size:18px;}
     .track{gap:14px;padding:16px 2px;}
     .t-time{display:none;}
     .wl{flex-direction:column;gap:2px;}
