@@ -308,14 +308,20 @@
     .wl{flex-direction:column;gap:2px;}
     .wl .a{width:auto;}
     .strip img{height:230px;}
-    .tri-dot{width:30px;height:30px;}
+    /* let the triangle out of the wrap padding so the dots stop crowding */
+    .tri-wrap{max-width:none;margin-left:-22px;margin-right:-22px;width:calc(100% + 44px);}
+    /* smaller dots for breathing room, with an invisible 44px touch target kept intact */
+    .tri-dot{width:24px;height:24px;}
+    .tri-dot::after{content:"";position:absolute;top:50%;left:50%;
+      width:44px;height:44px;transform:translate(-50%,-50%);border-radius:50%;}
+    .tri-dot::before{border-left-width:7px;border-top-width:5px;border-bottom-width:5px;}
     .tri-tip{width:172px;}
     .strip img{height:250px;object-position:50% 22%;}
     /* the SVG shrinks with the viewport, so the type has to grow inside it */
     .v-name{font-size:40px;}
     .v-name2{font-size:30px;}
-    .core{font-size:66px;}
-    .core-sub{font-size:30px;}
+    .core{font-size:58px;}
+    .core-sub{font-size:25px;}
     .ctas .cta{flex:1 1 100%;text-align:center;}
     .drawer{margin-top:34px;}
     .pull{font-size:20px;padding-left:18px;}
