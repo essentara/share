@@ -86,8 +86,14 @@
     background:linear-gradient(180deg,#1C1917 0%,#1C1917 48%,#4E3620 82%,#7A5733 100%);
     -webkit-background-clip:text;background-clip:text;
     -webkit-text-fill-color:transparent;color:var(--char);
-    margin-bottom:34px;
+    margin-bottom:16px;
   }
+  /* Lining ships no oblique, so the gloss reads quiet through size, case and tracking */
+  .markgloss{
+    font-family:var(--text);font-size:13px;letter-spacing:.3em;
+    color:var(--bronze);margin:0 0 28px;
+  }
+  .markgloss span{opacity:.4;margin:0 3px;}
   .tagline{
     font-family:var(--display);font-weight:400;
     font-size:clamp(21px,2.6vw,30px);line-height:1.32;
@@ -301,6 +307,7 @@
     .wave-stat .n{font-size:46px;}
     .avatar .sub{margin-top:42px;padding-top:28px;}
     .eyebrow{font-size:13.5px;}
+    .markgloss{font-size:11.5px;letter-spacing:.24em;margin-bottom:22px;}
     .eyebrow::before{width:24px;margin-bottom:14px;}
     .drawer summary{font-size:18px;}
     .track{gap:14px;padding:16px 2px;}
@@ -336,8 +343,9 @@
     <div class="herogrid">
       <div class="heroleft">
         <div class="mark">Ivrahim</div>
+        <div class="markgloss">avraham <span>|</span> ibrahim</div>
         <div class="tagline">An ancestral music project by Axel Mansoor.</div>
-        <div class="position">Looking for collaborators: co-producers, musicians, photo and video.</div>
+        <div class="position">Seeking collaborators: co-producers, musicians, photo and video.</div>
       </div>
       <div class="heroright">
         <img class="heroshot" src="img/axel-hero.jpg?v=2" alt="Ivrahim">
@@ -486,14 +494,16 @@
     <div class="sub">
       <h3>The name</h3>
       <div class="narrow">
-        <p>I am from everywhere and nowhere: I am Ashkenazi, Mauritian-Creole, and Indian; I come from a family of Jews, Muslims, and Catholics. Avraham and Ibrahim are my given names. My ancestors feared each other and the violence continues today. IVRAHIM is the name I use to weave my ancestry through music and creativity.</p>
+        <p>I am from everywhere and nowhere: I am Ashkenazi, Mauritian-Creole, and Indian; I come from a family of Jews, Muslims, and Catholics.</p>
+        <p>Avraham and Ibrahim are my given names. My ancestors feared each other and their legacy of conflict endures today.</p>
+        <p>IVRAHIM is the name I received to heal that legacy in the name of harmony: weaving my ancestry through music and creativity.</p>
       </div>
     </div>
 
     <div class="sub">
       <h3>The look</h3>
       <div class="narrow">
-        <p>Traditional, experimental, and sensual in the same frame.</p>
+        <p>Traditional with a modern sensual flair.</p>
         <p>If Moses dressed like Prince.</p>
       </div>
     <div class="strip">
@@ -516,7 +526,7 @@
     <div class="eyebrow">The wave</div>
     <h2>It&rsquo;s already happening</h2>
     <div class="narrow">
-      <p class="lede">There is a wave of artists reaching back into their own traditions and innovating them into the present. Why? So many of us feel unrooted in our own culture.</p>
+      <p class="lede">Across the globe, artists are reaching back into their own musical traditions and ushering them into the present. Why? Because culture needs roots.</p>
     </div>
     <div class="wave-stat">
       <div class="n">4.8M</div>
@@ -540,8 +550,8 @@
 
 <section>
   <div class="wrap">
-    <div class="eyebrow">this can only happen collectively</div>
-    <h2>Calling in the right collaborators</h2>
+    <div class="eyebrow">This music is collective</div>
+    <h2>Seeking collaborators</h2>
     <div class="asks">
       <div class="ask">
         <h3>Co-Producers / Mixers</h3>
