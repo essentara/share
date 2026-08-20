@@ -1,5 +1,13 @@
 [
   {
+    "slug": "hbe-show",
+    "title": "What This Show Is",
+    "desc": "",
+    "date": "2026-08-20",
+    "listed": false,
+    "type": "page"
+  },
+  {
     "slug": "ivrahim-listen",
     "title": "IVRAHIM",
     "desc": "Six seeds, the sound, and who I'm looking for.",

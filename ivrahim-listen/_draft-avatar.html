@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IVRAHIM — avatar section draft</title>
+<style>
+  @font-face{font-family:'Cortese';src:url('fonts/cortese-300.woff') format('woff');font-weight:300;font-style:normal;font-display:swap;}
+  @font-face{font-family:'Kalice';src:url('fonts/kalice-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+  @font-face{font-family:'Kalice';src:url('fonts/kalice-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap;}
+  @font-face{font-family:'Lining';src:url('fonts/lining-400.woff') format('woff');font-weight:400;font-style:normal;font-display:swap;}
+
+  :root{
+    --bone:#F4EFE6; --char:#1C1917;
+    --bronze:#8C6239; --copper:#A85A31; --peach:#E8C0A4; --coppergold:#D18B3C;
+    --ink:#3a332c; --mute:#7d7266; --hair:rgba(140,98,57,.28);
+    --display:'Kalice',Georgia,serif;
+    --text:'Lining','Helvetica Neue',Helvetica,Arial,sans-serif;
+    --wordmark:'Cortese',Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    background:var(--bone);color:var(--ink);
+    font-family:var(--text);font-weight:400;
+    font-size:17px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    padding-top:56px;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 40px;}
+  .narrow{max-width:62ch;}
+  section{padding:88px 0;}
+
+  .eyebrow{
+    font-family:var(--text);font-size:14px;font-weight:400;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--bronze);
+    margin-bottom:22px;
+  }
+  h2{
+    font-family:var(--display);font-weight:700;font-size:42px;
+    letter-spacing:-.012em;color:var(--char);
+    margin-bottom:26px;line-height:1.14;
+  }
+  h3{
+    font-family:var(--display);font-weight:400;font-size:25px;
+    letter-spacing:-.006em;color:var(--char);
+    margin:0 0 16px;line-height:1.2;
+  }
+  p{margin-bottom:18px;}
+  p:last-child{margin-bottom:0;}
+  .lede{
+    font-family:var(--display);font-weight:400;font-size:25px;
+    line-height:1.38;color:var(--char);margin-bottom:22px;
+  }
+  b,strong{font-weight:400;color:var(--char);}
+
+  .sub{margin-top:56px;padding-top:34px;border-top:1px solid var(--hair);}
+
+  .strip{display:flex;gap:14px;overflow-x:auto;margin-top:26px;padding-bottom:8px;}
+  .strip figure{flex:0 0 168px;height:224px;background:rgba(140,98,57,.12);
+    border:1px solid var(--hair);display:flex;align-items:center;justify-content:center;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);}
+
+  /* ---- edit chrome, stripped on slot-in ---- */
+  .editbar{
+    position:fixed;top:0;left:0;right:0;height:56px;z-index:50;
+    background:var(--char);color:var(--peach);
+    display:flex;align-items:center;gap:18px;padding:0 22px;
+    font-family:var(--text);font-size:13px;letter-spacing:.06em;
+  }
+  .editbar .t{text-transform:uppercase;letter-spacing:.2em;font-size:12px;}
+  .editbar .sp{flex:1;}
+  .editbar button{
+    font-family:var(--text);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    background:transparent;color:var(--peach);border:1px solid rgba(232,192,164,.4);
+    padding:7px 14px;cursor:pointer;
+  }
+  .editbar button:hover{background:rgba(232,192,164,.12);}
+  #status{color:rgba(232,192,164,.62);font-size:12px;}
+
+  [contenteditable]{outline:none;border-radius:2px;
+    transition:background .15s,box-shadow .15s;}
+  [contenteditable]:hover{background:rgba(140,98,57,.06);}
+  [contenteditable]:focus{background:rgba(140,98,57,.10);
+    box-shadow:0 0 0 6px rgba(140,98,57,.10);}
+
+  .note{
+    max-width:62ch;margin-top:16px;padding:12px 16px;
+    border-left:2px solid var(--copper);background:rgba(168,90,49,.07);
+    font-size:14px;line-height:1.55;color:var(--mute);
+  }
+  .note .lbl{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--copper);margin-bottom:5px;}
+</style>
+</head>
+<body>
+
+<div class="editbar">
+  <span class="t">Avatar section &middot; draft</span>
+  <span class="sp"></span>
+  <span id="status">edits autosave in this browser</span>
+  <button onclick="resetAll()">Reset to current</button>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow" contenteditable data-e="av-eyebrow">An Altar Ego</div>
+    <h2 contenteditable data-e="av-h2">IVRAHIM</h2>
+
+    <div class="narrow">
+      <p class="lede" contenteditable data-e="av-lede">He's the avatar I become in service of a calling: to help people remember the ancient and mysterious.</p>
+    </div>
+
+    <!-- THE NAME -->
+    <div class="sub">
+      <h3 contenteditable data-e="name-h3">The name</h3>
+      <div class="narrow">
+        <p contenteditable data-e="name-p1">I am from everywhere and nowhere: I am Ashkenazi, Mauritian-Creole, and Indian; I come from a family of Jews, Muslims, and Catholics. Avraham and Ibrahim are my given names. My ancestors feared each other and the violence continues still. Through music and creativity, there's an opportunity to join them together. IVRAHIM is the name I use to bridge my ancestries and create from all of them.</p>
+      </div>
+    </div>
+
+    <!-- THE LOOK -->
+    <div class="sub">
+      <h3 contenteditable data-e="look-h3">The look</h3>
+      <div class="narrow">
+        <p contenteditable data-e="look-p1">Bone, char, and copper. Traditional, experimental, and sensual in the same frame.</p>
+        <p contenteditable data-e="look-p2">If Moses dressed like Prince.</p>
+      </div>
+      <div class="strip">
+        <figure>Ali Sethi</figure><figure>Prince</figure><figure>Arc De Soleil</figure>
+        <figure>Prince</figure><figure>Arc De Soleil</figure><figure>Ali Sethi</figure>
+        <figure>Arc De Soleil</figure><figure>Arc De Soleil</figure>
+      </div>
+      <div class="note">
+        <span class="lbl">Flag &middot; photos</span>
+        Real strip carries over on slot-in; these are placeholders. Still other artists&rsquo; copyrighted images with no disclaimer since it got edited out. Fine unlisted, not fine public.
+      </div>
+    </div>
+
+    <!-- AXEL AND IVRAHIM -->
+    <div class="sub">
+      <h3 contenteditable data-e="both-h3">Axel and Ivrahim</h3>
+      <div class="narrow">
+        <p contenteditable data-e="both-p1">Axel Mansoor is the private self and the builder. Ivrahim is the project, and it gets built in public.</p>
+        <p contenteditable data-e="both-p2">That means I can&rsquo;t fold my old catalogue into this. Nothing carries over. Clean slate, brand new, born.</p>
+        <p contenteditable data-e="both-p3">It also means the doubt you&rsquo;ll see is mine, not his. I&rsquo;ll tell you when I don&rsquo;t know what I&rsquo;m doing. Ivrahim never will.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  var KEY = 'ivrahim-avatar-draft-v3';
+  try { localStorage.removeItem('ivrahim-avatar-draft-v1'); localStorage.removeItem('ivrahim-avatar-draft-v2'); } catch(e){}
+  var nodes = document.querySelectorAll('[contenteditable]');
+  var original = {};
+  nodes.forEach(function(n){ original[n.dataset.e] = n.innerHTML; });
+
+  try {
+    var saved = JSON.parse(localStorage.getItem(KEY) || '{}');
+    nodes.forEach(function(n){
+      if (saved[n.dataset.e] !== undefined) n.innerHTML = saved[n.dataset.e];
+    });
+    if (Object.keys(saved).length) setStatus('restored your edits');
+  } catch(e){}
+
+  var timer;
+  function save(){
+    var out = {};
+    nodes.forEach(function(n){ out[n.dataset.e] = n.innerHTML; });
+    localStorage.setItem(KEY, JSON.stringify(out));
+    setStatus('saved');
+  }
+  function setStatus(t){
+    var s = document.getElementById('status');
+    s.textContent = t;
+    clearTimeout(timer);
+    timer = setTimeout(function(){ s.textContent = 'edits autosave in this browser'; }, 2200);
+  }
+  nodes.forEach(function(n){
+    n.addEventListener('input', function(){ clearTimeout(n._t); n._t = setTimeout(save, 500); });
+    n.addEventListener('paste', function(ev){
+      ev.preventDefault();
+      var t = (ev.clipboardData || window.clipboardData).getData('text/plain');
+      document.execCommand('insertText', false, t);
+    });
+  });
+  function resetAll(){
+    if (!confirm('Throw away your edits and restore this draft?')) return;
+    localStorage.removeItem(KEY);
+    nodes.forEach(function(n){ n.innerHTML = original[n.dataset.e]; });
+    setStatus('reset');
+  }
+</script>
+</body>
+</html>
