@@ -1,5 +1,13 @@
 [
   {
+    "slug": "hbe",
+    "title": "Hot Buttered Epiphanies \u2014 The Show & The Role",
+    "desc": "Season one: what the show is, and the producer role.",
+    "date": "2026-08-21",
+    "listed": false,
+    "type": "page"
+  },
+  {
     "slug": "hbe-show",
     "title": "What This Show Is",
     "desc": "",
