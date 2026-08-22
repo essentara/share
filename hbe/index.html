@@ -4,7 +4,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hot Buttered Epiphanies — The Show &amp; The Role</title>
+<title>Hot Buttered Epiphanies — The Role &amp; The Show</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Young+Serif&family=Poppins:wght@400;500;600&display=swap');
   :root { --terracotta:#FEBA17; --teal:#4E1F00; --sage:#74512D; --cream:#F8F4E1; --accent-deep:#C1880A; }
@@ -47,17 +47,17 @@
   @media (max-width:768px){ h1{font-size:30px;} .wrap{padding:44px 20px 64px;} }
   
   
-  /* --- show one-pager (merged 2026-08-21) --- */
-  /* alias the show sheet's token names onto this page's legacy names */
-  :root{
-    --ink:var(--teal);
-    --muted:var(--sage);
-    --amber:var(--terracotta);
-    --amber-dark:var(--accent-deep);
-    --hair:#e6ddc4;
-  }
-  section{padding-top:62px;}
-  section > h2:first-child{margin-top:0;}
+  /* --- doc 2: show one-pager (merged 2026-08-21) --- */
+  :root{ --ink:var(--teal); --muted:var(--sage); --amber:var(--terracotta); --amber-dark:var(--accent-deep); --hair:#e6ddc4; }
+  .docnav{font-size:12px;letter-spacing:.06em;color:var(--sage);margin:26px 0 0;}
+  .docnav a{color:var(--accent-deep);text-decoration:none;border-bottom:1px solid var(--hair);}
+  .docnav a:hover{border-bottom-color:var(--accent-deep);}
+  .docnav span{opacity:.5;padding:0 10px;}
+  .docbreak{margin:104px 0 0;border-top:1px solid var(--hair);padding-top:56px;}
+  .docbreak .kicker{margin-bottom:18px;}
+  .docbreak h2.doctitle{font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:38px;line-height:1.1;letter-spacing:-.02em;margin:0 0 16px;color:var(--teal);}
+  .docbreak .line{font-family:'Young Serif',Georgia,serif;font-size:21px;line-height:1.4;color:var(--sage);max-width:52ch;}
+  section{padding-top:58px;}
   .row{display:flex;gap:22px;align-items:baseline;padding:15px 0;border-bottom:1px solid var(--hair);}
   .row:last-of-type{border-bottom:none;}
   .row .k{width:118px;flex-shrink:0;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-dark);}
@@ -72,12 +72,15 @@
   .two h3{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-dark);margin-bottom:14px;}
   .two p{font-size:15.5px;}
   @media (max-width:768px){
-    section{padding-top:48px;}
+    .docbreak{margin-top:70px;padding-top:44px;}
+    .docbreak h2.doctitle{font-size:29px;}
+    .docbreak .line{font-size:18px;}
+    section{padding-top:44px;}
     .row{flex-wrap:wrap;gap:6px;}
     .row .k{width:100%;}
     .two{grid-template-columns:1fr;gap:30px;}
   }
-  @media print{ section{padding-top:30px;page-break-inside:avoid;} }
+  @media print{ section{padding-top:30px;page-break-inside:avoid;} .docbreak{page-break-before:always;margin-top:0;border-top:none;} }
 
 </style>
 </head>
@@ -87,6 +90,8 @@
 
   <div class="kicker">Hot Buttered Epiphanies · Season One</div>
   <h1>Hot Buttered Epiphanies is looking for a producer.</h1>
+<p class="docnav"><a href="#role">The role</a><span>·</span><a href="#show">What the show is</a></p>
+
 
   <h2>The show</h2>
   <p>Hot Buttered Epiphanies is an advice-column (Dear Abby-style) podcast from Dr. Lissa Rankin (NYT bestselling author) and Axel Mansoor (Clubhouse Icon, musician, and facilitator).</p>
@@ -116,8 +121,57 @@
     <li><strong>Both of us</strong> promote to our own audiences from day one.</li>
   </ul>
 
-  
-<!-- show one-pager -->
+  <h2 id="role">Role</h2>
+  <p>You'll run the show so the two of us can stay talent. <strong>You own whether it ships on its date and whether it sounds right.</strong> That second half is the job. We are not looking for someone to hold a checklist; we are looking for someone with taste, who can hear when an episode isn't landing yet and say so. Audience growth is a separate lane we will add later.</p>
+
+  <h2>Responsibilities</h2>
+  <p>About <strong>100 hours across twelve weeks</strong>, or 8 to 9 a week. We might batch recordings of episodes. We have deliberately kept this lean: our editor files his own assets and manages his own handoff, and we book our own recording days, so none of that lands on you.</p>
+
+  <table>
+    <thead><tr><th>What</th><th>Includes</th><th>Per episode</th><th>Season</th></tr></thead>
+    <tbody>
+      <tr class="phase"><td colspan="4">Before the season</td></tr>
+      <tr><td><strong>Platform Setup</strong></td><td><small>Substack build, show art and RSS out to Apple and Spotify, credential vault, season calendar, season plan</small></td><td><small>one-time</small></td><td>16 h</td></tr>
+      <tr class="phase"><td colspan="4">Every episode</td></tr>
+      <tr><td><strong>Quality Check</strong></td><td><small>Listening through the cut and sending notes back to the editor. Catching what he missed, so the two of us don't have to listen closely.</small></td><td>1.5 h</td><td>18 h</td></tr>
+      <tr><td><strong>Publishing</strong></td><td><small>Show notes, Substack assembly, publish checklist, the 30-day mantra window</small></td><td>1.5 h</td><td>18 h</td></tr>
+      <tr><td><strong>Promotion</strong></td><td><small>Social assets, posting, light engagement, cross-promotion to both our lists</small></td><td>3 h</td><td>36 h</td></tr>
+      <tr class="phase"><td colspan="4">Ongoing</td></tr>
+      <tr><td><strong>Admin</strong></td><td><small>Platforms, passwords, invoices, subscriber source-tracking, the monthly numbers</small></td><td><small>3.5 h/month</small></td><td>10.5 h</td></tr>
+      <tr><td><strong>Running Comms</strong></td><td><small>Finding and onboarding a designer or any video help, if we need them</small></td><td><small>as needed</small></td><td>4 h</td></tr>
+      <tr><td colspan="2"><strong>Total</strong></td><td><strong>6 h</strong></td><td><strong>102.5 h</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <p>You won't necessarily be building from scratch. A tracker, checklists, and playbooks already exist, yours to improve or throw out. We want someone AI-comfortable who makes a small budget go far.</p>
+  </div>
+
+  <p><strong>Where the calls land:</strong> creative content is Axel's. The show is owned 50/50, so business decisions are ours jointly and you'll bring us options and a recommendation. On everything operational, you decide and tell us. We would rather hear what you did than be asked what to do.<br><br></p>
+
+  <p><strong>Pay is $45 to $50/hr</strong>, depending on experience, and the setup block is paid whatever happens. There is real upside from season two on, including a share of new revenue you bring in. If the shape of this does not work, or you think we are solving it wrong, say so.</p>
+
+  <h2>You might be the person if</h2>
+  <ul>
+    <li>You've produced or project-managed a show, a launch, or anything with a hard public deadline.</li>
+    <li><strong>You have taste, and you can say why something works.</strong> You'd be comfortable telling our editor an episode isn't landing yet, and telling us the same.</li>
+    <li>You're organized in a way that makes other people calmer.</li>
+    <li>You love to use AI tools.</li>
+    <li>You care about work with heart in it, and you don't need it to be precious.</li>
+  </ul>
+
+  <div class="cta">
+    <p><strong>Interested, or know the person?</strong></p>
+    <p>Send a short note to <a href="mailto:axelmansoor@gmail.com">axelmansoor@gmail.com</a>: who you are, one thing you've shipped, and why this one caught you.</p>
+    <p>If it feels right, we'll send you our pilot episode and one listener letter, and pay you for two hours to tell us how you'd shape that episode and what you'd change about the pilot. Then a call with the three of us. We'd rather pay for your thinking than ask you to audition for free.</p>
+  </div>
+
+  <p class="sign">Made with love (and hot butter),<br>Axel &amp; Lissa</p>
+<div class="docbreak" id="show">
+  <div class="kicker">Hot Buttered Epiphanies · Show one-pager</div>
+  <h2 class="doctitle">What this show is</h2>
+  <div class="line">An advice column with IFS meditations &amp; music at the end.</div>
+</div>
 <section>
     <h2>The format</h2>
     <p>Listeners send in letters. Lissa and I respond through an IFS lens. I create a musical mantra for each episode.</p>
@@ -194,53 +248,7 @@
       </div>
     </div>
   </section>
-<!-- /show one-pager -->
-<h2>Role</h2>
-  <p>You'll run the show so the two of us can stay talent. <strong>You own whether it ships on its date and whether it sounds right.</strong> That second half is the job. We are not looking for someone to hold a checklist; we are looking for someone with taste, who can hear when an episode isn't landing yet and say so. Audience growth is a separate lane we will add later.</p>
 
-  <h2>Responsibilities</h2>
-  <p>About <strong>100 hours across twelve weeks</strong>, or 8 to 9 a week. We might batch recordings of episodes. We have deliberately kept this lean: our editor files his own assets and manages his own handoff, and we book our own recording days, so none of that lands on you.</p>
-
-  <table>
-    <thead><tr><th>What</th><th>Includes</th><th>Per episode</th><th>Season</th></tr></thead>
-    <tbody>
-      <tr class="phase"><td colspan="4">Before the season</td></tr>
-      <tr><td><strong>Platform Setup</strong></td><td><small>Substack build, show art and RSS out to Apple and Spotify, credential vault, season calendar, season plan</small></td><td><small>one-time</small></td><td>16 h</td></tr>
-      <tr class="phase"><td colspan="4">Every episode</td></tr>
-      <tr><td><strong>Quality Check</strong></td><td><small>Listening through the cut and sending notes back to the editor. Catching what he missed, so the two of us don't have to listen closely.</small></td><td>1.5 h</td><td>18 h</td></tr>
-      <tr><td><strong>Publishing</strong></td><td><small>Show notes, Substack assembly, publish checklist, the 30-day mantra window</small></td><td>1.5 h</td><td>18 h</td></tr>
-      <tr><td><strong>Promotion</strong></td><td><small>Social assets, posting, light engagement, cross-promotion to both our lists</small></td><td>3 h</td><td>36 h</td></tr>
-      <tr class="phase"><td colspan="4">Ongoing</td></tr>
-      <tr><td><strong>Admin</strong></td><td><small>Platforms, passwords, invoices, subscriber source-tracking, the monthly numbers</small></td><td><small>3.5 h/month</small></td><td>10.5 h</td></tr>
-      <tr><td><strong>Running Comms</strong></td><td><small>Finding and onboarding a designer or any video help, if we need them</small></td><td><small>as needed</small></td><td>4 h</td></tr>
-      <tr><td colspan="2"><strong>Total</strong></td><td><strong>6 h</strong></td><td><strong>102.5 h</strong></td></tr>
-    </tbody>
-  </table>
-
-  <div class="note">
-    <p>You won't necessarily be building from scratch. A tracker, checklists, and playbooks already exist, yours to improve or throw out. We want someone AI-comfortable who makes a small budget go far.</p>
-  </div>
-
-  <p><strong>Where the calls land:</strong> creative content is Axel's. The show is owned 50/50, so business decisions are ours jointly and you'll bring us options and a recommendation. On everything operational, you decide and tell us. We would rather hear what you did than be asked what to do.<br><br></p>
-
-  <p><strong>Pay is $45 to $50/hr</strong>, depending on experience, and the setup block is paid whatever happens. There is real upside from season two on, including a share of new revenue you bring in. If the shape of this does not work, or you think we are solving it wrong, say so.</p>
-
-  <h2>You might be the person if</h2>
-  <ul>
-    <li>You've produced or project-managed a show, a launch, or anything with a hard public deadline.</li>
-    <li><strong>You have taste, and you can say why something works.</strong> You'd be comfortable telling our editor an episode isn't landing yet, and telling us the same.</li>
-    <li>You're organized in a way that makes other people calmer.</li>
-    <li>You love to use AI tools.</li>
-    <li>You care about work with heart in it, and you don't need it to be precious.</li>
-  </ul>
-
-  <div class="cta">
-    <p><strong>Interested, or know the person?</strong></p>
-    <p>Send a short note to <a href="mailto:axelmansoor@gmail.com">axelmansoor@gmail.com</a>: who you are, one thing you've shipped, and why this one caught you.</p>
-    <p>If it feels right, we'll send you our pilot episode and one listener letter, and pay you for two hours to tell us how you'd shape that episode and what you'd change about the pilot. Then a call with the three of us. We'd rather pay for your thinking than ask you to audition for free.</p>
-  </div>
-
-  <p class="sign">Made with love (and hot butter),<br>Axel &amp; Lissa</p>
 
 </div>
 </body>
