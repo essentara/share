@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Season one production scope and show brief for Hot Buttered Epiphanies.">
+  <title>Hot Buttered Epiphanies | Season One Production Scope</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Young+Serif&family=Poppins:wght@400;500;600&display=swap');
+
+    :root {
+      --cream: #f8f4e1;
+      --amber: #feba17;
+      --brown: #74512d;
+      --ink: #4e1f00;
+      --amber-deep: #c1880a;
+      --line: #e6ddc4;
+      --white: #fffdf7;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--white);
+      color: var(--ink);
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    a { color: var(--amber-deep); }
+
+    .wrap {
+      width: min(880px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 64px 0 96px;
+    }
+
+    h1, h2 {
+      font-family: 'Young Serif', Georgia, serif;
+      font-weight: 400;
+      letter-spacing: -0.025em;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 12px 0 18px;
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1.03;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: clamp(25px, 3.4vw, 32px);
+      line-height: 1.12;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    p { margin: 0 0 14px; }
+
+    .kicker {
+      color: var(--amber-deep);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .lede {
+      max-width: 650px;
+      margin-bottom: 24px;
+      color: var(--brown);
+      font-family: 'Young Serif', Georgia, serif;
+      font-size: 22px;
+      line-height: 1.45;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      padding-top: 8px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    nav a {
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+    }
+
+    section { padding-top: 72px; }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 42px;
+    }
+
+    .fact, .card, .note {
+      border-radius: 16px;
+      background: var(--cream);
+    }
+
+    .fact { padding: 20px; }
+
+    .fact strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--ink);
+      font-family: 'Young Serif', Georgia, serif;
+      font-size: 25px;
+      font-weight: 400;
+      line-height: 1.15;
+    }
+
+    .fact span {
+      color: var(--brown);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .ownership {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      padding: 24px;
+      border: 1px solid transparent;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--brown);
+      font-size: 14px;
+    }
+
+    .card-number {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--amber-deep);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .12em;
+    }
+
+    .lanes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .lane {
+      padding-top: 16px;
+      border-top: 4px solid var(--amber);
+    }
+
+    .lane p {
+      color: var(--brown);
+      font-size: 14px;
+    }
+
+    .note {
+      padding: 26px 28px;
+      margin-top: 22px;
+    }
+
+    .note p:last-child { margin-bottom: 0; }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      position: relative;
+      padding: 10px 0 10px 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    li:last-child { border-bottom: 0; }
+
+    li::before {
+      position: absolute;
+      top: 20px;
+      left: 2px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--amber);
+      content: '';
+    }
+
+    .milestone {
+      padding: 30px;
+      border-radius: 18px;
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .milestone h2 { color: var(--cream); }
+
+    .milestone li { border-color: rgba(248, 244, 225, .2); }
+
+    .milestone p { color: #eadfc3; }
+
+    .docbreak {
+      margin-top: 104px;
+      padding-top: 64px;
+      border-top: 1px solid var(--line);
+    }
+
+    .show-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .show-grid h3 {
+      color: var(--amber-deep);
+      font-size: 12px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .spine {
+      padding: 24px 28px;
+      border-radius: 14px;
+      background: var(--cream);
+      font-size: 15px;
+      line-height: 2;
+    }
+
+    .spine b { color: var(--amber-deep); }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .principle {
+      padding: 20px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .principle p {
+      margin: 0;
+      color: var(--brown);
+      font-size: 14px;
+    }
+
+    footer {
+      margin-top: 80px;
+      color: var(--brown);
+      font-family: 'Young Serif', Georgia, serif;
+      font-size: 18px;
+    }
+
+    @media (max-width: 720px) {
+      .wrap { width: min(100% - 32px, 880px); padding-top: 40px; }
+      section { padding-top: 54px; }
+      .facts, .lanes { grid-template-columns: 1fr; }
+      .ownership, .show-grid, .principles { grid-template-columns: 1fr; }
+      .facts { gap: 8px; }
+      .fact { padding: 17px 19px; }
+      .docbreak { margin-top: 74px; padding-top: 48px; }
+    }
+
+    @media print {
+      .wrap { width: 100%; padding: 30px; }
+      nav { display: none; }
+      section { padding-top: 38px; }
+      .docbreak { page-break-before: always; }
+      .card, .fact, .milestone { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="kicker">Hot Buttered Epiphanies · Season One</div>
+    <h1>Own the path from recording to release.</h1>
+    <nav aria-label="Page sections">
+      <a href="#scope">The role</a>
+      <a href="#milestone">First milestone</a>
+      <a href="#show">The show brief</a>
+    </nav>
+
+    <div class="facts" aria-label="Season facts">
+      <div class="fact">
+        <strong>12 episodes</strong>
+        <span>Weekly season. Two episodes recorded per Tuesday.</span>
+      </div>
+      <div class="fact">
+        <strong>Nov 10</strong>
+        <span>Episodes 1 through 3 fully produced.</span>
+      </div>
+      <div class="fact">
+        <strong>$45–50/hr</strong>
+        <span>Rate confirmed. Scope and hours still to be proposed.</span>
+      </div>
+    </div>
+
+    <section id="scope">
+      <div class="kicker">The role</div>
+      <h2>Judgment, accountability, clean releases.</h2>
+      <p>Caitlin owns the production system and the handoffs that get every episode out on time. The editor edits. AI handles the first pass on routine assets. Caitlin makes sure the whole thing works and sounds like us.</p>
+
+      <div class="ownership">
+        <div class="card">
+          <span class="card-number">01</span>
+          <h3>Build the system</h3>
+          <p>Season calendar, tracker, file flow, review gates, platform setup, and one clear source of truth.</p>
+        </div>
+        <div class="card">
+          <span class="card-number">02</span>
+          <h3>Run the workflow</h3>
+          <p>Move recordings to the editor, manage deadlines, chase missing assets, and solve the exceptions.</p>
+        </div>
+        <div class="card">
+          <span class="card-number">03</span>
+          <h3>Review every cut</h3>
+          <p>Listen closely, give the editor useful notes, and know when an episode is ready for light host review.</p>
+        </div>
+        <div class="card">
+          <span class="card-number">04</span>
+          <h3>Assemble each release</h3>
+          <p>Finalize titles and copy, build the Substack post, check the feed, and make sure every piece is in place.</p>
+        </div>
+        <div class="card">
+          <span class="card-number">05</span>
+          <h3>Choose what travels</h3>
+          <p>Select the moments worth clipping and promoting. Automation can make options. Caitlin applies taste.</p>
+        </div>
+        <div class="card">
+          <span class="card-number">06</span>
+          <h3>Keep it shipping</h3>
+          <p>Flag blockers early, bring a recommendation, and keep Axel from becoming the producer or go-between.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="kicker">Ownership split</div>
+      <h2>Who handles what.</h2>
+      <div class="lanes">
+        <div class="lane">
+          <h3>Caitlin</h3>
+          <p>Production calendar, editor management, editorial QC, release assembly, clip selection, final checks.</p>
+        </div>
+        <div class="lane">
+          <h3>Editor</h3>
+          <p>Audio edit, mix, master, revisions, and clean delivery of final files.</p>
+        </div>
+        <div class="lane">
+          <h3>Axel + Lissa</h3>
+          <p>Record, make creative calls, approve final episodes, and promote through their own audiences.</p>
+        </div>
+      </div>
+
+      <div class="note">
+        <h3>Handled by AI + Buffer</h3>
+        <p>First drafts of show notes, descriptions, captions, and post copy. Clip generation and resizing. Social scheduling. Routine analytics assembly. Caitlin reviews what matters and intervenes where judgment is needed.</p>
+      </div>
+    </section>
+
+    <section id="milestone">
+      <div class="milestone">
+        <div class="kicker">First milestone</div>
+        <h2>Setup + episodes 1 through 3.</h2>
+        <ul>
+          <li>Production system live and usable by everyone.</li>
+          <li>Episodes 1 through 3 fully produced by November 10.</li>
+          <li>Final masters, Substack releases, show notes, and promotional moments ready.</li>
+          <li>Actual hours reviewed before pricing the remaining nine episodes.</li>
+        </ul>
+        <p>Please propose the setup hours, per-episode hours, any recurring work, what you would exclude, and whether you prefer hourly, milestone, or retainer pricing.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="kicker">Confirmed timeline</div>
+      <h2>Six recording days. Twelve episodes.</h2>
+      <ul>
+        <li><strong>Recording:</strong> Tuesdays, noon to 5pm. September 22 and 29. October 6, 13, 20, and 27.</li>
+        <li><strong>Production floor:</strong> Episodes 1 through 3 complete by November 10.</li>
+        <li><strong>Publishing:</strong> Episode 1 on November 17, then weekly.</li>
+        <li><strong>Open cadence question:</strong> Publish episodes 6 and 7 on December 22 and 29, or pause for two weeks and end February 16?</li>
+      </ul>
+    </section>
+
+    <div class="docbreak" id="show">
+      <div class="kicker">Document two · The show brief</div>
+      <h1>What Hot Buttered Epiphanies is.</h1>
+      <p class="lede">An advice-column podcast with IFS practice and original music at the end. Thoughtful, funny, caring, and more raw than produced.</p>
+    </div>
+
+    <section>
+      <div class="kicker">The format</div>
+      <h2>A letter becomes a conversation, then a place to land.</h2>
+      <p>Listeners send in letters. Dr. Lissa Rankin and Axel Mansoor respond through an Internal Family Systems lens. The conversation leads into an IFS-guided practice and an original musical mantra written for the person who wrote in.</p>
+      <div class="spine">
+        <b>Cold open</b> → music sting → host intros → <b>the letter</b> → discussion → <b>IFS-guided practice</b> → original mantra
+      </div>
+    </section>
+
+    <section>
+      <div class="show-grid">
+        <div>
+          <div class="kicker">Sound</div>
+          <h2>Real conversation, lightly shaped.</h2>
+          <p>We record about 90 minutes and target 60 to 75. The edit should clarify the conversation without sanding off its life. The faster we reach the letter, the better.</p>
+        </div>
+        <div>
+          <div class="kicker">The landing</div>
+          <h2>Met, accompanied, more spacious.</h2>
+          <p>The listener should leave with useful perspective, more self-compassion, and the feeling that somebody stayed with the question. No tidy bow required.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="kicker">Editorial principles</div>
+      <h2>The guardrails.</h2>
+      <div class="principles">
+        <div class="principle">
+          <h3>Invite. Do not prescribe.</h3>
+          <p>We offer perspective without pretending to have somebody else's answer.</p>
+        </div>
+        <div class="principle">
+          <h3>Take the work seriously.</h3>
+          <p>We do not take ourselves too seriously. Humor connects. It never punches down.</p>
+        </div>
+        <div class="principle">
+          <h3>Call people in.</h3>
+          <p>We can speak directly about power without gossiping, posturing, or turning people into villains.</p>
+        </div>
+        <div class="principle">
+          <h3>Keep the truth intact.</h3>
+          <p>We do not flatten a difficult answer to make it comfortable or undermine our own experience.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="kicker">Good enough to ship</div>
+      <h2>The question gets answered.</h2>
+      <p>An episode ships when humor and insight both have room, the central question stays visible, and the meditation and mantra create a beautiful landing.</p>
+      <p>It goes back into the edit when unrelated tangents bury the letter or the conversation becomes distracted, repetitive, hard to follow, or long for the sake of being long.</p>
+    </section>
+
+    <section>
+      <div class="show-grid">
+        <div>
+          <div class="kicker">The audience</div>
+          <h2>People willing to look.</h2>
+          <p>Seekers. People who care about emotion, connection, intimacy, power, and healing. People who want to see themselves and others more clearly.</p>
+        </div>
+        <div>
+          <div class="kicker">The mantras</div>
+          <h2>Written for one person.</h2>
+          <p>Each mantra accompanies the feeling inside the letter. It creates a musical place to feel held, understood, or moved toward something new. This is not a gimmick. Axel is good at this.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Made with love (and hot butter),<br>Axel + Lissa</footer>
+  </main>
+</body>
+</html>
