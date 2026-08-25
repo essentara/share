@@ -1,5 +1,31 @@
 [
   {
+    "slug": "ivrahim-rehearsal-1-practice",
+    "title": "IVRAHIM \u00b7 Rehearsal 1 Practice",
+    "desc": "Practice recordings, song forms, and parts for IVRAHIM rehearsal 2.",
+    "date": "2026-08-25",
+    "listed": false,
+    "type": "page"
+  },
+  {
+    "slug": "ivrahim-hine-ma-tov-r1",
+    "title": "Hine Ma Tov \u00b7 Rehearsal 1",
+    "desc": "Full IVRAHIM rehearsal run for practice.",
+    "date": "2026-08-25",
+    "listed": false,
+    "type": "file",
+    "file": "hine-ma-tov-rehearsal-1.m4a"
+  },
+  {
+    "slug": "ivrahim-adon-olam-r1",
+    "title": "Adon Olam \u00b7 Rehearsal 1",
+    "desc": "Full IVRAHIM rehearsal run for practice.",
+    "date": "2026-08-25",
+    "listed": false,
+    "type": "file",
+    "file": "adon-olam-rehearsal-1.m4a"
+  },
+  {
     "slug": "hbe-production-scope",
     "title": "Hot Buttered Epiphanies | Season One Production Scope",
     "desc": "Season one production scope and show brief for Hot Buttered Epiphanies.",

@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Practice recordings, song forms, and parts for IVRAHIM rehearsal 2.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>IVRAHIM · Rehearsal 1 Practice</title>
+  <style>
+    :root {
+      --ink: #25211d;
+      --paper: #f4efe5;
+      --card: #fffaf0;
+      --line: #cfc4b3;
+      --rust: #9c4f34;
+      --olive: #53624a;
+      --muted: #746b61;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(156, 79, 52, .12), transparent 28rem),
+        var(--paper);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    main {
+      width: min(920px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 64px 0 80px;
+    }
+
+    header { padding-bottom: 44px; }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--rust);
+      font-size: .76rem;
+      font-weight: 750;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1, h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+      letter-spacing: -.035em;
+    }
+
+    h1 {
+      max-width: 730px;
+      margin-bottom: 16px;
+      font-size: clamp(3rem, 9vw, 6rem);
+      line-height: .94;
+    }
+
+    h2 {
+      margin-bottom: 22px;
+      font-size: clamp(2.15rem, 6vw, 3.8rem);
+      line-height: 1;
+    }
+
+    h3 {
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+      line-height: 1.25;
+    }
+
+    .lede {
+      max-width: 680px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 1.12rem;
+    }
+
+    .jump {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 26px;
+    }
+
+    .jump a, .download {
+      display: inline-flex;
+      align-items: center;
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 15px;
+      color: var(--ink);
+      background: rgba(255, 250, 240, .6);
+      font-size: .86rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .jump a:hover, .download:hover { border-color: var(--rust); color: var(--rust); }
+
+    section {
+      border-top: 1px solid var(--line);
+      padding: 52px 0;
+    }
+
+    .song-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 30px;
+    }
+
+    .song-head h2 { margin-bottom: 0; }
+
+    .player {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      background: var(--card);
+      box-shadow: 0 14px 34px rgba(63, 48, 34, .06);
+    }
+
+    .player p {
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    audio { display: block; width: 100%; }
+
+    .download { margin-top: 12px; }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(240px, .8fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .form {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: form;
+    }
+
+    .form li {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 9px;
+      border-bottom: 1px solid var(--line);
+      padding: 13px 0;
+      counter-increment: form;
+    }
+
+    .form li:first-child { padding-top: 0; }
+    .form li::before {
+      content: counter(form, decimal-leading-zero);
+      padding-top: 2px;
+      color: var(--rust);
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+    }
+
+    .parts { display: grid; gap: 12px; }
+
+    .part {
+      border-left: 4px solid var(--olive);
+      border-radius: 0 12px 12px 0;
+      padding: 16px 17px;
+      background: rgba(255, 250, 240, .72);
+    }
+
+    .part p:last-child { margin-bottom: 0; }
+
+    .note {
+      margin-top: 22px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px 18px;
+      color: var(--muted);
+      background: rgba(255, 250, 240, .55);
+    }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px 16px 16px 46px;
+      background: var(--card);
+    }
+
+    .checklist li::before {
+      content: "";
+      position: absolute;
+      top: 18px;
+      left: 17px;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--rust);
+      border-radius: 4px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding-top: 28px;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    @media (max-width: 720px) {
+      main { width: min(100% - 24px, 920px); padding-top: 40px; }
+      .song-head, .content-grid, .checklist { grid-template-columns: 1fr; }
+      .song-head { align-items: start; }
+      section { padding: 42px 0; }
+      .player { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">IVRAHIM · rehearsal 1 · Dylan + Nick</p>
+      <h1>the bones are boning.</h1>
+      <p class="lede">Two full runs, the working forms, and the small list to tighten before September 6.</p>
+      <nav class="jump" aria-label="Jump to song">
+        <a href="#hine-ma-tov">Hine Ma Tov</a>
+        <a href="#adon-olam">Adon Olam</a>
+        <a href="#before-rehearsal">Before rehearsal</a>
+      </nav>
+    </header>
+
+    <section id="hine-ma-tov">
+      <div class="song-head">
+        <div>
+          <p class="eyebrow">Song 1 · 6:59</p>
+          <h2>Hine Ma Tov</h2>
+        </div>
+        <div class="player">
+          <p>Full rehearsal run</p>
+          <audio controls preload="metadata" src="https://share.axelmansoor.com/ivrahim-hine-ma-tov-r1/hine-ma-tov-rehearsal-1.m4a">
+            Your browser does not support audio playback.
+          </audio>
+          <a class="download" href="https://share.axelmansoor.com/ivrahim-hine-ma-tov-r1/hine-ma-tov-rehearsal-1.m4a" download>Download audio</a>
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <div>
+          <h3>Working form</h3>
+          <ol class="form">
+            <li><div><strong>Sparse opening.</strong> Axel and Nick begin. Dylan enters after the first round and builds in stages.</div></li>
+            <li><div><strong>Head / chorus.</strong> Keep the groove restrained until the hats arrive.</div></li>
+            <li><div><strong>Verse 1.</strong> Pocket first. Bass anchors the room.</div></li>
+            <li><div><strong>Post-chorus / breakdown.</strong> Keep the sixteenth-note hats moving.</div></li>
+            <li><div><strong>Verse 2.</strong> Return without adding density too early.</div></li>
+            <li><div><strong>Speaking vamp.</strong> Hold a simple groove under Axel.</div></li>
+            <li><div><strong>Congregational melody.</strong> All three sing the familiar “Hine ma tov u'ma na'im” melody in unison or harmony.</div></li>
+            <li><div><strong>“September” bridge.</strong> Slow on the arrival chord. Nick gets four bars of pocket before embellishing. Short verse only, then accelerate back.</div></li>
+            <li><div><strong>Final full chorus.</strong> Biggest vocal stack. End immediately after the full form with the four-count cue and final hit.</div></li>
+          </ol>
+        </div>
+
+        <aside class="parts" aria-label="Hine Ma Tov parts">
+          <div class="part">
+            <h3>Dylan</h3>
+            <p>Build the opening kick, then snare, then hats, then full groove at the post. Keep sixteenths through the breakdown. Open-and-close disco hats are part of the sound.</p>
+          </div>
+          <div class="part">
+            <h3>Nick</h3>
+            <p>Groove first, embellishment later. Try the high octave or falsetto on the head. Learn one harmony for the congregational melody.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="adon-olam">
+      <div class="song-head">
+        <div>
+          <p class="eyebrow">Song 2 · 6:26</p>
+          <h2>Adon Olam</h2>
+        </div>
+        <div class="player">
+          <p>Full rehearsal run</p>
+          <audio controls preload="metadata" src="https://share.axelmansoor.com/ivrahim-adon-olam-r1/adon-olam-rehearsal-1.m4a">
+            Your browser does not support audio playback.
+          </audio>
+          <a class="download" href="https://share.axelmansoor.com/ivrahim-adon-olam-r1/adon-olam-rehearsal-1.m4a" download>Download audio</a>
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <div>
+          <h3>Working form</h3>
+          <ol class="form">
+            <li><div><strong>Dramatic opening.</strong> Rubato guitar and vocal. Dylan gives “John Bonham at 10%.” Bigger and more cinematic.</div></li>
+            <li><div><strong>Compression into groove.</strong> Four-on-the-floor and bass together for two measures, like a heartbeat after the opening.</div></li>
+            <li><div><strong>A section / verse.</strong> Bass line is the heart. Guitar joins the instrumental groove, then can drop out under the vocal.</div></li>
+            <li><div><strong>Build and big return.</strong> Expand into the full, high-impact section.</div></li>
+            <li><div><strong>Compressed groove reset.</strong> Drums and bass reset before the next vocal entrance.</div></li>
+            <li><div><strong>B section / lai-dai singalong.</strong> Crowd-facing chant. Guitar has one extra turnaround. Drums carry the motion while bass and harmony shift underneath.</div></li>
+            <li><div><strong>Ending.</strong> Drum-groove change twice. Final repetition lands a cappella.</div></li>
+          </ol>
+          <p class="note"><strong>Lock at rehearsal:</strong> play each section once while saying the chord names and bar counts into the recorder. The rehearsal audio is the reference until that chart exists.</p>
+        </div>
+
+        <aside class="parts" aria-label="Adon Olam parts">
+          <div class="part">
+            <h3>Dylan</h3>
+            <p>Make the opening dramatic without going full volume. Own the two-measure compression, carry the B-section motion, and lock the two groove changes into the a cappella ending.</p>
+          </div>
+          <div class="part">
+            <h3>Nick</h3>
+            <p>Treat the bass line as the heart of the A section. Enter the compressed groove with Dylan, keep the resets simple, and learn the harmony movement under the lai-dai section from the recording.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="before-rehearsal">
+      <p class="eyebrow">Before September 6</p>
+      <h2>Small list, high leverage.</h2>
+      <ul class="checklist">
+        <li><strong>Both:</strong> listen through each run once without stopping and mark any transition that feels different from memory.</li>
+        <li><strong>Both:</strong> learn one harmony on the familiar Hine Ma Tov melody so all three voices can land there.</li>
+        <li><strong>Dylan:</strong> drill the Hine opening build and the sixteenth-note breakdown.</li>
+        <li><strong>Nick:</strong> drill the Hine bridge as four bars of pocket before embellishing.</li>
+        <li><strong>Both:</strong> learn the Adon Olam compression, B section, and a cappella ending directly from the recording.</li>
+        <li><strong>At rehearsal:</strong> lock Adon Olam chords and bar counts, then record the chart out loud.</li>
+      </ul>
+    </section>
+
+    <footer>Rehearsal 1 · August 24, 2026 · Next rehearsal September 6</footer>
+  </main>
+</body>
+</html>
